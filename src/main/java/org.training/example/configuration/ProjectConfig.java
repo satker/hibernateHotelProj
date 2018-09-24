@@ -1,17 +1,17 @@
 package org.training.example.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan
+@PropertySource("classpath:application.properties")
 public class ProjectConfig {
     @Value("${dataSource.driverClassName}")
     private String driverClassName;
@@ -24,14 +24,6 @@ public class ProjectConfig {
 
     @Value("${dataSource.password}")
     private String password;
-
-    @Bean
-    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
-        System.out.println("-------------------------------------------------------------------------------------------------");
-        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-        propertyPlaceholderConfigurer.setLocation(new FileSystemResource("classpath:application.properties"));
-        return propertyPlaceholderConfigurer;
-    }
 
     @Bean
     public DataSource dataSource(){

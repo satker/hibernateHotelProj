@@ -7,7 +7,6 @@
           <element id="module-output" name="coreSkills" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.8.RELEASE" />
@@ -17,6 +16,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4-1201-jdbc41" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.3.6.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" />
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
@@ -29,8 +31,6 @@
           <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.4.Final" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4-1201-jdbc41" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" />

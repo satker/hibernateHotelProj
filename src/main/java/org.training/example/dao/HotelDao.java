@@ -1,10 +1,9 @@
 package org.training.example.dao;
 
-import org.springframework.stereotype.Repository;
-import org.training.example.model.Hotel;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.training.example.model.Hotel;
 
 @Repository
 public class HotelDao {

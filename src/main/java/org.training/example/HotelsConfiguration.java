@@ -27,7 +27,7 @@ public class HotelsConfiguration {
     private String password;
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername(userName);
         dataSource.setPassword(password);

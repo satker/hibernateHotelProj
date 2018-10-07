@@ -1,15 +1,17 @@
 package org.training.example.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.*;
-
 
 @Data
 @Builder
 @Entity
-@Table(name="hotels")
+@Table(name = "hotels")
 public class Hotel {
     @Id
     @GeneratedValue
@@ -37,5 +39,4 @@ public class Hotel {
     private double latitude;
     @Column(name = "longitude")
     private double longitude;
-
 }

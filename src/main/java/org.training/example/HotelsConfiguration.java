@@ -52,7 +52,7 @@ public class HotelsConfiguration {
     public LocalSessionFactoryBean hibernateSessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan("my.entities.package");
+        sessionFactory.setPackagesToScan("org.training.example");
         sessionFactory.setHibernateProperties(additionalProperties());
 
         return sessionFactory;

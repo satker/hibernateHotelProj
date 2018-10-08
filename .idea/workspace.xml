@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ffe9961-e959-4cd5-b450-162704bf8afc" name="Default" comment="refactored dependencies">
+    <list default="true" id="0ffe9961-e959-4cd5-b450-162704bf8afc" name="Default" comment="added hibernate support">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hotelsNew.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hotelsNew.csv" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -75,6 +80,15 @@
         <item name="hotels@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="hotels: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="sequences" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="hotels@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="hotels: database" type="6d9b600a:PostgresImplModel$Database" />
         <item name="access methods" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
@@ -84,7 +98,7 @@
     <session id="-1732548246">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="46" />
+          <entry key="project.closed" value="48" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.102" value="1" />
@@ -94,7 +108,7 @@
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.148" value="1" />
           <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.16" value="3" />
+          <entry key="project.open.time.16" value="4" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.3" value="2" />
@@ -117,31 +131,32 @@
           <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.80" value="1" />
+          <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.86" value="1" />
           <entry key="project.open.time.9" value="2" />
           <entry key="project.open.time.90" value="1" />
           <entry key="project.open.time.91" value="2" />
-          <entry key="project.opened" value="52" />
+          <entry key="project.opened" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="18" />
           <entry key="gitignore" value="14" />
-          <entry key="java" value="9321" />
-          <entry key="properties" value="10" />
-          <entry key="sql" value="460" />
-          <entry key="txt" value="90" />
+          <entry key="java" value="9525" />
+          <entry key="properties" value="24" />
+          <entry key="sql" value="480" />
+          <entry key="txt" value="119" />
           <entry key="xml" value="1114" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9321" />
-          <entry key="PLAIN_TEXT" value="122" />
-          <entry key="Properties" value="10" />
+          <entry key="JAVA" value="9525" />
+          <entry key="PLAIN_TEXT" value="151" />
+          <entry key="Properties" value="24" />
           <entry key="SQL" value="10" />
-          <entry key="Scratch" value="450" />
+          <entry key="Scratch" value="470" />
           <entry key="XML" value="1114" />
         </counts>
       </usages-collector>
@@ -153,10 +168,10 @@
           <entry key="class" value="14" />
           <entry key="csv" value="6" />
           <entry key="gitignore" value="1" />
-          <entry key="hotels" value="1" />
-          <entry key="java" value="72" />
-          <entry key="properties" value="5" />
-          <entry key="sql" value="10" />
+          <entry key="hotels" value="3" />
+          <entry key="java" value="73" />
+          <entry key="properties" value="6" />
+          <entry key="sql" value="12" />
           <entry key="txt" value="2" />
           <entry key="xml" value="18" />
           <entry key="xml;appContextName=hotels-servlet" value="2" />
@@ -169,12 +184,12 @@
         <counts>
           <entry key="CLASS" value="14" />
           <entry key="CSV" value="5" />
-          <entry key="Database Element" value="1" />
-          <entry key="JAVA" value="72" />
+          <entry key="Database Element" value="3" />
+          <entry key="JAVA" value="73" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Properties" value="5" />
+          <entry key="Properties" value="6" />
           <entry key="SQL" value="8" />
-          <entry key="Scratch" value="3" />
+          <entry key="Scratch" value="5" />
           <entry key="UML" value="7" />
           <entry key="XML" value="19" />
         </counts>
@@ -187,28 +202,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#718#737#1" expanded="true" />
-                <element signature="e#775#799#1" expanded="true" />
-                <element signature="e#842#866#1" expanded="true" />
-                <element signature="e#975#1002#1" expanded="true" />
-                <element signature="e#1040#1062#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/HotelService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="697">
+              <caret line="54" column="62" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -219,7 +217,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="356">
               <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
             </state>
           </provider>
@@ -228,8 +226,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="204">
+              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -250,15 +248,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/hotelsNew.csv">
           <provider selected="true" editor-type-id="LargeFileEditor">
             <state relative-caret-position="170">
@@ -268,10 +257,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/hotels">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="255">
+              <caret line="15" column="48" selection-start-line="15" selection-end-line="18" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c9139745-d5e8-47f9-85fc-18b6a59e42eb/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -279,24 +295,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="357">
+              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/controller/HotelController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#524#525#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -353,7 +355,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/Ter.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/df9a9ba5-95ef-4785-be1c-e5afd673e721/console_1.sql" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/web.xml" />
@@ -362,13 +363,15 @@
         <option value="$PROJECT_DIR$/src/main/resources/WEB-INF/hotels-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/configuration/HotelsInitializer.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/service/HotelService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/controller/HotelController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/script.sql" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/c9139745-d5e8-47f9-85fc-18b6a59e42eb/console.sql" />
       </list>
     </option>
   </component>
@@ -424,7 +427,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -520,7 +523,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -529,8 +532,8 @@
     <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538942913455" />
-    <property name="database.console.LAST_STATE" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538986944332" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -851,7 +854,9 @@
       <workItem from="1538894106356" duration="5858000" />
       <workItem from="1538923240385" duration="1274000" />
       <workItem from="1538935378693" duration="4972000" />
-      <workItem from="1538943473224" duration="249000" />
+      <workItem from="1538943473224" duration="332000" />
+      <workItem from="1538979808466" duration="1042000" />
+      <workItem from="1538981370247" duration="2589000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1537776751500</created>
@@ -895,11 +900,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538942943471</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added hibernate support">
+      <created>1538943797784</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1538943797784</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154269000" />
+    <option name="totallyTimeSpent" value="157983000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -914,7 +926,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.20272315" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -935,21 +947,21 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32786885" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3295082" />
       <window_info anchor="bottom" id="Spring" order="12" />
-      <window_info anchor="bottom" id="Database Console" order="13" visible="true" weight="0.32459018" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="13" visible="true" weight="0.32459018" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" />
       <window_info anchor="bottom" id="Application Servers" order="15" weight="0.3295082" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.32980332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Ant Build" order="5" weight="0.24962178" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.32980332" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.29500756" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" x="0" y="0" width="295" height="544" id="Documentation" order="10" side_tool="true" weight="0.32980332" />
-      <window_info anchor="right" id="Mongo Explorer" order="11" />
+      <window_info anchor="right" id="Mongo Explorer" order="11" weight="0.32980332" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -964,20 +976,17 @@
     <MESSAGE value="added working version" />
     <MESSAGE value="refactored code" />
     <MESSAGE value="refactored dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored dependencies" />
+    <MESSAGE value="added hibernate support" />
+    <option name="LAST_COMMIT_MESSAGE" value="added hibernate support" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/file.txt" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.2/lombok-1.18.2.jar!/lombok/Data.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/postprocssor/GetBeanDefinitions.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Reee.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.8.RELEASE/spring-context-5.0.8.RELEASE.jar!/org/springframework/stereotype/Controller.class">
@@ -1053,7 +1062,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Ter.java" />
     <entry file="das://df9a9ba5-95ef-4785-be1c-e5afd673e721/database/hotels/access-method/btree" />
-    <entry file="das://df9a9ba5-95ef-4785-be1c-e5afd673e721/database/hotels/schema/public/table/hotels" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.8.RELEASE/spring-context-5.0.8.RELEASE-sources.jar!/org/springframework/context/annotation/Scope.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="597">
@@ -1214,13 +1222,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/HotelService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state relative-caret-position="102">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/controller/HotelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://df9a9ba5-95ef-4785-be1c-e5afd673e721/database/hotels/schema/public/table/hotels">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="54" column="62" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1241,71 +1285,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/dao/HotelDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/controller/HotelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/HotelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/HotelsConfiguration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state relative-caret-position="204">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#718#737#1" expanded="true" />
-            <element signature="e#775#799#1" expanded="true" />
-            <element signature="e#842#866#1" expanded="true" />
-            <element signature="e#975#1002#1" expanded="true" />
-            <element signature="e#1040#1062#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="48" selection-start-line="15" selection-end-line="18" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/hotels">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c9139745-d5e8-47f9-85fc-18b6a59e42eb/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
         </state>
       </provider>
     </entry>

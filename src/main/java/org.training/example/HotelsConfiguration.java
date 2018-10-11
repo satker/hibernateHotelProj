@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan
 @EnableWebMvc
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:properties/application.properties")
 @EnableTransactionManagement
 public class HotelsConfiguration {
     @Value("${dataSource.driverClassName}")

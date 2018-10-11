@@ -13,7 +13,7 @@
 
         function initController() {
             $http({
-                url: 'http://localhost:8082/user',
+                url: 'http://localhost:8888/user',
                 method: "GET"
             }).then(function (response) {
                 vm.user = response.data.name;

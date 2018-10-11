@@ -4,8 +4,8 @@ import java.security.Principal;
 import java.util.Base64;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.model.User;
 
@@ -13,14 +13,14 @@ import org.training.example.model.User;
 @CrossOrigin
 public class UserController {
 
-  @RequestMapping("/login")
+  @GetMapping("/login")
   public boolean login(@RequestBody User user) {
     return user.getUserName()
                .equals("user") && user.getPassword()
                                       .equals("password");
   }
 
-  @RequestMapping("/user")
+  @GetMapping("/user")
   public Principal user(HttpServletRequest request) {
     String authToken = request.getHeader("Authorization")
                               .substring("Basic".length())

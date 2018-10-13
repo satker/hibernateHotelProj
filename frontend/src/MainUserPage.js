@@ -46,8 +46,7 @@ export default class MainUserPage extends Component {
                     </tbody>
                 </Table>
                 <br/>
-                <Button className="btn-danger" onClick={() => this.props.setScreen("edit_profile")}>Edit
-                    profile</Button>
+                <Button className="btn-danger" onClick={() => this.props.setScreen("edit_profile")}>Edit profile</Button>
             </Container>
         );
     }

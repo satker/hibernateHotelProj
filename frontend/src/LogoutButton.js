@@ -10,6 +10,6 @@ export default class LogoutButton extends React.Component {
     }
 
     render() {
-        return <Button onClick={() => this.logout()}>Logout</Button>;
+        return <Button onClick={()=>this.logout()}>Logout</Button>;
     }
 };

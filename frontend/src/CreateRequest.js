@@ -37,7 +37,7 @@ export default class CreateRequest extends React.Component {
             "user": this.props.me(),
         };*/
         let body = {};
-        for (let key of ["capacity", "arrivalDate", "departureDate", "idDone"]) {
+        for(let key of ["capacity", "arrivalDate", "departureDate", "idDone"]) {
             body[key] = this.state[key];
         }
         body.roomType = this.state.roomTypes.find(room => room.name === this.state.roomType);

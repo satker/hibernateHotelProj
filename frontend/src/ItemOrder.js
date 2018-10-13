@@ -14,7 +14,7 @@ export default class ItemOrder extends Component {
     }
 
     async componentDidMount() {
-        if (this.props.me.role === "ROLE_ADMIN") {
+        if(this.props.me.role === "ROLE_ADMIN") {
             let resp = await fetch(URL_ROOMS.replace("_id_", this.props.order.roomType.id), {
                 credentials: "include",
             });
@@ -59,7 +59,7 @@ export default class ItemOrder extends Component {
                 select = this.state.rooms.map(room => <option value={room.number}>{room.number}</option>);
             }
             return <td>
-                <select onChange={(evt) => this.setState({roomNumber: evt.target.value})}>{select}</select>
+                <select onChange={(evt)=>this.setState({roomNumber: evt.target.value})}>{select}</select>
                 <Button className="btn-success" onClick={this.adminConfirm}>Confirm</Button>
             </td>
         }

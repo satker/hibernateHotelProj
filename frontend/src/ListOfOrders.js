@@ -49,7 +49,7 @@ export default class ListOfRooms extends Component {
                         user={this.props.user()}
                         order={order}
                         setScreen={this.props.setScreen}
-                        refresh={() => this.loadOrders()}
+                        refresh={()=>this.loadOrders()}
                         rooms={this.state.rooms}
                     />)}
                 </tbody>

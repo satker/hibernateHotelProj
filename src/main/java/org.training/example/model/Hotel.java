@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "hotels")
+@Table(name = "hotel")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Hotel {

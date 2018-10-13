@@ -28,8 +28,7 @@ export default class ListOfConfirmed extends React.Component {
                 <td>Loading...</td>
             </tr>
         }
-        return this.state.list.map(conf => <ItemConfirmed refresh={() => this.load()} me={this.props.me()}
-                                                          user={this.props.user()} order={conf}/>)
+        return this.state.list.map(conf => <ItemConfirmed refresh={()=>this.load()} me={this.props.me()} user={this.props.user()} order={conf}/>)
     }
 
     render() {

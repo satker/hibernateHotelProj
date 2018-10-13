@@ -27,7 +27,7 @@ export default class MainAdminPage extends React.Component {
     }
 
     async componentDidMount() {
-        let resp = await fetch(URL, {credentials: "include"});
+        let resp = await fetch(URL, {credentials:"include"});
         let text = await resp.text();
         this.setState({list: JSON.parse(text)});
     }

@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
 import javax.persistence.PostUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "room_type")
 @Slf4j
 @Data
 public class RoomType {

@@ -40,13 +40,13 @@ public class User {
     @NotNull
     private String role = "ROLE_USER";
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
     private Set<RoomRequest> requests = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore

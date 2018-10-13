@@ -40,7 +40,7 @@ export default class FormLogin extends Component {
         let text = await resp.text();
         console.log(text);
 
-        if (resp.status === 200) {
+        if( resp.status === 200 ) {
             try {
                 let user = JSON.parse(text);
                 user.truePassword = this.state.password;
@@ -49,7 +49,7 @@ export default class FormLogin extends Component {
                 } else {
                     this.props.setScreen("user_home", {me: user});
                 }
-            } catch (e) {
+            } catch(e) {
                 this.error("Failed to login");
             }
         } else {
@@ -65,7 +65,7 @@ export default class FormLogin extends Component {
     handleChange(evt) {
         this.setState({[evt.target.name]: evt.target.value});
     }
-
+  
     error(str) {
         alert(str);
     }

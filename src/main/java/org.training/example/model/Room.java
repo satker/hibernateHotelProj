@@ -17,6 +17,7 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "room")
 @Slf4j
 public class Room {
     @Id

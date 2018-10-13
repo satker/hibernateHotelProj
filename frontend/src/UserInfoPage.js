@@ -10,7 +10,7 @@ export default class UserInfoPage extends React.Component {
     }
 
     renderButton() {
-        if (this.props.me().role === "ROLE_ADMIN") {
+        if(this.props.me().role === "ROLE_ADMIN" ) {
             return <Button className="btn-danger" onClick={this.deleteUser}>Delete user</Button>
         }
     }

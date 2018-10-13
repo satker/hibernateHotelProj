@@ -9,6 +9,4 @@ import org.training.example.model.RoomRequest;
 @Repository
 public interface RoomRequestRepository extends JpaRepository<RoomRequest, Long> {
     Collection<RoomRequest> findByUserId(long id);
-
-    Optional<RoomRequest> findById(Long id);
 }

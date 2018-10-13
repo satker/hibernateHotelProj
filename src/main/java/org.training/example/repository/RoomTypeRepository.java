@@ -7,8 +7,6 @@ import org.training.example.model.RoomType;
 
 @Repository
 public interface RoomTypeRepository extends JpaRepository<RoomType, Long> {
-    Optional<RoomType> findById(Long id);
-
     Optional<RoomType> findByName(String name);
 
     default Long findIdByName(String name) {

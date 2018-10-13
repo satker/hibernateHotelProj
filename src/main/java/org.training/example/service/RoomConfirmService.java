@@ -40,11 +40,11 @@ public class RoomConfirmService {
 
     public RoomConfirmDTO findOne(long id) {
         log.debug("room confirm has been found by id {}", id);
-        return roomConfirmMapper.confirmToConfirmDTO(roomConfirmRepository.findOne(id));
+        return roomConfirmMapper.confirmToConfirmDTO(roomConfirmRepository.getOne(id));
     }
 
     public void deleteConfirmById(long id) {
         log.debug("confirm has been deleted by id {}", id);
-        roomConfirmRepository.delete(roomConfirmRepository.findOne(id));
+        roomConfirmRepository.delete(roomConfirmRepository.getOne(id));
     }
 }

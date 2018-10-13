@@ -8,6 +8,4 @@ import org.training.example.model.RoomConfirm;
 @Repository
 public interface RoomConfirmRepository extends JpaRepository<RoomConfirm, Long> {
     Collection<RoomConfirm> findByUserId(long id);
-
-    RoomConfirm findOne(long id);
 }

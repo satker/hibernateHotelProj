@@ -28,7 +28,7 @@ public class RoomService {
 
     public void deleteRoomById(long id) {
         log.debug("room has been deleted by id {}", id);
-        roomRepository.delete(roomRepository.findOne(id));
+        roomRepository.delete(roomRepository.getOne(id));
     }
 
     public RoomDTO findOne(long id) {

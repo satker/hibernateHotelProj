@@ -3,14 +3,7 @@ package org.training.example.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,33 +14,30 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
-@Data
-public class User {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private String login;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-    @NotNull
-    private String password;
-    @NotNull
-    private String role = "ROLE_USER";
 
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
+    @NotNull
+    private Integer number;
+
+    @NotNull
+    private String numberPlace;
+
+    @NotNull
+    private String costNight;
+
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
     @JsonIgnore
-    private Set<RoomRequest> requests = new HashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private RoomType roomType;
+    @OneToMany(mappedBy = "room")
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
     private Set<RoomConfirm> confirmRooms = new HashSet<>();
@@ -68,7 +58,6 @@ public class User {
     }
 
     private void audit(String operation) {
-        log.debug("operation to user table completed {}", operation);
+        log.debug("operation to room table completed {}", operation);
     }
 }
-

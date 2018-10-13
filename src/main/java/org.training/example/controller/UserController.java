@@ -1,39 +1,46 @@
 package org.training.example.controller;
 
 import java.security.Principal;
-import java.util.Base64;
-import javax.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.training.example.model.User;
+import org.training.example.dto.AddUserDTO;
+import org.training.example.dto.UserDTO;
+import org.training.example.service.UserService;
 
-@RestController
 @CrossOrigin
-public class UserController {
+@RestController
+@RequestMapping("/user")
+@RequiredArgsConstructor
+class UserController {
+    private final UserService userService;
 
-  @GetMapping("/login")
-  public boolean login(@RequestBody User user) {
-    return user.getUserName()
-               .equals("user") && user.getPassword()
-                                      .equals("password");
-  }
+    @PostMapping
+    ResponseEntity add(@RequestBody AddUserDTO input) {
+        userService.saveUser(input);
+        return new ResponseEntity(null, HttpStatus.CREATED);
+    }
 
-  @GetMapping("/user")
-  public Principal user(HttpServletRequest request) {
-    String authToken = request.getHeader("Authorization")
-                              .substring("Basic".length())
-                              .trim();
-    return () -> new String(Base64.getDecoder()
-                                  .decode(authToken)).split(":")[0];
-  }
+    @GetMapping
+    public UserDTO getValidateUser(Principal principal) {
+        return userService.findUserByLogin(principal.getName());
+    }
 
-    @PostMapping(value = "/perform_login", params = {"username", "password"})
-    public boolean checkLogin(@RequestParam String username,
-                              @RequestParam String password) {
-        return true;
+    @GetMapping(value = "/{id}")
+    public UserDTO getValidateUser(@PathVariable("id") long id, Principal principal) {
+        return userService.getUserValidateUser(id, principal.getName());
+    }
+
+    @PutMapping(value = "/{id}")
+    public void updateValidateUser(@PathVariable("id") long id, @RequestBody UserDTO user, Principal principal) {
+        userService.updateUserValidateUser(id, principal.getName(), user);
     }
 }

@@ -2,8 +2,10 @@ package org.training.example.controller;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.model.Hotel;
@@ -11,6 +13,8 @@ import org.training.example.service.HotelService;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/hotels")
+@CrossOrigin
 public class HotelController {
     private final HotelService hotelService;
 

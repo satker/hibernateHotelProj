@@ -20,37 +20,30 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
 @Data
-public class User {
+public class RoomType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String login;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-    @NotNull
-    private String password;
-    @NotNull
-    private String role = "ROLE_USER";
-
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private String name;
+    private String description;
+    @OneToMany(mappedBy = "roomType")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
     private Set<RoomRequest> requests = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany(mappedBy = "roomType")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomConfirm> confirmRooms = new HashSet<>();
+    private Set<Room> rooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {
@@ -68,7 +61,6 @@ public class User {
     }
 
     private void audit(String operation) {
-        log.debug("operation to user table completed {}", operation);
+        log.debug("operation to room type table completed {}", operation);
     }
 }
-

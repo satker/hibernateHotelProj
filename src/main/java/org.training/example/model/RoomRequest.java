@@ -1,16 +1,10 @@
 package org.training.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,34 +14,36 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Slf4j
 @Data
-public class User {
+public class RoomRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String login;
+    private byte capacity;
     @NotNull
-    private String firstName;
+    private Date arrivalDate;
     @NotNull
-    private String lastName;
-    @NotNull
-    private String password;
-    @NotNull
-    private String role = "ROLE_USER";
+    private Date departureDate;
+    private boolean isDone = false;
 
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonIgnore
-    private Set<RoomRequest> requests = new HashSet<>();
+    private User user;
 
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
+    @JsonIgnore
+    private RoomType roomType;
+
+    @OneToMany(mappedBy = "request")
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
     private Set<RoomConfirm> confirmRooms = new HashSet<>();
@@ -68,7 +64,6 @@ public class User {
     }
 
     private void audit(String operation) {
-        log.debug("operation to user table completed {}", operation);
+        log.debug("operation to room request table completed {}", operation);
     }
 }
-

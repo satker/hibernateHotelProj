@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   db:
-    image: oracle/database:11.2.0.2-xe
+    image: sath89/oracle-xe-11g
     container_name: db-container
     ports:
     - 1521:1521

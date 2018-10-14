@@ -1,16 +1,16 @@
 version: '2.3'
 services:
   db:
-    image: sath89/oracle-xe-11g
+    image: sath89/oracle-12c
     container_name: db-container
     ports:
     - 1521:1521
     - 8085:8080
     shm_size: 1g
     volumes:
-    - ./data:/u01/app/oracle/oradata
+      - ./data:/u01/app/oracle/oradata
     environment:
-    - ORACLE_PWD=13693509
+      - ORACLE_PWD=13693509
     restart: unless-stopped
 
   backend:

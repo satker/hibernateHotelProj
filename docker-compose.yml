@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: hotels//apphotel:latest
+    image: hotels/apphotel:latest
     container_name: backend-container
     restart: always
     mem_limit: 288m
@@ -24,4 +24,4 @@ services:
       - ORACLE_PORT=8085
       - ORACLE_PWD=13693509
     ports:
-      - 8090:8080
+      - 9090:80

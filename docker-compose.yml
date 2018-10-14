@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ${DOCKER_REPOSITORY}/configuration-service:${IMAGE_VERSION}
+    image: hotels//apphotel:latest
     container_name: backend-container
     restart: always
     mem_limit: 288m

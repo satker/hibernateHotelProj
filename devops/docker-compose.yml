@@ -17,7 +17,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   backend:
-    image: hotels/apphotel:latest
+    image: hotels/apphotelnew:latest
     container_name: backend-container
     restart: always
     mem_limit: 288m

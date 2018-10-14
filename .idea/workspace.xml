@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ffe9961-e959-4cd5-b450-162704bf8afc" name="Default" comment="change spring mvc to spring boot">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/acorn" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/acorn.cmd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/ansi-html" afterDir="false" />
@@ -14198,18 +14197,13 @@
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/node_modules/string-width/readme.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/yargs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coreSkills.iml" beforeDir="false" afterPath="$PROJECT_DIR$/coreSkills.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/asset-manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/favicon.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/service-worker.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -14327,6 +14321,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Dockerfile" value="2" />
           <entry key="cell" value="107" />
           <entry key="dummy" value="44" />
           <entry key="gitignore" value="14" />
@@ -14335,7 +14330,7 @@
           <entry key="properties" value="44" />
           <entry key="sql" value="522" />
           <entry key="txt" value="261" />
-          <entry key="xml" value="1180" />
+          <entry key="xml" value="1190" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -14343,11 +14338,11 @@
           <entry key="JAVA" value="11269" />
           <entry key="JPA QL" value="1" />
           <entry key="JSP" value="29" />
-          <entry key="PLAIN_TEXT" value="319" />
+          <entry key="PLAIN_TEXT" value="321" />
           <entry key="Properties" value="44" />
           <entry key="SQL" value="10" />
           <entry key="Scratch" value="619" />
-          <entry key="XML" value="1180" />
+          <entry key="XML" value="1190" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -14432,8 +14427,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            <state relative-caret-position="34">
+              <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -14450,8 +14445,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="170">
+              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -14517,9 +14512,11 @@
       <find>Node</find>
       <find>index</find>
       <find>3000</find>
+      <find>localhost:2375</find>
     </findStrings>
     <dirStrings>
       <dir>D:\java_projects\coreSkills\src\main\resources\WEB-INF\view\react</dir>
+      <dir>D:\java_projects\coreSkills</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -14575,9 +14572,9 @@
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/UserDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/UsersDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomConfirmMapper.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Dockerfile" />
       </list>
     </option>
@@ -14616,7 +14613,7 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="coreSkills" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
-          <item name="tomcat7" type="36feed69:MavenProjectsStructure$PluginNode" />
+          <item name="dockerfile" type="36feed69:MavenProjectsStructure$PluginNode" />
         </path>
       </expand>
       <select />
@@ -14649,6 +14646,34 @@
               <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
               <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
+              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -14667,7 +14692,7 @@
     <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539502965930" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539504008956" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
@@ -15023,7 +15048,7 @@
       <workItem from="1539417452597" duration="4754000" />
       <workItem from="1539446783556" duration="6351000" />
       <workItem from="1539458127066" duration="2793000" />
-      <workItem from="1539499786935" duration="2859000" />
+      <workItem from="1539499786935" duration="3725000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1537776751500</created>
@@ -15109,11 +15134,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539461384595</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="change spring mvc to spring boot">
+      <created>1539503082003</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1539503082003</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210202000" />
+    <option name="totallyTimeSpent" value="211068000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -15126,7 +15158,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.20272315" />
@@ -15221,11 +15252,11 @@
     <MESSAGE value="refactored dependencies" />
     <MESSAGE value="added hibernate support" />
     <MESSAGE value="added working hibernate getAll" />
-    <MESSAGE value="change spring mvc to spring boot" />
     <MESSAGE value="added booking action" />
     <MESSAGE value="refactored jpa repositories" />
     <MESSAGE value="fixed code" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed code" />
+    <MESSAGE value="change spring mvc to spring boot" />
+    <option name="LAST_COMMIT_MESSAGE" value="change spring mvc to spring boot" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -15556,9 +15587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hotelsNew.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomRequestMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -15566,20 +15594,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -15614,13 +15628,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hotelsNew.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="34">
+          <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
         </state>
       </provider>
     </entry>

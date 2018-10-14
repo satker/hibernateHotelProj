@@ -1,0 +1,26 @@
+version: '2.3'
+services:
+  db:
+    image: oracle/database:11.2.0.2-xe
+    ports:
+    - 1521:1521
+    - 8085:8080
+    shm_size: 1g
+    volumes:
+    - ./data:/u01/app/oracle/oradata
+    environment:
+    - ORACLE_PWD=13693509
+    restart: unless-stopped
+
+  backend:
+    image: ${DOCKER_REPOSITORY}/configuration-service:${IMAGE_VERSION}
+    container_name: backend-container
+    restart: always
+    mem_limit: 288m
+    environment:
+      - JVM_OPTIONS=-Xmx160m -XX:MaxMetaspaceSize=64m -XX:MaxRAM=288m
+      - ORACLE_HOST=ecse00100b40.epam.com
+      - ORACLE_PORT=8085
+      - ORACLE_PWD=13693509
+    ports:
+      - 8090:8080

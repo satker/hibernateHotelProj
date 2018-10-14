@@ -14197,10 +14197,8 @@
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/node_modules/string-width/readme.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/yargs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/asset-manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/favicon.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/index.html" beforeDir="false" />
@@ -14309,7 +14307,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="58" />
+          <entry key="Dockerfile" value="66" />
           <entry key="cell" value="107" />
           <entry key="dummy" value="44" />
           <entry key="gitignore" value="14" />
@@ -14317,22 +14315,22 @@
           <entry key="jsp" value="29" />
           <entry key="properties" value="109" />
           <entry key="sql" value="528" />
-          <entry key="txt" value="522" />
-          <entry key="xml" value="1256" />
+          <entry key="txt" value="555" />
+          <entry key="xml" value="1267" />
           <entry key="yml" value="137" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dockerfile" value="55" />
+          <entry key="Dockerfile" value="63" />
           <entry key="JAVA" value="11269" />
           <entry key="JPA QL" value="1" />
           <entry key="JSP" value="29" />
-          <entry key="PLAIN_TEXT" value="583" />
+          <entry key="PLAIN_TEXT" value="616" />
           <entry key="Properties" value="109" />
           <entry key="SQL" value="16" />
           <entry key="Scratch" value="619" />
-          <entry key="XML" value="1256" />
+          <entry key="XML" value="1267" />
           <entry key="YAML" value="137" />
         </counts>
       </usages-collector>
@@ -14365,7 +14363,7 @@
           <entry key="user_confirm_rooms" value="1" />
           <entry key="user_requests" value="1" />
           <entry key="users" value="3" />
-          <entry key="xml" value="23" />
+          <entry key="xml" value="24" />
           <entry key="xml;appContextName=hotels-servlet" value="2" />
           <entry key="xsd" value="1" />
           <entry key="yml" value="1" />
@@ -14392,7 +14390,7 @@
           <entry key="SQL" value="11" />
           <entry key="Scratch" value="11" />
           <entry key="UML" value="7" />
-          <entry key="XML" value="25" />
+          <entry key="XML" value="26" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -14422,11 +14420,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -14458,22 +14456,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+            <state relative-caret-position="636">
+              <caret line="160" column="21" selection-start-line="150" selection-start-column="12" selection-end-line="160" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomConfirmRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/.idea/dataSources.local.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -14508,6 +14502,7 @@
       <find>index</find>
       <find>3000</find>
       <find>localhost:2375</find>
+      <find>coreSkills</find>
     </findStrings>
     <dirStrings>
       <dir>D:\java_projects\coreSkills\src\main\resources\WEB-INF\view\react</dir>
@@ -14639,7 +14634,7 @@
             <path>
               <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
               <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="devops" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
@@ -14704,7 +14699,7 @@
     <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539541527816" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539543191824" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
@@ -15061,7 +15056,7 @@
       <workItem from="1539446783556" duration="6351000" />
       <workItem from="1539458127066" duration="2793000" />
       <workItem from="1539499786935" duration="11713000" />
-      <workItem from="1539532584832" duration="8425000" />
+      <workItem from="1539532584832" duration="9955000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1537776751500</created>
@@ -15357,11 +15352,46 @@
       <option name="project" value="LOCAL" />
       <updated>1539540761533</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fixed name">
+      <created>1539541553785</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1539541553785</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fixed">
+      <created>1539541590243</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1539541590243</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fixed">
+      <created>1539541975445</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1539541975446</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fixed">
+      <created>1539542113450</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1539542113450</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fixed">
+      <created>1539542277422</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1539542277422</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227481000" />
+    <option name="totallyTimeSpent" value="229011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -15374,6 +15404,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.20272315" />
@@ -15391,8 +15422,8 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3295082" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32786885" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32786885" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.28196722" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49924356" weight="0.33114755" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3295082" />
@@ -15457,6 +15488,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -15478,9 +15535,9 @@
     <MESSAGE value="added correct mysql configs" />
     <MESSAGE value="fix name image" />
     <MESSAGE value="fix wrong dockerfile" />
-    <MESSAGE value="fixed name" />
     <MESSAGE value="change spring mvc to spring boot" />
     <MESSAGE value="fixed dockerfile" />
+    <MESSAGE value="fixed name" />
     <MESSAGE value="fixed" />
     <option name="LAST_COMMIT_MESSAGE" value="fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
@@ -15516,13 +15573,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/src/FormLogin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.0.8.RELEASE/spring-security-core-5.0.8.RELEASE.jar!/org/springframework/security/authentication/dao/DaoAuthenticationProvider.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -15701,6 +15751,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -15822,17 +15875,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/.idea/dataSources.local.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+        <state relative-caret-position="636">
+          <caret line="160" column="21" selection-start-line="150" selection-start-column="12" selection-end-line="160" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>

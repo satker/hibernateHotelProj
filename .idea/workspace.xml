@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ffe9961-e959-4cd5-b450-162704bf8afc" name="Default" comment="change spring mvc to spring boot">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/acorn" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/acorn.cmd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/ansi-html" afterDir="false" />
@@ -14198,37 +14199,15 @@
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/node_modules/yargs/yargs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/coreSkills_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coreSkills.iml" beforeDir="false" afterPath="$PROJECT_DIR$/coreSkills.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/asset-manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/favicon.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/build/service-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/AdminConfirmPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/AdminConfirmPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/CreateRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/CreateRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/EditProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Form.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Form.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/FormLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/FormLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/FormOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/FormOrder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ItemOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ItemOrder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ListOfConfirmed.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ListOfConfirmed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ListOfOrders.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ListOfOrders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/LogoutButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/LogoutButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/MainAdminPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/MainAdminPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/MainUserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/MainUserPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/UserInfoPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/UserInfoPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/registerServiceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/registerServiceWorker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
@@ -14287,15 +14266,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="hotels@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="hotels: database" type="6d9b600a:PostgresImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
     </expand>
     <select />
   </component>
@@ -14303,7 +14273,7 @@
     <session id="-1732548246">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="62" />
+          <entry key="project.closed" value="63" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.100" value="1" />
@@ -14342,6 +14312,7 @@
           <entry key="project.open.time.75" value="1" />
           <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.77" value="1" />
+          <entry key="project.open.time.79" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.80" value="1" />
           <entry key="project.open.time.84" value="1" />
@@ -14351,7 +14322,7 @@
           <entry key="project.open.time.90" value="1" />
           <entry key="project.open.time.91" value="2" />
           <entry key="project.open.time.99" value="1" />
-          <entry key="project.opened" value="70" />
+          <entry key="project.opened" value="71" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -14359,53 +14330,54 @@
           <entry key="cell" value="107" />
           <entry key="dummy" value="44" />
           <entry key="gitignore" value="14" />
-          <entry key="java" value="11264" />
+          <entry key="java" value="11270" />
           <entry key="jsp" value="29" />
-          <entry key="properties" value="42" />
+          <entry key="properties" value="44" />
           <entry key="sql" value="522" />
-          <entry key="txt" value="251" />
-          <entry key="xml" value="1178" />
+          <entry key="txt" value="261" />
+          <entry key="xml" value="1180" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11263" />
+          <entry key="JAVA" value="11269" />
           <entry key="JPA QL" value="1" />
           <entry key="JSP" value="29" />
-          <entry key="PLAIN_TEXT" value="309" />
-          <entry key="Properties" value="42" />
+          <entry key="PLAIN_TEXT" value="319" />
+          <entry key="Properties" value="44" />
           <entry key="SQL" value="10" />
           <entry key="Scratch" value="619" />
-          <entry key="XML" value="1178" />
+          <entry key="XML" value="1180" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="Dockerfile" value="1" />
           <entry key="SpringLocalModels/module=coreSkills" value="5" />
           <entry key="btree" value="1" />
           <entry key="class" value="39" />
           <entry key="css" value="3" />
-          <entry key="csv" value="10" />
+          <entry key="csv" value="11" />
           <entry key="gitignore" value="3" />
           <entry key="hotels" value="8" />
           <entry key="html" value="5" />
           <entry key="ico" value="1" />
-          <entry key="java" value="265" />
-          <entry key="js" value="21" />
+          <entry key="java" value="278" />
+          <entry key="js" value="22" />
           <entry key="json" value="5" />
           <entry key="jsp" value="12" />
-          <entry key="properties" value="13" />
+          <entry key="properties" value="14" />
           <entry key="room_confirm" value="1" />
           <entry key="room_request" value="1" />
-          <entry key="sql" value="18" />
+          <entry key="sql" value="19" />
           <entry key="tld" value="1" />
           <entry key="txt" value="2" />
           <entry key="user" value="1" />
           <entry key="user_confirm_rooms" value="1" />
           <entry key="user_requests" value="1" />
           <entry key="users" value="3" />
-          <entry key="xml" value="22" />
+          <entry key="xml" value="23" />
           <entry key="xml;appContextName=hotels-servlet" value="2" />
           <entry key="xsd" value="1" />
         </counts>
@@ -14416,20 +14388,20 @@
         <counts>
           <entry key="CLASS" value="39" />
           <entry key="CSS" value="3" />
-          <entry key="CSV" value="9" />
+          <entry key="CSV" value="10" />
           <entry key="Database Element" value="16" />
           <entry key="HTML" value="5" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="265" />
+          <entry key="JAVA" value="278" />
           <entry key="JSON" value="5" />
           <entry key="JSP" value="12" />
-          <entry key="JavaScript" value="21" />
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Properties" value="13" />
-          <entry key="SQL" value="9" />
+          <entry key="JavaScript" value="22" />
+          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="Properties" value="14" />
+          <entry key="SQL" value="10" />
           <entry key="Scratch" value="10" />
           <entry key="UML" value="7" />
-          <entry key="XML" value="24" />
+          <entry key="XML" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -14440,23 +14412,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="242">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomTypeMapper.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -14465,19 +14442,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="74" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
+              <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/UserMapper.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -14485,8 +14459,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomRequestMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="170">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -14495,48 +14469,35 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="32" column="30" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Room.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-183">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
+            <state relative-caret-position="-51">
               <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Hotel.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomConfirmRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="22" selection-start-line="16" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="85">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomConfirmMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+            <state relative-caret-position="-128">
+              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/hotelsNew.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor" />
         </entry>
       </file>
     </leaf>
@@ -14567,9 +14528,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/service/HotelService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/service/TokenServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/service/TokenService.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/security/TokenAuthenticationFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/security/TokenAuthentication.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/config/WebMvcConfig.java" />
@@ -14577,11 +14535,9 @@
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/controller/HotelController.java" />
         <option value="$PROJECT_DIR$/frontend/src/FormLogin.js" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/config/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/AddUserDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/RoomRequestDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/RoomTypeDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/UserDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/exceptions/AccessDeniedException.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/exceptions/RoomNotFoundException.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/exceptions/RoomRequestNotFoundException.java" />
@@ -14594,7 +14550,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/AddRoomRequestDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/RoomConfirmDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/RoomDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomConfirmMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomRequestMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomTypeMapper.java" />
@@ -14615,9 +14570,15 @@
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/UserApp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/Users.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/UserDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/dto/UsersDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomConfirmMapper.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org.training/example/model/User.java" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
       </list>
     </option>
   </component>
@@ -14688,112 +14649,12 @@
               <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
               <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="mappers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coreSkills" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coreSkills" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -14806,7 +14667,7 @@
     <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539455730333" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539502965930" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
@@ -15161,7 +15022,8 @@
       <workItem from="1539411333766" duration="4225000" />
       <workItem from="1539417452597" duration="4754000" />
       <workItem from="1539446783556" duration="6351000" />
-      <workItem from="1539458127066" duration="2321000" />
+      <workItem from="1539458127066" duration="2793000" />
+      <workItem from="1539499786935" duration="2859000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1537776751500</created>
@@ -15240,11 +15102,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539454699003</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed code">
+      <created>1539461384595</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1539461384595</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206871000" />
+    <option name="totallyTimeSpent" value="210202000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -15257,8 +15126,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49545455" visible="true" weight="0.23676248" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.20272315" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -15268,7 +15138,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.38360655" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.38360655" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -15288,9 +15158,9 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="right" id="Ant Build" order="5" weight="0.24962178" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.2677761" />
+      <window_info anchor="right" id="Database" order="6" weight="0.2677761" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.29500756" />
+      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.29500756" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" x="0" y="0" width="295" height="544" id="Documentation" order="10" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" id="Mongo Explorer" order="11" weight="0.32980332" />
@@ -15354,7 +15224,9 @@
     <MESSAGE value="change spring mvc to spring boot" />
     <MESSAGE value="added booking action" />
     <MESSAGE value="refactored jpa repositories" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored jpa repositories" />
+    <MESSAGE value="fixed code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed code" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -15387,88 +15259,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Optional.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.0.10.RELEASE/spring-data-commons-2.0.10.RELEASE.jar!/org/springframework/data/repository/query/QueryByExampleExecutor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/HotelRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="34" selection-start-column="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.10.RELEASE/spring-data-jpa-2.0.10.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.0.10.RELEASE/spring-data-commons-2.0.10.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomConfirmRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomRequestRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomTypeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="75" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/RoomConfirmService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
@@ -15544,16 +15334,6 @@
       </provider>
     </entry>
     <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/users" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/UserDetailsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.10.RELEASE/spring-data-jpa-2.0.10.RELEASE.jar!/org/springframework/data/jpa/repository/support/CrudMethodMetadataPostProcessor.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
@@ -15582,29 +15362,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.9.RELEASE/spring-aop-5.0.9.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -15664,13 +15425,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user_requests">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user_requests" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/5.0.9.RELEASE/spring-tx-5.0.9.RELEASE.jar!/org/springframework/dao/support/PersistenceExceptionTranslationInterceptor.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
@@ -15685,37 +15440,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user_confirm_rooms">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomRequestMapper.java">
+    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user_confirm_rooms" />
+    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomTypeMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        <state relative-caret-position="255">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -15726,58 +15466,161 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/Room.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-183">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state relative-caret-position="136">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/CreateRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/dto/UserDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c9139745-d5e8-47f9-85fc-18b6a59e42eb/database/hotels/schema/public/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="ctid" enabled="false" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="74" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomTypeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/dto/RoomConfirmDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/dto/AddRoomRequestDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/service/UserDetailsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hotelsNew.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomRequestMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/RoomConfirm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/repository/RoomConfirmRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/mappers/RoomConfirmMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org.training/example/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="242">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/script.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>

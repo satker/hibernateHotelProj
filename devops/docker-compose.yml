@@ -23,8 +23,8 @@ services:
     mem_limit: 288m
     environment:
       - JVM_OPTIONS=-Xmx160m -XX:MaxMetaspaceSize=64m -XX:MaxRAM=288m
-      - ORACLE_HOST=ecse00100b40.epam.com
-      - ORACLE_PORT=8085
-      - ORACLE_PWD=13693509
+      - MYSQL_HOST=ecse00100b40.epam.com
+      - MYSQL_PORT=8085
+      - MYSQL_PWD=root
     ports:
       - 9090:80

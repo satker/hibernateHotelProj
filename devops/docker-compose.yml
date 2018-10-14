@@ -1,17 +1,20 @@
 version: '2.3'
 services:
   db:
-    image: sath89/oracle-12c
-    container_name: db-container
-    ports:
-    - 1521:1521
-    - 8085:8080
-    shm_size: 1g
+    image: mysql
+    container_name: database.dev
+    command: mysqld --user=root --verbose
     volumes:
-      - ./data:/u01/app/oracle/oradata
+      - ./dbcreation.sql:/tmp/dbcreation.sql
+      - ./import.sh:/tmp/import.sh
+    ports:
+      - "3306:3306"
     environment:
-      - ORACLE_PWD=13693509
-    restart: unless-stopped
+      MYSQL_DATABASE: "hotels"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "user13690"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   backend:
     image: hotels/apphotel:latest

@@ -7,14 +7,14 @@ services:
     volumes:
       - ./dbcreation.sql:/tmp/dbcreation.sql
       - ./import.sh:/tmp/import.sh
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_DATABASE: "hotels"
       MYSQL_USER: "user"
       MYSQL_PASSWORD: "user13690"
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - 3306:3306
 
   backend:
     image: com.kunats.inc/hotels:latest

@@ -27,4 +27,4 @@ services:
       - MYSQL_PORT=8085
       - MYSQL_PWD=root
     ports:
-      - 9090:80
+      - 9090:8080

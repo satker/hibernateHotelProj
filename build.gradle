@@ -1,0 +1,92 @@
+group = "com.kunats.inc"
+version = "1.0.0.BUILD-SNAPSHOT"
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+        javaxServletVersion='3.1.0'
+        lombokVersion='1.18.2'
+        jacksonVersion='2.9.5'
+        mapstructVersion='1.2.0.Final'
+        jstlVersion='1.2'
+        mysqlVersion='8.0.11'
+        jacksonJavaTimeModuleVersion = '2.9.6'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'org.springframework.boot'
+apply plugin: "com.palantir.docker"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    logstashLogsEncoderVersion = '4.6'
+    zipkinAutoconfigurerVersion= '2.3.1'
+    wait_for_it_script_path = rootProject.file("tools/wait-for").absolutePath
+}
+
+dependencies {
+    compile(
+            "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-security:${springBootVersion}",
+            "javax.servlet:javax.servlet-api:${javaxServletVersion}",
+            "org.projectlombok:lombok:${lombokVersion}",
+            "org.mapstruct:mapstruct-processor:${mapstructVersion}",
+            "org.mapstruct:mapstruct:${mapstructVersion}",
+            "jstl:jstl:${jstlVersion}",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonJavaTimeModuleVersion}",
+            "mysql:mysql-connector-java:${mysqlVersion}"
+    )
+}
+
+tasks.getByName("docker").dependsOn("build")
+
+test.testLogging.showStandardStreams = true
+
+docker {
+    name "${group}/${rootProject.name}"
+    tags 'latest', "$version"
+    files jar.archivePath
+    buildArgs(['JAR_FILE' : "${jar.archiveName}"])
+}
+
+task docker_backend
+tasks.getByName("docker_backend").dependsOn("docker")
+
+jacoco {
+    toolVersion = '0.7.9'
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination "${buildDir}/reports/coverage"
+    }
+}
+
+clean.doFirst {
+    delete "${rootDir}\\out"
+    println "delete ${rootDir}\\out"
+}

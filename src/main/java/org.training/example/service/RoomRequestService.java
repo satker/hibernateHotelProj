@@ -10,6 +10,7 @@ import org.training.example.dto.RoomRequestDTO;
 import org.training.example.exceptions.AccessDeniedException;
 import org.training.example.exceptions.RoomRequestNotFoundException;
 import org.training.example.mappers.RoomRequestMapper;
+import org.training.example.model.RoomRequest;
 import org.training.example.repository.RoomRequestRepository;
 import org.training.example.repository.RoomTypeRepository;
 
@@ -45,12 +46,13 @@ public class RoomRequestService {
     public RoomRequestDTO findValidateRoom(long id, String login) {
         log.debug("room request has been found for validate user by id {}", id);
         long userId = userService.findUserByLogin(login).getId();
-        if (findByAccountUsername(userId).
-                contains(roomRequestMapper.
-                        requestToRequestDTO(roomRequestRepository.
-                                findById(id).
-                                get()))) {
-            return roomRequestMapper.requestToRequestDTO(roomRequestRepository.findById(id).orElseThrow(() -> new RoomRequestNotFoundException(id)));
+        RoomRequest findedRoomRequest = roomRequestRepository.getOne(id);
+        if (findedRoomRequest != null){
+            throw new RoomRequestNotFoundException(id);
+        }
+        RoomRequestDTO parsedToDto = roomRequestMapper.requestToRequestDTO(findedRoomRequest);
+        if (findByAccountUsername(userId).contains(parsedToDto)) {
+            return parsedToDto;
         } else {
             throw new AccessDeniedException(userId);
         }

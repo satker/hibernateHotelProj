@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public void deleteUserById(long id) {
-        userRepository.deleteById(id);
+        userRepository.delete(id);
     }
 
     public UserDTO updateUser(UserDTO modifiedUser, long id) {
@@ -50,12 +50,16 @@ public class UserService {
 
     public Optional<User> findUserById(long id) {
         log.debug("user found by id{}", id);
-        return userRepository.findById(id);
+        return Optional.ofNullable(userRepository.getOne(id));
     }
 
     public UserDTO findOne(Long id) {
         log.debug("user found by id {}", id);
-        return userMapper.userToUserDto(userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id)));
+        User findedUser = userRepository.getOne(id);
+        if (findedUser == null){
+            throw new UserNotFoundException(id);
+        }
+        return userMapper.userToUserDto(findedUser);
     }
 
     public List<UserDTO> findAllUsers() {

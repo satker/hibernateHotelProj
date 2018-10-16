@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.training.example.dto.RoomTypeDTO;
 import org.training.example.exceptions.RoomTypeNotFoundException;
 import org.training.example.mappers.RoomTypeMapper;
+import org.training.example.model.RoomType;
 import org.training.example.repository.RoomTypeRepository;
 
 @Service
@@ -32,7 +33,12 @@ public class RoomTypeService {
 
     public RoomTypeDTO findOne(long id) {
         log.debug("room type by id has been found {}", id);
-        return roomTypeMapper.typeToTypeDTO(roomTypeRepository.findById(id).orElseThrow(() -> new RoomTypeNotFoundException(id)));
+
+        RoomType findedRoomType = roomTypeRepository.getOne(id);
+        if (findedRoomType == null){
+            throw new RoomTypeNotFoundException(id);
+        }
+        return roomTypeMapper.typeToTypeDTO(findedRoomType);
     }
 
     public void save(RoomTypeDTO request) {

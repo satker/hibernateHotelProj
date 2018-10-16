@@ -2,7 +2,7 @@ version: '2.3'
 services:
   db:
     image: mysql
-    container_name: database.dev
+    container_name: db
     command: mysqld --user=root --verbose
     volumes:
       - ./dbcreation.sql:/tmp/dbcreation.sql

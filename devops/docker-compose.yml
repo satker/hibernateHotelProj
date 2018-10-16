@@ -24,7 +24,7 @@ services:
     environment:
       - JVM_OPTIONS=-Xmx160m -XX:MaxMetaspaceSize=64m -XX:MaxRAM=288m
       - MYSQL_HOST=ecse00100b40.epam.com
-      - MYSQL_PORT=8085
+      - MYSQL_PORT=3306
       - MYSQL_PWD=root
     ports:
       - 9090:8080

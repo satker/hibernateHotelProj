@@ -28,3 +28,17 @@ services:
       - MYSQL_PWD=root
     ports:
       - 9090:8080
+
+  frontend:
+    image: com.kunats.inc/hotels_frontend:latest
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - '.:/usr/src/app'
+    - '/usr/src/app/node_modules'
+    ports:
+    - '3000:3000'
+    environment:
+    - NODE_ENV=development

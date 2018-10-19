@@ -33,8 +33,8 @@ services:
     image: com.kunats.inc/hotels_frontend:latest
     container_name: frontend
     volumes:
-    - .:../frontend/usr/src/app
-    - ../frontend/usr/src/app/node_modules
+    - .:/usr/src/app
+    - /usr/src/app/node_modules
     ports:
     - '3000:3000'
     environment:

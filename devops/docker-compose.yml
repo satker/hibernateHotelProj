@@ -30,9 +30,9 @@ services:
       - 9090:8080
 
   frontend:
-    build:
-      context: ../devops
-      dockerfile: Dockerfile
+    image: com.kunats.inc/hotels_frontend:latest
+    container_name: front
+    restart: always
     environment:
         - NODE_ENV=production
     command: npm start

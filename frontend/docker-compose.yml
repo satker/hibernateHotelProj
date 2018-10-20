@@ -30,7 +30,7 @@ services:
 
   frontend:
     build:
-      context: ../frontend
+      context: .
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production

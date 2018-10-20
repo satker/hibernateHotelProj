@@ -20,7 +20,6 @@ services:
     image: com.kunats.inc/hotels:latest
     container_name: backend-container
     restart: always
-    mem_limit: 288m
     environment:
       - JVM_OPTIONS=-Xmx160m -XX:MaxMetaspaceSize=64m -XX:MaxRAM=288m
       - MYSQL_HOST=ecse00100b40.epam.com

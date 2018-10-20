@@ -30,10 +30,13 @@ services:
       - 9090:8080
 
   frontend:
-    image: com.kunats.inc/hotels_frontend:latest
-    container_name: frontend
-    restart: always
+    build:
+      context: ../devops
+      dockerfile: Dockerfile
     environment:
-      - NODE_ENV=development
+        - NODE_ENV=production
+    command: npm start
     ports:
       - 3000:3000
+    volumes:
+      - .:/app

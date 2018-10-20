@@ -31,11 +31,11 @@ services:
   frontend:
     build:
       context: ../frontend
-      dockerfile: ../frontend/Dockerfile
+      dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
     command: npm start
     ports:
       - 3000:3000
-    volumes:
-      - .:/app
+    #volumes:
+    #  - .:/app

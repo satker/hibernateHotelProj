@@ -1,4 +1,4 @@
-version: '2.3'
+version: '3.4'
 services:
   db:
     image: mysql
@@ -30,11 +30,11 @@ services:
       - 9090:8080
 
   frontend:
-    image: com.kunats.inc/hotels_frontend:latest
-    container_name: front
-    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-        - NODE_ENV=production
+      - NODE_ENV=production
     command: npm start
     ports:
       - 3000:3000

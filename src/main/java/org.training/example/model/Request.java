@@ -21,13 +21,10 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "room_request")
 @Slf4j
 @Data
-public class RoomRequest {
+public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    private byte capacity;
 
     @NotNull
     private Date arrivalDate;
@@ -35,12 +32,15 @@ public class RoomRequest {
     @NotNull
     private Date departureDate;
 
-    private boolean isDone = false;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "capacity_id")
+    @JsonIgnore
+    private Capacity capacity;
 
     @ManyToOne
     @JoinColumn(name = "room_type_id")
@@ -51,7 +51,7 @@ public class RoomRequest {
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomConfirm> confirmRooms = new HashSet<>();
+    private Set<ConfirmedRequest> confirmRooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

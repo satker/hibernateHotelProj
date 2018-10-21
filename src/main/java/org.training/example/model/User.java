@@ -49,13 +49,13 @@ public class User {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomRequest> requests = new HashSet<>();
+    private Set<Request> requests = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomConfirm> confirmRooms = new HashSet<>();
+    private Set<ConfirmedRequest> confirmRooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

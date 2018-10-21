@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.dto.AddRoomRequestDTO;
-import org.training.example.dto.RoomRequestDTO;
+import org.training.example.dto.RequestDTO;
 import org.training.example.dto.RoomTypeDTO;
-import org.training.example.service.RoomRequestService;
+import org.training.example.service.RequestService;
 import org.training.example.service.RoomTypeService;
 import org.training.example.service.UserService;
 
@@ -24,9 +24,9 @@ import org.training.example.service.UserService;
 @RestController
 @RequestMapping("/user/{userId}/orders")
 @RequiredArgsConstructor
-class RoomRequestRestController {
+class RequestRestController {
 
-    private final RoomRequestService roomRequestService;
+    private final RequestService requestService;
     private final RoomTypeService roomTypeService;
     private final UserService userService;
 
@@ -35,24 +35,24 @@ class RoomRequestRestController {
         return this.userService
                 .findUserById(userId)
                 .map(account -> {
-                    roomRequestService.save(input);
+                    requestService.save(input);
                     return new ResponseEntity(null, HttpStatus.CREATED);
                 }).get();
     }
 
     @GetMapping(value = "/{orderId}")
-    RoomRequestDTO findValidateRoom(@PathVariable long orderId, Principal principal) {
-        return roomRequestService.findValidateRoom(orderId, principal.getName());
+    RequestDTO findValidateRoom(@PathVariable long orderId, Principal principal) {
+        return requestService.findValidateRoom(orderId, principal.getName());
     }
 
     @GetMapping
-    List<RoomRequestDTO> readRoomRequests(@PathVariable long userId) {
-        return roomRequestService.findRequestsByAccountUsername(userId);
+    List<RequestDTO> readRoomRequests(@PathVariable long userId) {
+        return requestService.findRequestsByAccountUsername(userId);
     }
 
     @DeleteMapping(value = "/{orderId}")
     public void deleteOrder(@PathVariable("orderId") long id) {
-        roomRequestService.deleteRoomRequestById(id);
+        requestService.deleteRoomRequestById(id);
     }
 
     @GetMapping(value = "/appartments")

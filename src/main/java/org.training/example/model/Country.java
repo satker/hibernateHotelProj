@@ -1,15 +1,12 @@
 package org.training.example.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,32 +19,18 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Builder
 @Entity
-@Table(name = "hotel")
+@Table(name = "country")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hotel {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String hotelName;
-    private int stars;
-    private double price;
-    private String cityName;
     private String countryCode;
-    private String countryName;
-    private String address;
-    private String location;
-    private String url;
-    private double latitude;
-    private double longitude;
+    private String name;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "country")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
-    private Set<RoomType> roomTypes = new HashSet<>();
-
-    @OneToOne
-    @JoinColumn(name = "city_id")
-    @JsonIgnore
-    private City city;
+    private Set<City> roomTypes = new HashSet<>();
 }

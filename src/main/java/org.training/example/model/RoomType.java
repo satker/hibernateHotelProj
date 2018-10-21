@@ -3,15 +3,7 @@ package org.training.example.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,18 +28,24 @@ public class RoomType {
     @NotNull
     private String name;
     private String description;
+    private String costNight;
 
     @OneToMany(mappedBy = "roomType")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomRequest> requests = new HashSet<>();
+    private Set<Request> requests = new HashSet<>();
 
     @OneToMany(mappedBy = "roomType")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
     private Set<Room> rooms = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnore
+    private Hotel hotel;
 
     @PostPersist
     public void onPrePersist() {

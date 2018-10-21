@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @Table(name = "room_confirm")
 @Slf4j
-public class RoomConfirm {
+public class ConfirmedRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +27,7 @@ public class RoomConfirm {
     @OneToOne
     @JoinColumn(name = "room_request_id")
     @JsonIgnore
-    private RoomRequest request;
+    private Request request;
 
     @ManyToOne
     @JoinColumn(name = "room_id")

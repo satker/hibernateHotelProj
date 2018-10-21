@@ -5,16 +5,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.training.example.dto.RoomConfirmDTO;
-import org.training.example.model.RoomConfirm;
+import org.training.example.dto.ConfirmedRequestDTO;
+import org.training.example.model.ConfirmedRequest;
 
 @Mapper(componentModel = "spring")
-public abstract class RoomConfirmMapper {
+public abstract class ConfirmedRequestMapper {
     @Autowired
     UserMapper userMapper;
 
     @Autowired
-    RoomRequestMapper roomRequestMapper;
+    RequestMapper requestMapper;
 
     @Autowired
     RoomMapper roomMapper;
@@ -23,20 +23,20 @@ public abstract class RoomConfirmMapper {
             @Mapping(target = "user",
                     expression = "java(userMapper.userDtoToUser(confirmDTO.getUser()))"),
             @Mapping(target = "request",
-                    expression = "java(roomRequestMapper.requestDTOToRequest(confirmDTO.getRequest()))"),
+                    expression = "java(requestMapper.requestDTOToRequest(confirmDTO.getRequest()))"),
             @Mapping(target = "room",
                     expression = "java(roomMapper.roomDTOToRoom(confirmDTO.getRoom()))")
     })
-    public abstract RoomConfirm confirmDTOToConfirm(RoomConfirmDTO confirmDTO);
+    public abstract ConfirmedRequest confirmDTOToConfirm(ConfirmedRequestDTO confirmDTO);
 
     @Mappings({
             @Mapping(target = "user", expression = "java( userMapper.userToUserDto(confirm.getUser()) )"),
-            @Mapping(target = "request", expression = "java( roomRequestMapper.requestToRequestDTO(confirm.getRequest()) )"),
+            @Mapping(target = "request", expression = "java( requestMapper.requestToRequestDTO(confirm.getRequest()) )"),
             @Mapping(target = "room", expression = "java( roomMapper.roomToRoomDTO(confirm.getRoom()) )")
     })
-    public abstract RoomConfirmDTO confirmToConfirmDTO(RoomConfirm confirm);
+    public abstract ConfirmedRequestDTO confirmToConfirmDTO(ConfirmedRequest confirm);
 
-    public abstract List<RoomConfirmDTO> confirmsToConfirmDTOs(List<RoomConfirm> confirms);
+    public abstract List<ConfirmedRequestDTO> confirmsToConfirmDTOs(List<ConfirmedRequest> confirms);
 
-    public abstract List<RoomConfirm> confirmDTOsToConfirm(List<RoomConfirmDTO> confirmDTO);
+    public abstract List<ConfirmedRequest> confirmDTOsToConfirm(List<ConfirmedRequestDTO> confirmDTO);
 }

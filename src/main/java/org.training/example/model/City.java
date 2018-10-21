@@ -22,32 +22,22 @@ import org.hibernate.annotations.FetchMode;
 @Data
 @Builder
 @Entity
-@Table(name = "hotel")
+@Table(name = "city")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hotel {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String hotelName;
-    private int stars;
-    private double price;
-    private String cityName;
-    private String countryCode;
-    private String countryName;
-    private String address;
-    private String location;
-    private String url;
-    private double latitude;
-    private double longitude;
+    private String name;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "city")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
-    private Set<RoomType> roomTypes = new HashSet<>();
+    private Set<Hotel> roomTypes = new HashSet<>();
 
     @OneToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "country_id")
     @JsonIgnore
-    private City city;
+    private Country country;
 }

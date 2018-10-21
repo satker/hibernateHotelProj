@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.training.example.dto.RoomConfirmDTO;
-import org.training.example.service.RoomConfirmService;
+import org.training.example.dto.ConfirmedRequestDTO;
+import org.training.example.service.ConfirmedRequestService;
 import org.training.example.service.UserService;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/user/{userId}/confirms")
 @RequiredArgsConstructor
-public class RoomConfirmRestController {
-    private final RoomConfirmService roomConfirmService;
+public class ConfirmedRequestRestController {
+    private final ConfirmedRequestService confirmedRequestService;
     private final UserService userService;
 
     @GetMapping
-    List<RoomConfirmDTO> readRoomConfirms(@PathVariable long userId) {
-        return roomConfirmService.findByAccountUsername(userId);
+    List<ConfirmedRequestDTO> readRoomConfirms(@PathVariable long userId) {
+        return confirmedRequestService.findByAccountUsername(userId);
     }
 
     @GetMapping(value = "/{confirmsId}")
-    RoomConfirmDTO readRoomRequest(@PathVariable long confirmsId) {
-        return roomConfirmService.findOne(confirmsId);
+    ConfirmedRequestDTO readRoomRequest(@PathVariable long confirmsId) {
+        return confirmedRequestService.findOne(confirmsId);
     }
 }

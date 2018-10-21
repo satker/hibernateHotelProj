@@ -30,24 +30,21 @@ public class Room {
     @NotNull
     private String numberPlace;
 
-    @NotNull
-    private String costNight;
-
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     @JsonIgnore
     private RoomType roomType;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "capacity_id")
     @JsonIgnore
-    private Hotel hotel;
+    private Capacity capacity;
 
     @OneToMany(mappedBy = "room")
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<RoomConfirm> confirmRooms = new HashSet<>();
+    private Set<ConfirmedRequest> confirmRooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

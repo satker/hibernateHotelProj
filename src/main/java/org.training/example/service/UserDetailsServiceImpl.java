@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         log.debug("user has been loaded by username {}", s);
-        org.training.example.model.User user = userRepository.findByLogin(s).get();
+        org.training.example.model.User user = userRepository.findUserByLogin(s);
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
         return new User(user.getLogin(),
                 user.getPassword(), Collections.singletonList(authority));

@@ -37,6 +37,12 @@ public class Room {
     @JoinColumn(name = "room_type_id")
     @JsonIgnore
     private RoomType roomType;
+
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnore
+    private Hotel hotel;
+
     @OneToMany(mappedBy = "room")
     @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @Fetch(FetchMode.SELECT)

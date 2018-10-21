@@ -25,12 +25,16 @@ public class RoomRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     private byte capacity;
+
     @NotNull
     private Date arrivalDate;
+
     @NotNull
     private Date departureDate;
+
     private boolean isDone = false;
 
     @ManyToOne

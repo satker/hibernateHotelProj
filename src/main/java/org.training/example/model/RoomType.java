@@ -32,9 +32,11 @@ public class RoomType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     private String name;
     private String description;
+
     @OneToMany(mappedBy = "roomType")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)

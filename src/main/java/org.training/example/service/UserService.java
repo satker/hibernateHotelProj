@@ -45,7 +45,7 @@ public class UserService {
 
     public UserDTO findUserByLogin(String login) throws UserNotFoundException {
         log.debug("user found by login {}", login);
-        return userMapper.userToUserDto(userRepository.findByLogin(login).orElseThrow(() -> new UserNotFoundException(0)));
+        return userMapper.userToUserDto(userRepository.findUserByLogin(login));
     }
 
     public Optional<User> findUserById(long id) {

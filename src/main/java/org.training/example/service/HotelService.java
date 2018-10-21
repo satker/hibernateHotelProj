@@ -1,8 +1,6 @@
 package org.training.example.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,15 +23,16 @@ public class HotelService {
 
     public List<HotelDto> getHotelsByParams(String country, String city,
                                             int stars, double price) {
-        Set<Hotel> result = new HashSet<>();
+        /*Set<Hotel> result = new HashSet<>();
         if (!country.equals("")) result.retainAll(hotelRepository.findAllByCountryName(country));
         if (!city.equals("")) result.retainAll(hotelRepository.findAllByCityName(city));
         if (stars != 0) result.retainAll(hotelRepository.findAllByStars(stars));
-        if (price != 0) result.retainAll(hotelRepository.findAllByPrice(price));
+        if (price != 0) result.retainAll(hotelRepository.findAllByPrice(price));*/
 
-        return result.stream()
+        return null;
+        /*result.stream()
                 .map(hotelMapper::hotelToHotelDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
     }
 
     public HotelDto createHotel(HotelDto hotelDto) {

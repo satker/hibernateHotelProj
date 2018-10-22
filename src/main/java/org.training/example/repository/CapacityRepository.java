@@ -6,5 +6,4 @@ import org.training.example.model.Capacity;
 
 @Repository
 public interface CapacityRepository extends JpaRepository<Capacity, Long> {
-    Capacity findCapacityByValue(byte value);
 }

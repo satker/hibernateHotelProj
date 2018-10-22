@@ -21,6 +21,7 @@ export default class CreateRequest extends React.Component {
         let text = await resp.text();
         let types = JSON.parse(text);
         this.setState({roomTypes: types, roomType: types[0].name});
+
         let numbersForAdultsAndNumberOfRooms = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
             11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
             21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
@@ -46,14 +47,13 @@ export default class CreateRequest extends React.Component {
             "user": this.props.me(),
         };*/
         let body = {};
-        for(let key of ["arrivalDate", "departureDate", "adults", "children"]) {
+        for(let key of ["arrivalDate", "departureDate"]) {
             body[key] = this.state[key];
         }
         body.roomType = this.state.roomTypes.find(room => room.name === this.state.roomType);
-        body.adults = this.state.adults.find(adult => adult === this.state.adults);
-        body.children = this.state.children.find(child => child === this.state.children);
-        body.numbersOfRooms = this.state.numbersOfRooms.find(numberOfRoom => numberOfRoom === this.state.numbersOfRooms);
-        body.user = this.props.me();
+        body.adults = this.state.adult;
+        body.children = this.state.child;
+        body.numbersOfRooms = this.state.numberOfRooms;
 
         let resp = await fetch(URL.replace("_id_", this.props.me().id), {
             method: "post",
@@ -103,13 +103,13 @@ export default class CreateRequest extends React.Component {
                     <Row>
                         <Col>Children</Col>
                         <Col>
-                            <select onChange={this.onChange} name="children">{selectChildren}</select>
+                            <select onChange={this.onChange} name="child">{selectChildren}</select>
                         </Col>
                     </Row>
                     <Row>
                         <Col>Adults</Col>
                         <Col>
-                            <select onChange={this.onChange} name="adults">{selectAdult}</select>
+                            <select onChange={this.onChange} name="adult">{selectAdult}</select>
                         </Col>
                     </Row>
                     <Row>
@@ -127,7 +127,7 @@ export default class CreateRequest extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <input className="btn btn-success" type="submit" value="Send"/>
+                <input className="btn btn-success" type="submit" value="Find available rooms"/>
             </Form>
         );
     }

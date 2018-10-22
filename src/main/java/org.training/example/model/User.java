@@ -51,12 +51,6 @@ public class User {
     @JsonIgnore
     private Set<Request> requests = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    @JsonIgnore
-    private Set<ConfirmedRequest> confirmRooms = new HashSet<>();
-
     @PostPersist
     public void onPrePersist() {
         audit("INSERT");

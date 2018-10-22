@@ -28,13 +28,6 @@ public class RoomType {
     @NotNull
     private String name;
     private String description;
-    private String costNight;
-
-    @OneToMany(mappedBy = "roomType")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @Fetch(FetchMode.SELECT)
-    @JsonIgnore
-    private Set<Request> requests = new HashSet<>();
 
     @OneToMany(mappedBy = "roomType")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)

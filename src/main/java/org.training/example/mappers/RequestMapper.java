@@ -1,49 +1,32 @@
 package org.training.example.mappers;
 
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.training.example.dto.AddRoomRequestDTO;
 import org.training.example.dto.RequestDTO;
+import org.training.example.dto.RoomDTO;
 import org.training.example.model.Request;
-import org.training.example.repository.CapacityRepository;
-import org.training.example.repository.RoomTypeRepository;
+import org.training.example.model.Room;
+import org.training.example.repository.RequestRepository;
 
 @Mapper(componentModel = "spring")
 public abstract class RequestMapper {
     @Autowired
-    RoomTypeRepository roomTypeRepository;
+    RequestRepository requestRepository;
 
     @Autowired
-    CapacityRepository capacityRepository;
-
-    @Autowired
-    UserMapper userMapper;
+    RoomMapper roomMapper;
 
     @Mappings({
-            @Mapping(target = "roomType",
-                    expression = "java(request.getRoomType().getName() )"),
-            @Mapping(target = "capacity",
-                    expression = "java( request.getCapacity().getValue() )")
+            @Mapping(target = "rooms",
+                    expression = "java(roomsToRoomDtos(requestRepository.findRoomsByRequestId(request.getId())) )")
     })
     public abstract RequestDTO requestToRequestDTO(Request request);
 
-    @Mappings({
-            @Mapping(target = "roomType",
-                    expression = "java( roomTypeRepository.findRoomTypeByName(requestDTO.getRoomType()) )"),
-            @Mapping(target = "capacity",
-                    expression = "java( capacityRepository.findCapacityByValue(requestDTO.getCapacity()) )")
-    })
-    public abstract Request requestDTOToRequest(RequestDTO requestDTO);
-
-    @Mappings({
-            @Mapping(target = "roomType",
-                    expression = "java( roomTypeRepository.findRoomTypeByName(requestDTO.getRoomType()) )"),
-            @Mapping(target = "user",
-                    expression = "java(requestDTO.getUser())"),
-            @Mapping(target = "capacity",
-                    expression = "java( capacityRepository.findCapacityByValue(requestDTO.getCapacity()) )")
-    })
-    public abstract Request requestDTOToRequest(AddRoomRequestDTO requestDTO);
+    public Set<RoomDTO> roomsToRoomDtos(Set<Room> rooms){
+        return rooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toSet());
+    }
 }

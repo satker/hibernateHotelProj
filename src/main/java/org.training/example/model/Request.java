@@ -32,26 +32,20 @@ public class Request {
     @NotNull
     private Date departureDate;
 
+    private boolean isPaid = false;
+
+    private Double totalPrice;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "capacity_id")
-    @JsonIgnore
-    private Capacity capacity;
-
-    @ManyToOne
-    @JoinColumn(name = "room_type_id")
-    @JsonIgnore
-    private RoomType roomType;
-
     @OneToMany(mappedBy = "request")
-    @Cascade({org.hibernate.annotations.CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     @JsonIgnore
-    private Set<ConfirmedRequest> confirmRooms = new HashSet<>();
+    private Set<RoomRequest> rooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

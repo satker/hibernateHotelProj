@@ -3,8 +3,6 @@ package org.training.example.controller;
 import java.security.Principal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.dto.AddRoomRequestDTO;
 import org.training.example.dto.RequestDTO;
+import org.training.example.dto.RoomDTO;
 import org.training.example.dto.RoomTypeDTO;
 import org.training.example.service.RequestService;
+import org.training.example.service.RoomService;
 import org.training.example.service.RoomTypeService;
 import org.training.example.service.UserService;
 
@@ -29,15 +29,11 @@ class RequestRestController {
     private final RequestService requestService;
     private final RoomTypeService roomTypeService;
     private final UserService userService;
+    private final RoomService roomService;
 
     @PostMapping
-    ResponseEntity add(@PathVariable long userId, @RequestBody AddRoomRequestDTO input) {
-        return this.userService
-                .findUserById(userId)
-                .map(account -> {
-                    requestService.save(input);
-                    return new ResponseEntity(null, HttpStatus.CREATED);
-                }).get();
+    List<RoomDTO> findAvailableRooms(@PathVariable long userId, @RequestBody AddRoomRequestDTO input) {
+        return roomService.findAvailableRooms(input);
     }
 
     @GetMapping(value = "/{orderId}")

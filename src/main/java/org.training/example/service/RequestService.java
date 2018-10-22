@@ -5,13 +5,11 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.training.example.dto.AddRoomRequestDTO;
 import org.training.example.dto.RequestDTO;
 import org.training.example.exceptions.AccessDeniedException;
 import org.training.example.exceptions.RoomRequestNotFoundException;
 import org.training.example.mappers.RequestMapper;
 import org.training.example.model.Request;
-import org.training.example.repository.ConfirmedRequestRepository;
 import org.training.example.repository.RequestRepository;
 import org.training.example.repository.RoomTypeRepository;
 
@@ -23,7 +21,6 @@ public class RequestService {
     private final RequestMapper requestMapper;
     private final UserService userService;
     private final RoomTypeRepository roomTypeRepository;
-    private final ConfirmedRequestRepository confirmedRequestRepository;
 
 
     public List<RequestDTO> findByAccountUsername(long id) {
@@ -31,7 +28,7 @@ public class RequestService {
         return requestRepository.
                 findByUserId(id).
                 stream().
-                filter(item -> confirmedRequestRepository.findConfirmedRequestByRequest(item) == null).
+                //filter(item -> confirmedRequestRepository.findConfirmedRequestByRequest(item) == null).
                 map(requestMapper::requestToRequestDTO).
                 collect(Collectors.toList());
     }
@@ -58,12 +55,6 @@ public class RequestService {
         } else {
             throw new AccessDeniedException(userId);
         }
-    }
-
-    public void save(AddRoomRequestDTO request) {
-        log.debug("room request has been saved {}", request);
-        System.out.println(roomTypeRepository.findIdByName(request.getRoomType()));
-        requestRepository.save(requestMapper.requestDTOToRequest(request));
     }
 
     public RequestDTO findOne(long id) {

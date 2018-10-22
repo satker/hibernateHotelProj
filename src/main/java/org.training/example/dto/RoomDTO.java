@@ -6,7 +6,7 @@ import lombok.Data;
 public class RoomDTO {
     private Long id;
     private Integer number;
-    private String numberPlace;
     private String costNight;
     private RoomTypeDTO roomType;
+    private CapacityDto capacity;
 }

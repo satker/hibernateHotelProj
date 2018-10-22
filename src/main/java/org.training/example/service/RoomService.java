@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.training.example.dto.AddRoomRequestDTO;
 import org.training.example.dto.RoomDTO;
 import org.training.example.exceptions.RoomNotFoundException;
 import org.training.example.mappers.RoomMapper;
@@ -46,4 +47,10 @@ public class RoomService {
         roomRepository.save(roomMapper.roomDTOToRoom(request));
     }
 
+    public List<RoomDTO> findAvailableRooms(AddRoomRequestDTO input) {
+        List<Room> findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
+                input.getRoomType().getId(), Byte.valueOf(input.getAdults()), Byte.valueOf(input.getChildren()),
+                Byte.valueOf(input.getNumbersOfRooms()));
+        return findedRooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toList());
+    }
 }

@@ -26,15 +26,11 @@ public class Capacity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private byte value;
+    private byte adults;
+    private byte children;
 
     @OneToMany(mappedBy = "capacity")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @Fetch(FetchMode.SELECT)
     private Set<Room> rooms = new HashSet<>();
-
-    @OneToMany(mappedBy = "capacity")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @Fetch(FetchMode.SELECT)
-    private Set<Request> requests = new HashSet<>();
 }

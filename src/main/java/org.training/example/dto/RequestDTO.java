@@ -6,8 +6,10 @@ import lombok.Data;
 @Data
 public class RequestDTO {
     private Long id;
-    private byte capacity;
+    private byte adults;
+    private byte children;
     private Date arrivalDate;
     private Date departureDate;
     private String roomType;
+    private byte numberOfRooms;
 }

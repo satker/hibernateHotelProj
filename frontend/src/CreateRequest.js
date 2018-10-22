@@ -10,7 +10,9 @@ export default class CreateRequest extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.state = {
             roomTypes: null,
-            idDone: false,
+            adults: null,
+            children: null,
+            numbersOfRooms: null
         };
     }
 
@@ -19,6 +21,13 @@ export default class CreateRequest extends React.Component {
         let text = await resp.text();
         let types = JSON.parse(text);
         this.setState({roomTypes: types, roomType: types[0].name});
+        let numbersForAdultsAndNumberOfRooms = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+        let numbersForChildren = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        this.setState({adults: numbersForAdultsAndNumberOfRooms, adult: numbersForAdultsAndNumberOfRooms[0] });
+        this.setState({children: numbersForAdultsAndNumberOfRooms, child: numbersForAdultsAndNumberOfRooms[0] });
+        this.setState({numbersOfRooms: numbersForChildren, numberOfRooms: numbersForChildren[0] });
     }
 
     onChange(evt) {
@@ -33,14 +42,17 @@ export default class CreateRequest extends React.Component {
             "arrivalDate": "2018-02-03",
             "departureDate": "2018-02-17",
             "idDone": false,
-            "roomType": {"id": "2", "name": "ord", "description": "small room"},
+            "roomType": "ord",
             "user": this.props.me(),
         };*/
         let body = {};
-        for(let key of ["capacity", "arrivalDate", "departureDate", "idDone"]) {
+        for(let key of ["arrivalDate", "departureDate", "adults", "children"]) {
             body[key] = this.state[key];
         }
         body.roomType = this.state.roomTypes.find(room => room.name === this.state.roomType);
+        body.adults = this.state.adults.find(adult => adult === this.state.adults);
+        body.children = this.state.children.find(child => child === this.state.children);
+        body.numbersOfRooms = this.state.numbersOfRooms.find(numberOfRoom => numberOfRoom === this.state.numbersOfRooms);
         body.user = this.props.me();
 
         let resp = await fetch(URL.replace("_id_", this.props.me().id), {
@@ -57,9 +69,25 @@ export default class CreateRequest extends React.Component {
     }
 
     render() {
-        let select = null;
+        let selectType = null;
+        let selectChildren = null;
+        let selectAdult = null;
+        let selectNumbersOfRooms = null;
+
         if (this.state.roomTypes) {
-            select = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
+            selectType = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
+        }
+
+        if (this.state.children) {
+            selectChildren = this.state.children.map(child => <option value={child}>{child}</option>);
+        }
+
+        if (this.state.adults) {
+            selectAdult = this.state.adults.map(adult => <option value={adult}>{adult}</option>);
+        }
+
+        if (this.state.numbersOfRooms) {
+            selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option value={numberOfRooms}>{numberOfRooms}</option>);
         }
 
         return (
@@ -67,8 +95,22 @@ export default class CreateRequest extends React.Component {
                 <h2>Create request:</h2>
                 <Container>
                     <Row>
-                        <Col>Capacity</Col>
-                        <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
+                        <Col>Number of rooms</Col>
+                        <Col>
+                            <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>Children</Col>
+                        <Col>
+                            <select onChange={this.onChange} name="children">{selectChildren}</select>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>Adults</Col>
+                        <Col>
+                            <select onChange={this.onChange} name="adults">{selectAdult}</select>
+                        </Col>
                     </Row>
                     <Row>
                         <Col>Arrival date</Col>
@@ -81,7 +123,7 @@ export default class CreateRequest extends React.Component {
                     <Row>
                         <Col>Room type</Col>
                         <Col>
-                            <select onChange={this.onChange} name="roomType">{select}</select>
+                            <select onChange={this.onChange} name="roomType">{selectType}</select>
                         </Col>
                     </Row>
                 </Container>

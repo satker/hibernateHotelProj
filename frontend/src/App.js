@@ -12,6 +12,7 @@ import ListOfConfirmed from './ListOfConfirmed';
 import EditProfile from './EditProfile';
 import NavBar from './NavBar';
 import AdminConfirmPage from './AdminConfirmPage';
+import ListOfAvailableRooms from './ListOfAvailableRooms'
 
 class App extends Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component {
                 create_request: <CreateRequest me={this.getCurrentUser} goBack={this.goBack}/>,
                 edit_profile: <EditProfile me={this.getCurrentUser} goBack={this.goBack}/>,
                 confirm: <AdminConfirmPage user={this.getTargetUser} goBack={this.goBack}/>,
+                list_of_available_rooms: <ListOfAvailableRooms me={this.getCurrentUser} user={this.getTargetUser}/>
             },
         };
     }

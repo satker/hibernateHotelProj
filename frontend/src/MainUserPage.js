@@ -40,7 +40,7 @@ export default class MainUserPage extends Component {
                                 Confirmed</Button>
                         </td>
                         <td>
-                            <Button onClick={() => this.props.setScreen("create_request")}>Create request</Button>
+                            <Button onClick={() => this.props.setScreen("list_of_available_rooms", {user: me})}>Create request</Button>
                         </td>
                     </tr>
                     </tbody>

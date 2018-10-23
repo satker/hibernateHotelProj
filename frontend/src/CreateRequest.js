@@ -12,7 +12,7 @@ export default class CreateRequest extends React.Component {
 
         return (
 
-                <tr>
+                <tr onClick={this.props.onClick}>
                     <td>{room.capacity.adults}</td>
                     <td>{room.capacity.children}</td>
                     <td>{room.costNight}</td>

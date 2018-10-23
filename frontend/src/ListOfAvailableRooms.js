@@ -15,7 +15,8 @@ export default class ListOfAvailableRooms extends React.Component {
             adults: null,
             children: null,
             numbersOfRooms: null,
-            findRooms: null
+            findRooms: null,
+            chosedRooms: []
         };
         //this.state = {list: null, rooms: null};
     }
@@ -100,71 +101,7 @@ export default class ListOfAvailableRooms extends React.Component {
             selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option value={numberOfRooms}>{numberOfRooms}</option>);
         }
 
-        if (this.state.findRooms != null) {
-            return (
-            <Form className="wide-form" onSubmit={this.onSubmit}>
-                                <h2>Create request:</h2>
-                                <Container>
-                                    <Row>
-                                        <Col>Number of rooms</Col>
-                                        <Col>
-                                            <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Children</Col>
-                                        <Col>
-                                            <select onChange={this.onChange} name="child">{selectChildren}</select>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Adults</Col>
-                                        <Col>
-                                            <select onChange={this.onChange} name="adult">{selectAdult}</select>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Arrival date</Col>
-                                        <Col><input onChange={this.onChange} type="date" name="arrivalDate"/></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Departure date</Col>
-                                        <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Room type</Col>
-                                        <Col>
-                                            <select onChange={this.onChange} name="roomType">{selectType}</select>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                                <input className="btn btn-success" type="submit" value="Find available rooms"/>
-                                <Table hover>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Adults</th>
-                                                            <th>Children</th>
-                                                            <th>Night cost</th>
-                                                            <th>Room number</th>
-                                                            <th>Room type</th>
-                                                            <th>Room type description</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>{this.state.findRooms.map(room =>
-                                                            <CreateRequest
-                                                                me={this.props.me()}
-                                                                user={this.props.user()}
-                                                                room={room}
-                                                                setScreen={this.props.setScreen}
-                                                                refresh={() => this.loadOrders()}
-                                                                rooms={this.state.rooms}
-                                                            />)}
-                                                        </tbody>
-                                                </Table>
-                            </Form>
 
-            );
-        }
             return (
                 <Form className="wide-form" onSubmit={this.onSubmit}>
                     <h2>Create request:</h2>
@@ -203,6 +140,57 @@ export default class ListOfAvailableRooms extends React.Component {
                         </Row>
                     </Container>
                     <input className="btn btn-success" type="submit" value="Find available rooms"/>
+                    {this.state.findRooms != null ?
+                        <Table hover>
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th>Adults</th>
+                                                                                                        <th>Children</th>
+                                                                                                        <th>Night cost</th>
+                                                                                                        <th>Room number</th>
+                                                                                                        <th>Room type</th>
+                                                                                                        <th>Room type description</th>
+                                                                                                    </tr>
+                                                                                                    </thead>
+                                                                                                    <tbody>{this.state.chosedRooms.map(room =>
+                                                                                                                 <CreateRequest
+                                                                                                                 me={this.props.me()}
+                                                                                                                  user={this.props.user()}
+                                                                                                                                                                                                                room={room}
+                                                                                                                                                                                                                setScreen={this.props.setScreen}
+                                                                                                                                                                                                                refresh={() => this.loadOrders()}
+                                                                                                                                                                                                                rooms={this.state.chosedRooms}
+
+                                                                                                                                                                                                            />)}
+                                                                                                                                                                                                        </tbody>
+
+                                                                                                    <tbody>{this.state.findRooms.map(room =>
+                                                                                                        <CreateRequest
+                                                                                                            me={this.props.me()}
+                                                                                                            user={this.props.user()}
+                                                                                                            room={room}
+                                                                                                            setScreen={this.props.setScreen}
+                                                                                                            refresh={() => this.loadOrders()}
+                                                                                                            rooms={this.state.rooms}
+                                                                                                            onClick={() => {
+                                                                                                            console.log('add room ', room)
+                                                                                                            const isChosed =this.state.chosedRooms.includes(room) //this.state.chosedRooms.reduce((elem) => {
+                                                                                                            //  если есть в массиве возвращаем true, нет false ||
+                                                                                                            //}
+                                                                                                            //}, false)
+                                                                                                            if(!isChosed) {
+                                                                                                            this.setState({
+
+                                                                                                              chosedRooms: [...this.state.chosedRooms, room]
+                                                                                                            })}
+                                                                                                            }
+                                                                                                            }
+                                                                                                        />)}
+                                                                                                    </tbody>
+                                                                                            </Table>
+                        : null
+                    }
+
                 </Form>);
         }
 };

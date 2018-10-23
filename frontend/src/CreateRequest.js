@@ -4,8 +4,6 @@ import {Button} from "reactstrap";
 export default class CreateRequest extends React.Component {
     constructor(props) {
         super(props);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
         this.state = {rooms: null};
     }
 

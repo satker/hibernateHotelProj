@@ -61,7 +61,7 @@ export default class ListOfAvailableRooms extends React.Component {
         let text = await resp.text();
         console.log(text);
         this.setState({findRooms: JSON.parse(text)});
-        this.props.refresh();
+        //this.props.refresh();
         //this.render();
         //this.tableContent();
         //this.props.goBack();
@@ -100,30 +100,69 @@ export default class ListOfAvailableRooms extends React.Component {
             selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option value={numberOfRooms}>{numberOfRooms}</option>);
         }
 
-        if (this.props.findRooms != null) {
+        if (this.state.findRooms != null) {
             return (
-                <Table hover>
-                    <thead>
-                        <tr>
-                            <th>Adults</th>
-                            <th>Children</th>
-                            <th>Night cost</th>
-                            <th>Room number</th>
-                            <th>Room type</th>
-                            <th>Room type description</th>
-                        </tr>
-                        </thead>
-                        <tbody>{this.state.findRooms.map(room =>
-                            <CreateRequest
-                                me={this.props.me()}
-                                user={this.props.user()}
-                                room={room}
-                                setScreen={this.props.setScreen}
-                                refresh={() => this.loadOrders()}
-                                rooms={this.state.rooms}
-                            />)}
-                        </tbody>
-                </Table>
+            <Form className="wide-form" onSubmit={this.onSubmit}>
+                                <h2>Create request:</h2>
+                                <Container>
+                                    <Row>
+                                        <Col>Number of rooms</Col>
+                                        <Col>
+                                            <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Children</Col>
+                                        <Col>
+                                            <select onChange={this.onChange} name="child">{selectChildren}</select>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Adults</Col>
+                                        <Col>
+                                            <select onChange={this.onChange} name="adult">{selectAdult}</select>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Arrival date</Col>
+                                        <Col><input onChange={this.onChange} type="date" name="arrivalDate"/></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Departure date</Col>
+                                        <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Room type</Col>
+                                        <Col>
+                                            <select onChange={this.onChange} name="roomType">{selectType}</select>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                <input className="btn btn-success" type="submit" value="Find available rooms"/>
+                                <Table hover>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Adults</th>
+                                                            <th>Children</th>
+                                                            <th>Night cost</th>
+                                                            <th>Room number</th>
+                                                            <th>Room type</th>
+                                                            <th>Room type description</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>{this.state.findRooms.map(room =>
+                                                            <CreateRequest
+                                                                me={this.props.me()}
+                                                                user={this.props.user()}
+                                                                room={room}
+                                                                setScreen={this.props.setScreen}
+                                                                refresh={() => this.loadOrders()}
+                                                                rooms={this.state.rooms}
+                                                            />)}
+                                                        </tbody>
+                                                </Table>
+                            </Form>
+
             );
         }
             return (

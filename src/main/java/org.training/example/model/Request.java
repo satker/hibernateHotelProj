@@ -2,17 +2,12 @@ package org.training.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 
 @Entity
@@ -32,7 +27,11 @@ public class Request {
     @NotNull
     private Date departureDate;
 
-    private boolean isPaid = false;
+    private PayedType payedType;
+
+    private OrderStatus orderStatus;
+
+    private Boolean isPaid;
 
     private Double totalPrice;
 
@@ -40,12 +39,6 @@ public class Request {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
-    @OneToMany(mappedBy = "request")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @Fetch(FetchMode.SELECT)
-    @JsonIgnore
-    private Set<RoomRequest> rooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

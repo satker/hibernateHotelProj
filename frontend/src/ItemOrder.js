@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
-import {Button} from "reactstrap";
+import {Button, Table} from "reactstrap";
+import CreateRequest from "./CreateRequest";
 
-const URL_DELETE = "http://localhost:8080/user/_user_/orders/_id_";
+const URL_REJECT = "http://localhost:8080/user/_user_/orders/_id_";
 const URL_ROOMS = "http://localhost:8080/admin/appartments/_id_/rooms";
 const URL_CONFIRM = "http://localhost:8080/admin/users/_id_/confirms";
 
 export default class ItemOrder extends Component {
     constructor(props) {
         super(props);
-        this.deleteOrder = this.deleteOrder.bind(this);
+        this.rejectOrder = this.rejectOrder.bind(this);
         this.adminConfirm = this.adminConfirm.bind(this);
-        this.state = {rooms: null};
+        this.state = {
+            rooms: null,
+            roomsByOrder: null
+        };
     }
 
     async componentDidMount() {
@@ -25,12 +29,42 @@ export default class ItemOrder extends Component {
         }
     }
 
-    async deleteOrder() {
-        let url = URL_DELETE
+    async rejectOrder() {
+        let url = URL_REJECT
             .replace("_user_", this.props.user.id)
             .replace("_id_", this.props.order.id);
         await fetch(url, {method: "delete"});
         this.props.refresh();
+    }
+
+    async seeDetails(){
+        if (this.state.roomsByOrder !== null) {
+            this.state.roomsByOrder.forEach((elen) => console.log(elen.number));
+            //if (this.state.roomsByOrder !== null) {
+            return <Table hover>
+                <thead>
+                <tr>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Night cost</th>
+                    <th>Room number</th>
+                    <th>Room type</th>
+                    <th>Room type description</th>
+                </tr>
+                </thead>
+                <tbody>{this.state.roomsByOrder.map(room =>
+                    <CreateRequest
+                        me={this.props.me()}
+                        user={this.props.user()}
+                        room={room}
+                        setScreen={this.props.setScreen}
+                        refresh={() => this.loadOrders()}
+                        rooms={this.state.roomsByOrder}
+                    />)}
+                </tbody>
+            </Table>
+        }
+        //}
     }
 
     async adminConfirm() {
@@ -67,22 +101,26 @@ export default class ItemOrder extends Component {
 
     render() {
         let order = this.props.order;
-
-        if (order.idDone) {
-            return null;
-        }
-
         return (
-            <tr>
-                <td>{order.idDone ? "Done" : "Pending"}</td>
-                <td>{order.capacity}</td>
+            <tbody>
+                <tr>
+                <td>{order.id}</td>
                 <td>{order.arrivalDate}</td>
                 <td>{order.departureDate}</td>
-                <td>{order.roomType.name}</td>
-                <td>{order.roomType.description}</td>
-                <td><Button className="btn-danger" onClick={this.deleteOrder}>Delete</Button></td>
+                <td>{order.payedType}</td>
+                <td>{order.isPaid ? "Payed" : "Not payed"}</td>
+                <td>{order.orderStatus}</td>
+                <td>{order.rooms.length}</td>
+                <td>{order.totalPrice}</td>
+                <td><Button onClick={() => {
+                    console.log(order.rooms);
+                    this.setState({roomsByOrder: this.props.order.rooms});
+                    this.seeDetails();
+                }}>See Details</Button></td>
+                <td><Button className="btn-danger" onClick= {this.rejectOrder}>Delete</Button></td>
                 {this.confirmButton()}
-            </tr>
+                </tr>
+            </tbody>
         );
     }
 };

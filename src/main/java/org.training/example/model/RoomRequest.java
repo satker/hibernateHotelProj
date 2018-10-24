@@ -33,4 +33,9 @@ public class RoomRequest {
     @JoinColumn(name = "request_id")
     @JsonIgnore
     private Request request;
+
+    public RoomRequest(Room room, Request request){
+        this.request = request;
+        this.room = room;
+    }
 }

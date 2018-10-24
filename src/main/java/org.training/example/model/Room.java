@@ -1,17 +1,12 @@
 package org.training.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Data
@@ -39,12 +34,6 @@ public class Room {
     @JoinColumn(name = "capacity_id")
     @JsonIgnore
     private Capacity capacity;
-
-    @OneToMany(mappedBy = "room")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @Fetch(FetchMode.SELECT)
-    @JsonIgnore
-    private Set<RoomRequest> rooms = new HashSet<>();
 
     @PostPersist
     public void onPrePersist() {

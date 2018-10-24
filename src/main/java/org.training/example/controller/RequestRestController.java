@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.dto.AddRoomRequestDTO;
+import org.training.example.dto.PropertiesForOrderPrice;
 import org.training.example.dto.RequestDTO;
 import org.training.example.dto.RoomDTO;
 import org.training.example.dto.RoomTypeDTO;
@@ -31,9 +32,24 @@ class RequestRestController {
     private final UserService userService;
     private final RoomService roomService;
 
-    @PostMapping
+    @PostMapping("/rooms")
     List<RoomDTO> findAvailableRooms(@PathVariable long userId, @RequestBody AddRoomRequestDTO input) {
         return roomService.findAvailableRooms(input);
+    }
+
+    @PostMapping
+    RequestDTO createOrder(@PathVariable long userId, @RequestBody RequestDTO order){
+        return requestService.createOrder(userId, order);
+    }
+
+    @PostMapping("/price")
+    double getPriceOfOrder (@RequestBody PropertiesForOrderPrice propertiesForOrderPrice) {
+        return requestService.getPriceOfOrder(propertiesForOrderPrice);
+    }
+
+    @GetMapping
+    List<RequestDTO> findAllRequestsByUser(@PathVariable long userId) {
+        return requestService.findAllRequestsByUser(userId);
     }
 
     @GetMapping(value = "/{orderId}")
@@ -41,14 +57,9 @@ class RequestRestController {
         return requestService.findValidateRoom(orderId, principal.getName());
     }
 
-    @GetMapping
-    List<RequestDTO> readRoomRequests(@PathVariable long userId) {
-        return requestService.findRequestsByAccountUsername(userId);
-    }
-
     @DeleteMapping(value = "/{orderId}")
-    public void deleteOrder(@PathVariable("orderId") long id) {
-        requestService.deleteRoomRequestById(id);
+    public void rejectOrder(@PathVariable("orderId") long id) {
+        requestService.rejectRoomRequestById(id);
     }
 
     @GetMapping(value = "/appartments")

@@ -80,7 +80,7 @@ public class AdminRestController {
 
     @DeleteMapping(value = "/users/{id}/orders/{orderId}")
     public void deleteOrder(@PathVariable("orderId") long orderId, @PathVariable("id") String id) {
-        requestService.deleteRoomRequestById(orderId);
+        requestService.rejectRoomRequestById(orderId);
     }
 
     ///// For room type

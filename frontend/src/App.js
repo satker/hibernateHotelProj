@@ -8,7 +8,7 @@ import MainUserPage from './MainUserPage';
 import MainAdminPage from './MainAdminPage';
 import UserInfoPage from './UserInfoPage';
 import CreateRequest from './CreateRequest';
-import ListOfConfirmed from './ListOfConfirmed';
+import PersonalArea from './PersonalArea';
 import EditProfile from './EditProfile';
 import NavBar from './NavBar';
 import AdminConfirmPage from './AdminConfirmPage';
@@ -32,7 +32,8 @@ class App extends Component {
                 register: <Register setScreen={this.setScreen}/>,
                 list_of_orders: <ListOfOrders setScreen={this.setScreen} me={this.getCurrentUser}
                                               user={this.getTargetUser}/>,
-                list_of_confirmed: <ListOfConfirmed me={this.getCurrentUser} user={this.getTargetUser}/>,
+
+                personal_area: <PersonalArea me={this.getCurrentUser} user={this.getTargetUser} goBack={this.goBack}/>,
                 user_home: <MainUserPage setScreen={this.setScreen} me={this.getCurrentUser}/>,
                 admin_home: <MainAdminPage setScreen={this.setScreen} me={this.getCurrentUser}/>,
                 user_info: <UserInfoPage setScreen={this.setScreen} me={this.getCurrentUser}
@@ -40,7 +41,7 @@ class App extends Component {
                 create_request: <CreateRequest me={this.getCurrentUser} goBack={this.goBack}/>,
                 edit_profile: <EditProfile me={this.getCurrentUser} goBack={this.goBack}/>,
                 confirm: <AdminConfirmPage user={this.getTargetUser} goBack={this.goBack}/>,
-                list_of_available_rooms: <ListOfAvailableRooms me={this.getCurrentUser} user={this.getTargetUser}/>
+                list_of_available_rooms: <ListOfAvailableRooms me={this.getCurrentUser}  user={this.getTargetUser} goBack={this.goBack}/>
             },
         };
     }

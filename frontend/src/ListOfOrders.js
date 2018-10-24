@@ -33,16 +33,18 @@ export default class ListOfRooms extends Component {
             <Table hover>
                 <thead>
                 <tr>
-                    <th>Status</th>
-                    <th>Capacity</th>
+                    <th>Order №</th>
                     <th>Arrival date</th>
                     <th>Departure date</th>
-                    <th>Service class</th>
-                    <th>Description</th>
+                    <th>Payment type</th>
+                    <th>Payment status</th>
+                    <th>Order status</th>
+                    <th>Number of rooms</th>
+                    <th>Total price</th>
                     <th colSpan="2">Actions</th>
                 </tr>
                 </thead>
-                <tbody>
+
                 {this.state.list.map(order =>
                     <ItemOrder
                         me={this.props.me()}
@@ -52,7 +54,6 @@ export default class ListOfRooms extends Component {
                         refresh={()=>this.loadOrders()}
                         rooms={this.state.rooms}
                     />)}
-                </tbody>
             </Table>
         );
     }

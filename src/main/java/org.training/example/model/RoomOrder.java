@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "room_request")
+@Table(name = "room_order")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomRequest {
+public class RoomOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,12 +30,12 @@ public class RoomRequest {
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "request_id")
+    @JoinColumn(name = "order_id")
     @JsonIgnore
-    private Request request;
+    private Order order;
 
-    public RoomRequest(Room room, Request request){
-        this.request = request;
+    public RoomOrder(Room room, Order order){
+        this.order = order;
         this.room = room;
     }
 }

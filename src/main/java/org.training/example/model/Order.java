@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "request")
+@Table(name = "orders")
 @Slf4j
 @Data
-public class Request {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +26,9 @@ public class Request {
 
     @NotNull
     private Date departureDate;
+
+    @NotNull
+    private Date creationDate;
 
     private PayedType payedType;
 
@@ -56,6 +59,6 @@ public class Request {
     }
 
     private void audit(String operation) {
-        log.debug("operation to room request table completed {}", operation);
+        log.debug("operation to room order table completed {}", operation);
     }
 }

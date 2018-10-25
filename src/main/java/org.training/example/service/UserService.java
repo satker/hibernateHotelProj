@@ -75,7 +75,7 @@ public class UserService {
         return userMapper.userToUserDto(userRepository.save(newUser));
     }
 
-    public UserDTO getUserValidateUser(long id, String login) {
+    public UserDTO getValidateUser(long id, String login) {
         log.debug("validated user got {}", id);
         if (findUserByLogin(login).getId() == id) {
             return findOne(id);

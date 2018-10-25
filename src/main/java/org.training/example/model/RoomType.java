@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "room_type")
+@Table(name = "room_types")
 @Slf4j
 @Data
 @EqualsAndHashCode(exclude = "name")

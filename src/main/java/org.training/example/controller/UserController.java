@@ -16,6 +16,7 @@ import org.training.example.dto.AddUserDTO;
 import org.training.example.dto.UserDTO;
 import org.training.example.service.UserService;
 
+/// OK
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
@@ -34,9 +35,10 @@ class UserController {
         return userService.findUserByLogin(principal.getName());
     }
 
+
     @GetMapping(value = "/{id}")
     public UserDTO getValidateUser(@PathVariable("id") long id, Principal principal) {
-        return userService.getUserValidateUser(id, principal.getName());
+        return userService.getValidateUser(id, principal.getName());
     }
 
     @PutMapping(value = "/{id}")

@@ -1,22 +1,18 @@
 package org.training.example.controller;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.training.example.dto.HotelDto;
 import org.training.example.service.HotelService;
 
+// OK
 @RestController
 @AllArgsConstructor
 @RequestMapping("/hotels")
 public class HotelController {
     private final HotelService hotelService;
 
-    @GetMapping
+    /*@GetMapping
     public List<HotelDto> getHotels() {
         return hotelService.getHotels();
     }
@@ -32,5 +28,5 @@ public class HotelController {
     @PostMapping(params = "hotel")
     public HotelDto createHotel(@RequestParam HotelDto hotel) {
         return hotelService.createHotel(hotel);
-    }
+    }*/
 }

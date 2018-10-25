@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "room")
+@Table(name = "rooms")
 @Slf4j
 public class Room {
     @Id

@@ -13,7 +13,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     Collection<Room> findByRoomTypeId(long id);
 
     // TODO: check norm rooms
-    @Query(value = "SELECT * FROM room",
+    @Query(value = "SELECT * FROM rooms",
             nativeQuery = true)
     List<Room> findRoomsByParams(Date arrivalDate, Date departureDate,
                                         Long id, byte adults, byte children,

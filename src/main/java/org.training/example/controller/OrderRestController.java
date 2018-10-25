@@ -1,6 +1,5 @@
 package org.training.example.controller;
 
-import java.security.Principal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,22 +11,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.dto.AddRoomRequestDTO;
+import org.training.example.dto.OrderDTO;
 import org.training.example.dto.PropertiesForOrderPrice;
-import org.training.example.dto.RequestDTO;
 import org.training.example.dto.RoomDTO;
 import org.training.example.dto.RoomTypeDTO;
-import org.training.example.service.RequestService;
+import org.training.example.service.OrderService;
 import org.training.example.service.RoomService;
 import org.training.example.service.RoomTypeService;
 import org.training.example.service.UserService;
 
+// OK
 @CrossOrigin
 @RestController
 @RequestMapping("/user/{userId}/orders")
 @RequiredArgsConstructor
-class RequestRestController {
+class OrderRestController {
 
-    private final RequestService requestService;
+    private final OrderService orderService;
     private final RoomTypeService roomTypeService;
     private final UserService userService;
     private final RoomService roomService;
@@ -38,28 +38,28 @@ class RequestRestController {
     }
 
     @PostMapping
-    RequestDTO createOrder(@PathVariable long userId, @RequestBody RequestDTO order){
-        return requestService.createOrder(userId, order);
+    OrderDTO createOrder(@PathVariable long userId, @RequestBody OrderDTO order){
+        return orderService.createOrder(userId, order);
     }
 
     @PostMapping("/price")
     double getPriceOfOrder (@RequestBody PropertiesForOrderPrice propertiesForOrderPrice) {
-        return requestService.getPriceOfOrder(propertiesForOrderPrice);
+        return orderService.getPriceOfOrder(propertiesForOrderPrice);
     }
 
     @GetMapping
-    List<RequestDTO> findAllRequestsByUser(@PathVariable long userId) {
-        return requestService.findAllRequestsByUser(userId);
+    List<OrderDTO> findAllOrdersByUser(@PathVariable long userId) {
+        return orderService.findAllOrdersByUser(userId);
     }
 
-    @GetMapping(value = "/{orderId}")
-    RequestDTO findValidateRoom(@PathVariable long orderId, Principal principal) {
+    /*@GetMapping(value = "/{orderId}")
+    OrderDTO findValidateRoom(@PathVariable long orderId, Principal principal) {
         return requestService.findValidateRoom(orderId, principal.getName());
-    }
+    }*/
 
     @DeleteMapping(value = "/{orderId}")
     public void rejectOrder(@PathVariable("orderId") long id) {
-        requestService.rejectRoomRequestById(id);
+        orderService.rejectRoomOrderById(id);
     }
 
     @GetMapping(value = "/appartments")
@@ -67,8 +67,8 @@ class RequestRestController {
         return roomTypeService.findAllTypes();
     }
 
-    @GetMapping(value = "/appartments/{appartmentsId}")
+   /* @GetMapping(value = "/appartments/{appartmentsId}")
     RoomTypeDTO findTypeById(@PathVariable long appartmentsId) {
         return roomTypeService.findOne(appartmentsId);
-    }
+    }*/
 }

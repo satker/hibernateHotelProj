@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "country")
+@Table(name = "countries")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Country {

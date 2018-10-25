@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class RoomRequestNotFoundException extends RuntimeException {
     public RoomRequestNotFoundException(long roomRequestId) {
         super("could not find roomType '" + roomRequestId + "'.");
-        log.error("room request not found by id {}", roomRequestId);
+        log.error("room order not found by id {}", roomRequestId);
 
     }
 }

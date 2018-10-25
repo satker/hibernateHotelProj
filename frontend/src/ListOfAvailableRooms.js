@@ -95,8 +95,6 @@ export default class ListOfAvailableRooms extends React.Component {
         let selectChildren = null;
         let selectAdult = null;
         let selectNumbersOfRooms = null;
-        let selectYears = null;
-        let selectMonths = null;
 
         if (this.state.roomTypes) {
             selectType = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
@@ -113,16 +111,6 @@ export default class ListOfAvailableRooms extends React.Component {
         if (this.state.numbersOfRooms) {
             selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option
                 value={numberOfRooms}>{numberOfRooms}</option>);
-        }
-
-        if (this.state.years) {
-            selectYears = this.state.years.map(year => <option
-                value={year}>{year}</option>);
-        }
-
-        if (this.state.months) {
-            selectMonths = this.state.months.map(month => <option
-                value={month}>{month}</option>);
         }
 
         return (
@@ -248,37 +236,7 @@ export default class ListOfAvailableRooms extends React.Component {
                 }
 
                 {this.state.isOnlinePayment ?
-                    <Form className="wide-form" onSubmit={this.createOrder}>
-                        <Container>
-                            <Row>
-                                <Col>Card number: </Col>
-                                <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
-                            </Row>
-                            <Row>
-                                <Col>Date: </Col>
-                                <Col>month</Col>
-                                <Col>
-                                    <select onChange={this.onChange} name="month">{selectMonths}</select>
-                                </Col>
-                                <Col>
-                                    /
-                                </Col>
-                                <Col>
-                                    <select onChange={this.onChange} name="year">{selectYears}</select>
-                                </Col>
-                                <Col>year</Col>
-                            </Row>
-                            <Row>
-                                <Col>Owner name: </Col>
-                                <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
-                            </Row>
-                            <Row>
-                                <Col>CVC number: </Col>
-                                <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
-                            </Row>
-                        </Container>
-                        <input className="btn btn-success" type="submit" value="Pay and back to main page"/>
-                    </Form>
+                    this.creditCardForm()
                     : null}
 
                 {this.state.isCashPayment ?
@@ -293,6 +251,48 @@ export default class ListOfAvailableRooms extends React.Component {
                     : null}
             </Form>
         );
+    }
+
+    creditCardForm (){
+        let selectYears = null;
+        let selectMonths = null;
+
+
+        if (this.state.years) {
+            selectYears = this.state.years.map(year => <option
+                value={year}>{year}</option>);
+        }
+
+        if (this.state.months) {
+            selectMonths = this.state.months.map(month => <option
+                value={month}>{month}</option>);
+        }
+
+        return <Form className="wide-form" onSubmit={this.createOrder}>
+            <Container>
+                <Row>
+                    <Col>Card number: </Col>
+                    <Col><input onChange={this.onChange} type="text" name="card_number"/></Col>
+                </Row>
+                <Row>
+                    <Col>Date (month/year) : </Col>
+                    <Col>
+                        <select onChange={this.onChange} name="month">{selectMonths}</select>
+                        /
+                        <select onChange={this.onChange} name="year">{selectYears}</select>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>Owner name: </Col>
+                    <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
+                </Row>
+                <Row>
+                    <Col>CVC number: </Col>
+                    <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
+                </Row>
+            </Container>
+            <input className="btn btn-success" type="submit" value="Pay and back to main page"/>
+        </Form>
     }
 
     async createOrder(evt) {
@@ -313,7 +313,7 @@ export default class ListOfAvailableRooms extends React.Component {
         if (this.state.isOnlinePayment){
             body.orderStatus = "IN_PROGRESS";
             body.payedType = "ONLINE";
-            body.orderStatus = true;
+            body.isPaid = true;
         }
 
         body.totalPrice = this.state.totalPrice;

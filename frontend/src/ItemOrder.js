@@ -54,8 +54,8 @@ export default class ItemOrder extends Component {
                 </thead>
                 <tbody>{this.state.roomsByOrder.map(room =>
                     <CreateRequest
-                        me={this.props.me()}
-                        user={this.props.user()}
+                        //me={this.props.me()}
+                        //user={this.props.user()}
                         room={room}
                         setScreen={this.props.setScreen}
                         refresh={() => this.loadOrders()}

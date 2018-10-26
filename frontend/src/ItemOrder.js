@@ -7,14 +7,10 @@ const URL_ROOMS = "http://localhost:8080/admin/appartments/_id_/rooms";
 const URL_CONFIRM = "http://localhost:8080/admin/users/_id_/confirms";
 
 export default class ItemOrder extends Component {
-    constructor(props) {
-        super(props);
-        this.rejectOrder = this.rejectOrder.bind(this);
-        this.adminConfirm = this.adminConfirm.bind(this);
-        this.state = {
-            rooms: null,
-            roomsByOrder: null
-        };
+    state = {
+      rooms: null,
+      roomsByOrder: null,
+      isDetailsOpened: false
     }
 
     async componentDidMount() {
@@ -29,7 +25,7 @@ export default class ItemOrder extends Component {
         }
     }
 
-    async rejectOrder() {
+    rejectOrder = async () => {
         let url = URL_REJECT
             .replace("_user_", this.props.user.id)
             .replace("_id_", this.props.order.id);
@@ -37,11 +33,12 @@ export default class ItemOrder extends Component {
         this.props.refresh();
     }
 
-    async seeDetails(){
+    seeDetails(){
         if (this.state.roomsByOrder !== null) {
             this.state.roomsByOrder.forEach((elen) => console.log(elen.number));
             //if (this.state.roomsByOrder !== null) {
-            return <Table hover>
+            return
+             <Table hover>
                 <thead>
                 <tr>
                     <th>Adults</th>
@@ -67,7 +64,7 @@ export default class ItemOrder extends Component {
         //}
     }
 
-    async adminConfirm() {
+    adminConfirm = async () => {
         let room = this.state.rooms.find(room => room.number == this.state.roomNumber);
 
         await fetch(URL_CONFIRM.replace("_id_", this.props.user.id), {
@@ -112,14 +109,12 @@ export default class ItemOrder extends Component {
                 <td>{order.orderStatus}</td>
                 <td>{order.rooms.length}</td>
                 <td>{order.totalPrice}</td>
-                <td><Button onClick={() => {
-                    console.log(order.rooms);
-                    this.setState({roomsByOrder: this.props.order.rooms});
-                    this.seeDetails();
-                }}>See Details</Button></td>
+                <td><Button onClick={ this.props.onClickSeeDetails }>See Details</Button></td>
                 <td><Button className="btn-danger" onClick= {this.rejectOrder}>Delete</Button></td>
                 {this.confirmButton()}
+
                 </tr>
+                { this.state.isDetailsOpened ? this.seeDetails() : null }
             </tbody>
         );
     }

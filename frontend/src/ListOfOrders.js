@@ -8,12 +8,16 @@ export default class ListOfRooms extends Component {
     constructor(props) {
         super(props);
         this.loadOrders = this.loadOrders.bind(this);
-        this.state = {list: null, rooms: null};
+        this.state = {list: null, rooms: null, show: null, currentOrder: null};
     }
 
     componentDidMount() {
         this.loadOrders();
     }
+
+    handleShow() {
+        this.setState({ show: true });
+      }
 
     async loadOrders() {
         let resp = await fetch(URL.replace("_id_", this.props.user().id));
@@ -30,6 +34,7 @@ export default class ListOfRooms extends Component {
         }
 
         return (
+        <div>
             <Table hover>
                 <thead>
                 <tr>
@@ -53,8 +58,16 @@ export default class ListOfRooms extends Component {
                         setScreen={this.props.setScreen}
                         refresh={()=>this.loadOrders()}
                         rooms={this.state.rooms}
+                        onClickSeeDetails={() => {
+                          this.setState({
+                            show: true,
+                            currentOrder: order,
+                          });
+                        }}
                     />)}
             </Table>
+            <modal/>
+            </div>
         );
     }
 };

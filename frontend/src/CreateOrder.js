@@ -1,11 +1,11 @@
 import React from "react";
 import {Button, Col, Container, Form, Row, Table} from "reactstrap";
 
-import CreateRequest from "./CreateRequest";
+import ItemRoom from "./ItemRoom";
 
 const URL = "http://localhost:8080/user/_id_/orders";
 
-export default class ListOfAvailableRooms extends React.Component {
+export default class CreateOrder extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -26,7 +26,8 @@ export default class ListOfAvailableRooms extends React.Component {
             isBooked: false,
             months: null,
             years: null,
-            totalPrice: null
+            totalPrice: null,
+            checked: false
         };
     }
 
@@ -86,142 +87,51 @@ export default class ListOfAvailableRooms extends React.Component {
                 <td>Loading...</td>
             </tr>
         }
-        return this.state.list.map(conf => <CreateRequest refresh={() => this.load()} me={this.props.me()}
-                                                          user={this.props.user()} room={conf}/>)
+        return this.state.list.map(conf => <ItemRoom refresh={() => this.load()} me={this.props.me()}
+                                                     user={this.props.user()} room={conf}/>)
     }
 
     render() {
-        let selectType = null;
-        let selectChildren = null;
-        let selectAdult = null;
-        let selectNumbersOfRooms = null;
-
-        if (this.state.roomTypes) {
-            selectType = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
-        }
-
-        if (this.state.children) {
-            selectChildren = this.state.children.map(child => <option value={child}>{child}</option>);
-        }
-
-        if (this.state.adults) {
-            selectAdult = this.state.adults.map(adult => <option value={adult}>{adult}</option>);
-        }
-
-        if (this.state.numbersOfRooms) {
-            selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option
-                value={numberOfRooms}>{numberOfRooms}</option>);
-        }
-
         return (
-            <Form className="wide-form" onSubmit={this.onSubmit}>
-                <h2>Create request:</h2>
-                <Container>
-                    <Row>
-                        <Col>Number of rooms</Col>
-                        <Col>
-                            <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>Children</Col>
-                        <Col>
-                            <select onChange={this.onChange} name="child">{selectChildren}</select>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>Adults</Col>
-                        <Col>
-                            <select onChange={this.onChange} name="adult">{selectAdult}</select>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>Arrival date</Col>
-                        <Col><input onChange={this.onChange} type="date" name="arrivalDate"/></Col>
-                    </Row>
-                    <Row>
-                        <Col>Departure date</Col>
-                        <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
-                    </Row>
-                    <Row>
-                        <Col>Room type</Col>
-                        <Col>
-                            <select onChange={this.onChange} name="roomType">{selectType}</select>
-                        </Col>
-                    </Row>
-                </Container>
-                <input className="btn btn-success" type="submit" value="Find available rooms"/>
-                {this.state.findRooms != null ?
-                    <Table hover>
-                        <thead>
-                        <tr>
-                            <th>Adults</th>
-                            <th>Children</th>
-                            <th>Night cost</th>
-                            <th>Room number</th>
-                            <th>Room type</th>
-                            <th>Room type description</th>
-                        </tr>
-                        </thead>
-                        <tbody>{this.state.selectedRooms.map(room =>
-                            <CreateRequest
-                                me={this.props.me()}
-                                user={this.props.user()}
-                                room={room}
-                                setScreen={this.props.setScreen}
-                                refresh={() => this.loadOrders()}
-                                rooms={this.state.selectedRooms}
+            <div>
+                {this.formToFindRooms()}
 
-                            />)}
-                        </tbody>
-                        {this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
-                            <Button
-                                onClick={() => {
-                                    this.getPrice();
-                                    this.setState({paymentStep: true});
-                                    this.snoozeRooms();
-                                }
-                                }>Choose payment method
-                            </Button>
-                            : null
-                        }
-                        {!this.state.paymentStep ?
-                            <tbody>{this.state.findRooms.map(room =>
-                                <CreateRequest
-                                    me={this.props.me()}
-                                    user={this.props.user()}
-                                    room={room}
-                                    setScreen={this.props.setScreen}
-                                    refresh={() => this.loadOrders()}
-                                    rooms={this.state.rooms}
-                                    onClick={() => {
-                                        const isChosed = this.state.selectedRooms.includes(room);
-                                        if (!isChosed) {
-                                            this.setState({
-                                                selectedRooms: [...this.state.selectedRooms, room]
-                                            })
-                                        }
-                                    }
-                                    }
-                                />)}
-                            </tbody>
-                            : null
-                        }
-                    </Table>
+                {this.state.findRooms != null ?
+                    this.findedRoomsTable()
                     : null
                 }
+
+                {!this.state.paymentStep && this.state.selectedRooms != null ?
+                    this.selectedRoomsTable()
+                    : null
+                }
+
+                {this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
+                    <Button
+                        onClick={() => {
+                            this.getPrice();
+                            this.setState({paymentStep: true});
+                            this.snoozeRooms();
+                        }
+                        }>Choose payment method
+                    </Button>
+                    : null
+                }
+
                 {this.state.paymentStep ?
                     <tbody>
                     <h2>Total price: {this.state.totalPrice}</h2>
                     </tbody>
                     : null
                 }
+
                 {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
                     <td>
                         <Button onClick={() => this.setState({isOnlinePayment: true})}>Online payment</Button>
                     </td>
                     : null
                 }
+
                 {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
                     <td>
                         <Button onClick={() => this.setState({isCashPayment: true})}>Cash payment</Button>
@@ -250,11 +160,153 @@ export default class ListOfAvailableRooms extends React.Component {
                         <input className="btn btn-success" type="submit" value="Book rooms and back to main page"/>
                     </Form>
                     : null}
-            </Form>
+            </div>
         );
     }
 
-    creditCardForm (){
+    formToFindRooms() {
+        let selectType = null;
+        let selectChildren = null;
+        let selectAdult = null;
+        let selectNumbersOfRooms = null;
+
+        if (this.state.roomTypes) {
+            selectType = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
+        }
+
+        if (this.state.children) {
+            selectChildren = this.state.children.map(child => <option value={child}>{child}</option>);
+        }
+
+        if (this.state.adults) {
+            selectAdult = this.state.adults.map(adult => <option value={adult}>{adult}</option>);
+        }
+
+        if (this.state.numbersOfRooms) {
+            selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option
+                value={numberOfRooms}>{numberOfRooms}</option>);
+        }
+
+        return <Form className="wide-form" onSubmit={this.onSubmit}>
+            <h2>Create request:</h2>
+            <Container>
+                <Row>
+                    <Col>Number of rooms</Col>
+                    <Col>
+                        <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>Children</Col>
+                    <Col>
+                        <select onChange={this.onChange} name="child">{selectChildren}</select>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>Adults</Col>
+                    <Col>
+                        <select onChange={this.onChange} name="adult">{selectAdult}</select>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>Arrival date</Col>
+                    <Col><input onChange={this.onChange} type="date" name="arrivalDate"/></Col>
+                </Row>
+                <Row>
+                    <Col>Departure date</Col>
+                    <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
+                </Row>
+                <Row>
+                    <Col>Room type</Col>
+                    <Col>
+                        <select onChange={this.onChange} name="roomType">{selectType}</select>
+                    </Col>
+                </Row>
+            </Container>
+            <input className="btn btn-success" type="submit" value="Find available rooms"/>
+        </Form>
+    }
+
+    selectedRoomsTable() {
+        return <Table hover>
+            <thead>
+            <tr>
+                <th>Adults</th>
+                <th>Children</th>
+                <th>Night cost</th>
+                <th>Room number</th>
+                <th>Room type</th>
+                <th>Room type description</th>
+            </tr>
+            </thead>
+            <tbody>{this.state.selectedRooms.map(room =>
+                <ItemRoom
+                    me={this.props.me()}
+                    user={this.props.user()}
+                    room={room}
+                    setScreen={this.props.setScreen}
+                    refresh={() => this.loadOrders()}
+                    rooms={this.state.selectedRooms}
+                    isCheckBox={true}
+                    checked={true}
+
+                    onClickOnCheckBox={() => {
+                        this.setState({checked: false});
+                        console.log(this.props.checked);
+                        this.setState({
+                            findRooms: [...this.state.findRooms, room]
+                        });
+                        this.removeRoomFromSelectedRoms(room);
+                    }}
+
+                />)}
+            </tbody>
+        </Table>
+    }
+
+    findedRoomsTable() {
+        return <Table hover>
+            <thead>
+            <tr>
+                <th>Adults</th>
+                <th>Children</th>
+                <th>Night cost</th>
+                <th>Room number</th>
+                <th>Room type</th>
+                <th>Room type description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {this.state.findRooms.map(room =>
+                <ItemRoom
+                    me={this.props.me()}
+                    user={this.props.user()}
+                    room={room}
+                    setScreen={this.props.setScreen}
+                    refresh={() => this.loadOrders()}
+                    rooms={this.state.rooms}
+                    isCheckBox={true}
+                    checked={false}
+
+                    onClickOnCheckBox={() => {
+                        this.setState({checked: true});
+                        console.log(this.props.checked);
+                        const isChosed = this.state.selectedRooms.includes(room);
+                        if (!isChosed) {
+                            this.setState({
+                                selectedRooms: [...this.state.selectedRooms, room]
+                            });
+                            this.removeRoomFromFindedRoms(room);
+                        }
+                    }
+                    }
+                />)}
+            </tbody>
+        </Table>
+
+    }
+
+    creditCardForm() {
         let selectYears = null;
         let selectMonths = null;
 
@@ -296,6 +348,16 @@ export default class ListOfAvailableRooms extends React.Component {
         </Form>
     }
 
+    removeRoomFromFindedRoms(room) {
+        const newArray = this.state.findRooms.filter(r => r !== room);
+        this.setState({findRooms: newArray});
+    }
+
+    removeRoomFromSelectedRoms(room) {
+        const newArray = this.state.selectedRooms.filter(r => r !== room);
+        this.setState({selectedRooms: newArray});
+    }
+
     async createOrder(evt) {
         let body = {};
         for (let key of ["arrivalDate", "departureDate"]) {
@@ -303,15 +365,15 @@ export default class ListOfAvailableRooms extends React.Component {
         }
 
         body.isPaid = false;
-        if (this.state.isBooked){
+        if (this.state.isBooked) {
             body.orderStatus = "BOOKED";
             body.payedType = "NOT_PAYED";
         }
-        if (this.state.isCashPayment){
+        if (this.state.isCashPayment) {
             body.orderStatus = "IN_PROGRESS";
             body.payedType = "CASH";
         }
-        if (this.state.isOnlinePayment){
+        if (this.state.isOnlinePayment) {
             body.orderStatus = "IN_PROGRESS";
             body.payedType = "ONLINE";
             body.isPaid = true;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from 'reactstrap';
 import ItemOrder from './ItemOrder';
-import CreateRequest from "./CreateRequest";
+import ItemRoom from "./ItemRoom";
 
 const URL = "http://localhost:8080/user/_id_/orders";
 
@@ -102,7 +102,7 @@ export default class ListOfRooms extends Component {
                                     <tbody>
                                     {
                                         this.state.currentOrderRooms.map(room =>
-                                        <CreateRequest
+                                        <ItemRoom
                                             me={this.props.me()}
                                             user={this.props.user()}
                                             room={room}
@@ -124,5 +124,4 @@ export default class ListOfRooms extends Component {
             </div>
         );
     }
-
 };

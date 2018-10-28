@@ -48,7 +48,7 @@ export default class ItemOrder extends Component {
                 </tr>
                 </thead>
                 <tbody>{this.state.roomsByOrder.map(room =>
-                    <CreateRequest
+                    <ItemRoom
                         //me={this.props.me()}
                         //user={this.props.user()}
                         room={room}
@@ -63,7 +63,7 @@ export default class ItemOrder extends Component {
     }*/
 
     adminConfirm = async () => {
-        let room = this.state.rooms.find(room => room.number == this.state.roomNumber);
+        let room = this.state.rooms.find(room => room.number === this.state.roomNumber);
 
         await fetch(URL_CONFIRM.replace("_id_", this.props.user.id), {
             method: "post",
@@ -110,11 +110,7 @@ export default class ItemOrder extends Component {
                 <td><Button onClick={ this.props.onClickSeeDetails }>See Details</Button></td>
                 <td><Button className="btn-danger" onClick= {this.rejectOrder}>Delete</Button></td>
                 {this.confirmButton()}
-
                 </tr>
-{/*
-                { this.state.isDetailsOpened ? this.seeDetails() : null }
-*/}
             </tbody>
         );
     }

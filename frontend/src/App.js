@@ -7,12 +7,12 @@ import ListOfOrders from './ListOfOrders';
 import MainUserPage from './MainUserPage';
 import MainAdminPage from './MainAdminPage';
 import UserInfoPage from './UserInfoPage';
-import CreateRequest from './CreateRequest';
+import ItemRoom from './ItemRoom';
 import PersonalArea from './PersonalArea';
 import EditProfile from './EditProfile';
 import NavBar from './NavBar';
 import AdminConfirmPage from './AdminConfirmPage';
-import ListOfAvailableRooms from './ListOfAvailableRooms'
+import CreateOrder from './CreateOrder'
 
 class App extends Component {
     constructor(props) {
@@ -38,10 +38,10 @@ class App extends Component {
                 admin_home: <MainAdminPage setScreen={this.setScreen} me={this.getCurrentUser}/>,
                 user_info: <UserInfoPage setScreen={this.setScreen} me={this.getCurrentUser}
                                          user={this.getTargetUser} goBack={this.goBack}/>,
-                create_request: <CreateRequest me={this.getCurrentUser} goBack={this.goBack}/>,
+                create_request: <ItemRoom me={this.getCurrentUser} goBack={this.goBack}/>,
                 edit_profile: <EditProfile me={this.getCurrentUser} goBack={this.goBack}/>,
                 confirm: <AdminConfirmPage user={this.getTargetUser} goBack={this.goBack}/>,
-                list_of_available_rooms: <ListOfAvailableRooms me={this.getCurrentUser}  user={this.getTargetUser} goBack={this.goBack}/>
+                create_order: <CreateOrder me={this.getCurrentUser} user={this.getTargetUser} goBack={this.goBack}/>
             },
         };
     }

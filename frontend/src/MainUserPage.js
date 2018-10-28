@@ -23,7 +23,7 @@ export default class MainUserPage extends Component {
                             <Button onClick={() => this.props.setScreen("personal_area", {user: me})}>Personal area</Button>
                         </td>
                         <td>
-                            <Button onClick={() => this.props.setScreen("list_of_available_rooms", {user: me})}>Create request</Button>
+                            <Button onClick={() => this.props.setScreen("create_order", {user: me})}>Create request</Button>
                         </td>
                     </tr>
                     </tbody>

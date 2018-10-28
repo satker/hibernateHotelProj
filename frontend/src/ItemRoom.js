@@ -1,10 +1,13 @@
 import React from "react";
 import {Button} from "reactstrap";
 
-export default class CreateRequest extends React.Component {
+export default class ItemRoom extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {rooms: null};
+        this.state = {
+            rooms: null,
+            isCheckBox: false,
+        };
     }
 
     render() {
@@ -22,6 +25,11 @@ export default class CreateRequest extends React.Component {
                     {this.props.me.role === "ROLE_ADMIN" && <td>
                         <Button className="btn-danger" onClick={() => this.deleteConfirm()}>Delete</Button>
                     </td>}
+                    {
+                        this.props.isCheckBox && <td>
+                            <input type="checkbox" onChange={this.props.onClickOnCheckBox} defaultChecked={this.props.checked}/>
+                        </td>
+                    }
                 </tr>
         );
     }

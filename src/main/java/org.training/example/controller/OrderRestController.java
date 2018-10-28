@@ -71,4 +71,9 @@ class OrderRestController {
     RoomTypeDTO findTypeById(@PathVariable long appartmentsId) {
         return roomTypeService.findOne(appartmentsId);
     }*/
+
+    @PostMapping(value = "/rooms/snooze")
+    void snoozeRooms(@RequestBody List<RoomDTO> rooms) {
+        roomService.snoozeRooms(rooms);
+    }
 }

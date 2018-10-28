@@ -178,7 +178,8 @@ export default class ListOfAvailableRooms extends React.Component {
                             <Button
                                 onClick={() => {
                                     this.getPrice();
-                                    this.setState({paymentStep: true})
+                                    this.setState({paymentStep: true});
+                                    this.snoozeRooms();
                                 }
                                 }>Choose payment method
                             </Button>
@@ -351,5 +352,16 @@ export default class ListOfAvailableRooms extends React.Component {
         let text = await resp.text();
         let price = JSON.parse(text);
         this.setState({totalPrice: parseFloat(price)});
+    }
+
+    async snoozeRooms() {
+        await fetch(URL.replace("_id_", this.props.me().id) + "/rooms/snooze", {
+            method: "post",
+            credentials: "include",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(this.state.selectedRooms),
+        });
     }
 };

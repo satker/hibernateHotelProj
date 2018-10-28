@@ -1,6 +1,9 @@
 package org.training.example.service;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +39,7 @@ public class RoomService {
     public RoomDTO findOne(long id) {
         log.debug("room has been found by id {}", id);
         Room findedRoom = roomRepository.getOne(id);
-        if (findedRoom == null){
+        if (findedRoom == null) {
             throw new RoomNotFoundException(id);
         }
         return roomMapper.roomToRoomDTO(findedRoom);
@@ -48,10 +51,29 @@ public class RoomService {
     }
 
     public List<RoomDTO> findAvailableRooms(AddRoomRequestDTO input) {
-      /*  List<Room> findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
+        List<Room> findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
                 input.getRoomType().getId(), Byte.valueOf(input.getAdults()), Byte.valueOf(input.getChildren()),
-                Byte.valueOf(input.getNumbersOfRooms()));*/
-        List<Room> findedRooms = roomRepository.findAll();
+                Byte.valueOf(input.getNumbersOfRooms()));
         return findedRooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toList());
+    }
+
+    public void snoozeRooms(List<RoomDTO> rooms) {
+        snoozedAction(rooms, true);
+        unsnoozeRooms(rooms);
+    }
+
+    private void unsnoozeRooms(List<RoomDTO> rooms) {
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        Runnable runnable = () -> {
+            snoozedAction(rooms, false);
+        };
+        executorService.schedule(runnable, 15, TimeUnit.MINUTES);
+    }
+
+    private void snoozedAction(List<RoomDTO> rooms, boolean action) {
+        rooms.stream()
+                .map(roomMapper::roomDTOToRoom)
+                .peek(room -> room.setIsSnoozed(action))
+                .forEach(roomRepository::save);
     }
 }

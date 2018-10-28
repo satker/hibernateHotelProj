@@ -1,0 +1,12 @@
+insert into room_types (description, name, hotel_id)values ('Lux room', 'LUX', null);
+insert into room_types (description, name, hotel_id)values ('Ordinary room', 'ORD', null);
+insert into room_types (description, name, hotel_id)values ('Average room', 'AVG', null);
+insert into capacities (adults, children)values (1,1);
+insert into capacities (adults, children)values (2,2);
+insert into capacities (adults, children)values (2,1);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (12.2, 1, 2, 1);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (14.2, 2, 2, 1);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (10.2, 3, 1, 2);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (1.2, 4, 2, 3);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (2.2, 5, 3, 3);
+insert into rooms(cost_night, number, capacity_id, room_type_id) VALUES (9.2, 6, 2, 2);

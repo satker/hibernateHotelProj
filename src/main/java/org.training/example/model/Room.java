@@ -25,6 +25,8 @@ public class Room {
     @NotNull
     private Double costNight;
 
+    private Boolean isSnoozed;
+
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     @JsonIgnore

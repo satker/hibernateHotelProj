@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Table} from "reactstrap";
-import CreateRequest from "./CreateRequest";
+import {Button} from "reactstrap";
 
 const URL_REJECT = "http://localhost:8080/user/_user_/orders/_id_";
 const URL_ROOMS = "http://localhost:8080/admin/appartments/_id_/rooms";
@@ -9,9 +8,8 @@ const URL_CONFIRM = "http://localhost:8080/admin/users/_id_/confirms";
 export default class ItemOrder extends Component {
     state = {
       rooms: null,
-      roomsByOrder: null,
       isDetailsOpened: false
-    }
+    };
 
     async componentDidMount() {
         if(this.props.me.role === "ROLE_ADMIN") {
@@ -31,9 +29,9 @@ export default class ItemOrder extends Component {
             .replace("_id_", this.props.order.id);
         await fetch(url, {method: "delete"});
         this.props.refresh();
-    }
+    };
 
-    seeDetails(){
+    /*seeDetails(){
         if (this.state.roomsByOrder !== null) {
             this.state.roomsByOrder.forEach((elen) => console.log(elen.number));
             //if (this.state.roomsByOrder !== null) {
@@ -62,7 +60,7 @@ export default class ItemOrder extends Component {
             </Table>
         }
         //}
-    }
+    }*/
 
     adminConfirm = async () => {
         let room = this.state.rooms.find(room => room.number == this.state.roomNumber);
@@ -81,7 +79,7 @@ export default class ItemOrder extends Component {
         });
 
         this.props.refresh();
-    }
+    };
 
     confirmButton() {
         if (this.props.me.role === "ROLE_ADMIN") {
@@ -114,7 +112,9 @@ export default class ItemOrder extends Component {
                 {this.confirmButton()}
 
                 </tr>
+{/*
                 { this.state.isDetailsOpened ? this.seeDetails() : null }
+*/}
             </tbody>
         );
     }

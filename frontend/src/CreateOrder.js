@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Col, Container, Form, Row, Table} from "reactstrap";
+import {Button, Col, Container, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row, Table} from "reactstrap";
 
 import ItemRoom from "./ItemRoom";
 
@@ -27,7 +27,9 @@ export default class CreateOrder extends React.Component {
             months: null,
             years: null,
             totalPrice: null,
-            checked: false
+            checked: false,
+            modal: false,
+            currentRoom: null
         };
     }
 
@@ -81,14 +83,14 @@ export default class CreateOrder extends React.Component {
         this.setState({findRooms: JSON.parse(text)});
     }
 
-    tableContent() {
-        if (!this.state.list) {
-            return <tr>
-                <td>Loading...</td>
-            </tr>
-        }
-        return this.state.list.map(conf => <ItemRoom refresh={() => this.load()} me={this.props.me()}
-                                                     user={this.props.user()} room={conf}/>)
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     render() {
@@ -96,12 +98,12 @@ export default class CreateOrder extends React.Component {
             <div>
                 {this.formToFindRooms()}
 
-                {this.state.findRooms != null ?
+                {!this.state.paymentStep && this.state.findRooms != null ?
                     this.findedRoomsTable()
                     : null
                 }
 
-                {!this.state.paymentStep && this.state.selectedRooms != null ?
+                {this.state.selectedRooms != null ?
                     this.selectedRoomsTable()
                     : null
                 }
@@ -119,30 +121,22 @@ export default class CreateOrder extends React.Component {
                 }
 
                 {this.state.paymentStep ?
-                    <tbody>
                     <h2>Total price: {this.state.totalPrice}</h2>
-                    </tbody>
                     : null
                 }
 
                 {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <td>
-                        <Button onClick={() => this.setState({isOnlinePayment: true})}>Online payment</Button>
-                    </td>
+                    <Button onClick={() => this.setState({isOnlinePayment: true})}>Online payment</Button>
                     : null
                 }
 
                 {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <td>
-                        <Button onClick={() => this.setState({isCashPayment: true})}>Cash payment</Button>
-                    </td>
+                    <Button onClick={() => this.setState({isCashPayment: true})}>Cash payment</Button>
                     : null
                 }
 
                 {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <td>
-                        <Button onClick={() => this.setState({isBooked: true})}>Book rooms</Button>
-                    </td>
+                    <Button onClick={() => this.setState({isBooked: true})}>Book rooms</Button>
                     : null
                 }
 
@@ -160,6 +154,35 @@ export default class CreateOrder extends React.Component {
                         <input className="btn btn-success" type="submit" value="Book rooms and back to main page"/>
                     </Form>
                     : null}
+                <Modal isOpen={this.state.modal}>
+                    <form onSubmit={this.handleSubmit}>
+                        <ModalHeader>Rooms for order</ModalHeader>
+                        <ModalBody>
+                            {this.state.currentRoom !== null ?
+                                <Table hover>
+                                    <thead>
+                                    <tr>
+                                        <th>Room Type</th>
+                                        <th>Description</th>
+                                        <th>Photos</th>
+                                        <th>Room number</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <td>{this.state.currentRoom.roomType.name}</td>
+                                    <td>{this.state.currentRoom.roomType.description}</td>
+                                    <td>Place for photos</td>
+                                    <td>{this.state.currentRoom.number}</td>
+                                    </tbody>
+                                </Table>
+                                : null}
+                        </ModalBody>
+                        <ModalFooter>
+                            <input type="submit" value="Submit" color="primary" className="btn btn-primary"/>
+                            <Button color="danger" onClick={this.toggle}>Cancel</Button>
+                        </ModalFooter>
+                    </form>
+                </Modal>
             </div>
         );
     }
@@ -231,28 +254,30 @@ export default class CreateOrder extends React.Component {
         return <Table hover>
             <thead>
             <tr>
+                <th>Room type</th>
                 <th>Adults</th>
                 <th>Children</th>
                 <th>Night cost</th>
-                <th>Room number</th>
-                <th>Room type</th>
-                <th>Room type description</th>
             </tr>
             </thead>
             <tbody>{this.state.selectedRooms.map(room =>
                 <ItemRoom
                     me={this.props.me()}
-                    user={this.props.user()}
                     room={room}
                     setScreen={this.props.setScreen}
                     refresh={() => this.loadOrders()}
                     rooms={this.state.selectedRooms}
                     isCheckBox={true}
+                    isModal={true}
                     checked={true}
+
+                    onClickSeeDetails={() => {
+                        this.setState({currentRoom: room});
+                        this.setState({modal: !this.state.modal});
+                    }}
 
                     onClickOnCheckBox={() => {
                         this.setState({checked: false});
-                        console.log(this.props.checked);
                         this.setState({
                             findRooms: [...this.state.findRooms, room]
                         });
@@ -268,25 +293,27 @@ export default class CreateOrder extends React.Component {
         return <Table hover>
             <thead>
             <tr>
+                <th>Room type</th>
                 <th>Adults</th>
                 <th>Children</th>
                 <th>Night cost</th>
-                <th>Room number</th>
-                <th>Room type</th>
-                <th>Room type description</th>
             </tr>
             </thead>
             <tbody>
             {this.state.findRooms.map(room =>
                 <ItemRoom
                     me={this.props.me()}
-                    user={this.props.user()}
                     room={room}
                     setScreen={this.props.setScreen}
                     refresh={() => this.loadOrders()}
                     rooms={this.state.rooms}
                     isCheckBox={true}
+                    isModal={true}
                     checked={false}
+                    onClickSeeDetails={() => {
+                        this.setState({currentRoom: room});
+                        this.setState({modal: !this.state.modal});
+                    }}
 
                     onClickOnCheckBox={() => {
                         this.setState({checked: true});
@@ -358,7 +385,7 @@ export default class CreateOrder extends React.Component {
         this.setState({selectedRooms: newArray});
     }
 
-    async createOrder(evt) {
+    async createOrder() {
         let body = {};
         for (let key of ["arrivalDate", "departureDate"]) {
             body[key] = this.state[key];
@@ -396,7 +423,7 @@ export default class CreateOrder extends React.Component {
         this.props.goBack();
     }
 
-    async getPrice(evt) {
+    async getPrice() {
         let body = {};
         for (let key of ["arrivalDate", "departureDate"]) {
             body[key] = this.state[key];

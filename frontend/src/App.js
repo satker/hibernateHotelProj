@@ -7,7 +7,6 @@ import ListOfOrders from './ListOfOrders';
 import MainUserPage from './MainUserPage';
 import MainAdminPage from './MainAdminPage';
 import UserInfoPage from './UserInfoPage';
-import ItemRoom from './ItemRoom';
 import PersonalArea from './PersonalArea';
 import EditProfile from './EditProfile';
 import NavBar from './NavBar';
@@ -38,10 +37,9 @@ class App extends Component {
                 admin_home: <MainAdminPage setScreen={this.setScreen} me={this.getCurrentUser}/>,
                 user_info: <UserInfoPage setScreen={this.setScreen} me={this.getCurrentUser}
                                          user={this.getTargetUser} goBack={this.goBack}/>,
-                create_request: <ItemRoom me={this.getCurrentUser} goBack={this.goBack}/>,
                 edit_profile: <EditProfile me={this.getCurrentUser} goBack={this.goBack}/>,
                 confirm: <AdminConfirmPage user={this.getTargetUser} goBack={this.goBack}/>,
-                create_order: <CreateOrder me={this.getCurrentUser} user={this.getTargetUser} goBack={this.goBack}/>
+                create_order: <CreateOrder me={this.getCurrentUser} goBack={this.goBack}/>
             },
         };
     }
@@ -91,7 +89,7 @@ class App extends Component {
         return (
             <div>
                 <header className="App-header">
-                    <h1 className="App-title">EPAM Grand Hotel</h1>
+                    <h1 className="App-title">Grand Hotel</h1>
                 </header>
                 {this.state.stack.length > 1 && <NavBar goBack={this.goBack}/>}
                 {this.state.form}

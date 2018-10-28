@@ -31,7 +31,8 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             "                     (?2 not between o.arrival_date and o.departure_date) and\n" +
             "                     (o.arrival_date not between ?1 and ?2) and\n" +
             "                     (o.departure_date not between ?1 and ?2)\n" +
-            "        else true END",
+            "        else true END\n" +
+            "ORDER BY rooms.cost_night;",
             nativeQuery = true)
     List<Room> findRoomsByParams(Date arrivalDate, Date departureDate,
                                         Long id, byte adults, byte children,

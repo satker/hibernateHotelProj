@@ -1,5 +1,6 @@
 package org.training.example.dto;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -9,5 +10,7 @@ public class RoomDTO {
     private Double costNight;
     private Boolean isSnoozed;
     private RoomTypeDTO roomType;
+    private short roomSize;
     private CapacityDto capacity;
+    private List<String> parameters;
 }

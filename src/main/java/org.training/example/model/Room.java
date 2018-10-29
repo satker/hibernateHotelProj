@@ -20,12 +20,17 @@ public class Room {
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private Integer number;
 
     @NotNull
     private Double costNight;
 
+    @Column(columnDefinition = "bit default 0")
     private Boolean isSnoozed;
+
+    @NotNull
+    private short roomSize;
 
     @ManyToOne
     @JoinColumn(name = "room_type_id")

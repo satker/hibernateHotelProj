@@ -9,9 +9,8 @@ export default class ListOfRooms extends Component {
     constructor(props) {
         super(props);
         this.loadOrders = this.loadOrders.bind(this);
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggle = this.toggle.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
 
         this.state = {
             list: null,
@@ -25,21 +24,19 @@ export default class ListOfRooms extends Component {
         this.loadOrders();
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-    }
-
-    toggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
-
     async loadOrders() {
         let resp = await fetch(URL.replace("_id_", this.props.user().id));
         let data = await resp.text();
         console.log(data);
         this.setState({list: JSON.parse(data)});
+    }
+
+    handleShow() {
+        this.setState({modal: true});
+    }
+
+    handleClose() {
+        this.setState({modal: false});
     }
 
     render() {
@@ -78,30 +75,27 @@ export default class ListOfRooms extends Component {
                             rooms={this.state.rooms}
                             onClickSeeDetails={() => {
                                 this.setState({currentOrderRooms: order.rooms});
-                                this.setState({modal: !this.state.modal});
+                                this.handleShow();
                                 console.log(this.state.currentOrderRooms);
                             }}
                         />)}
                 </Table>
                 <Modal isOpen={this.state.modal}>
-                    <form onSubmit={this.handleSubmit}>
-                        <ModalHeader>Rooms for order</ModalHeader>
-                        <ModalBody>
-                            {this.state.currentOrderRooms !== null ?
-                                <Table hover>
-                                    <thead>
-                                    <tr>
-                                        <th>Adults</th>
-                                        <th>Children</th>
-                                        <th>Night cost</th>
-                                        <th>Room number</th>
-                                        <th>Room type</th>
-                                        <th>Room type description</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {
-                                        this.state.currentOrderRooms.map(room =>
+                    <ModalHeader>Rooms for order</ModalHeader>
+                    <ModalBody>
+                        {this.state.currentOrderRooms !== null ?
+                            <Table hover>
+                                <thead>
+                                <tr>
+                                    <th>Room type</th>
+                                    <th>Adults</th>
+                                    <th>Children</th>
+                                    <th>Night cost</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    this.state.currentOrderRooms.map(room =>
                                         <ItemRoom
                                             me={this.props.me()}
                                             user={this.props.user()}
@@ -110,16 +104,14 @@ export default class ListOfRooms extends Component {
                                             refresh={() => this.loadOrders()}
                                             rooms={this.state.currentOrderRooms}
                                         />)
-                                    }
-                                    </tbody>
-                                </Table>
-                                : null}
-                        </ModalBody>
-                        <ModalFooter>
-                            <input type="submit" value="Submit" color="primary" className="btn btn-primary"/>
-                            <Button color="danger" onClick={this.toggle}>Cancel</Button>
-                        </ModalFooter>
-                    </form>
+                                }
+                                </tbody>
+                            </Table>
+                            : null}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="danger" onClick={this.handleClose}>Exit</Button>
+                    </ModalFooter>
                 </Modal>
             </div>
         );

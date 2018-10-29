@@ -10,6 +10,8 @@ export default class CreateOrder extends React.Component {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.createOrder = this.createOrder.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
             roomTypes: null,
@@ -29,7 +31,8 @@ export default class CreateOrder extends React.Component {
             totalPrice: null,
             checked: false,
             modal: false,
-            currentRoom: null
+            currentRoom: null,
+            listOfParameters: []
         };
     }
 
@@ -83,14 +86,12 @@ export default class CreateOrder extends React.Component {
         this.setState({findRooms: JSON.parse(text)});
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleShow() {
+        this.setState({ modal: true });
     }
 
-    toggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
+    handleClose() {
+        this.setState({ modal: false });
     }
 
     render() {
@@ -155,49 +156,37 @@ export default class CreateOrder extends React.Component {
                         <input className="btn btn-success" type="submit" value="Book rooms and back to main page"/>
                     </Form>
                     : null}
-                <Modal isOpen={this.state.modal}>
-                    <form onSubmit={this.handleSubmit}>
+                {this.state.currentRoom !== null ?
+                    <Modal isOpen={this.state.modal}>
                         <ModalHeader>
-                            {this.state.currentRoom !== null ?
-                                this.state.currentRoom.roomType.name : null} room</ModalHeader>
+                            {this.state.currentRoom.roomType.name} room</ModalHeader>
                         <ModalBody>
-                            {this.state.currentRoom !== null ?
-                                <div>
-                                    <div className="row">
-                                            <label>Room Size 14 m²</label>
-                                    </div>
-                                    <div className="row">
-                                            <label>Description:</label>
-                                            <label>{this.state.currentRoom.roomType.description}</label>
-                                    </div>
-                                    <div className="row">
-                                            <label>Room Facilities:</label>
-                                            <label>• Shower</label>
-                                            <label>• TV</label>
-                                            <label>• Hairdryer</label>
-                                            <label>• Free toiletries</label>
-                                            <label>• Toilet</label>
-                                            <label>• Private Bathroom</label>
-                                            <label>• Heating</label>
-                                    </div>
-                                    <div className="row">
-                                            <label>Place for photos</label>
-                                    </div>
 
-                                </div>
-
-                                : null}
-
+                            <p>
+                                <label>Room Size: {this.state.currentRoom.roomSize} m²</label>
+                            </p>
+                            <p>
+                                <label>Description: {this.state.currentRoom.roomType.description}</label>
+                            </p>
+                            <hr/>
+                            <p>
+                                <label>Room Facilities:</label><br/>
+                                {this.state.currentRoom.parameters.map(p => {
+                                    return (<p>• {p}</p>
+                                    )
+                                })
+                                }
+                            </p>
                         </ModalBody>
                         < ModalFooter>
-                            < input type="submit" value="Submit" color="primary" className="btn btn-primary"/>
-                            <Button color="danger" onClick={this.toggle}>Cancel</Button>
+                            <Button color="danger" onClick={this.handleClose}>Close</Button>
                         </ModalFooter>
-                    </form>
-                </Modal>
+                    </Modal>
+                    : null}
             </div>
         );
     }
+
 
     formToFindRooms() {
         let selectType = null;
@@ -285,7 +274,7 @@ export default class CreateOrder extends React.Component {
 
                     onClickSeeDetails={() => {
                         this.setState({currentRoom: room});
-                        this.setState({modal: !this.state.modal});
+                        this.handleShow();
                     }}
 
                     onClickOnCheckBox={() => {
@@ -324,7 +313,7 @@ export default class CreateOrder extends React.Component {
                     checked={false}
                     onClickSeeDetails={() => {
                         this.setState({currentRoom: room});
-                        this.setState({modal: !this.state.modal});
+                        this.handleShow();
                     }}
 
                     onClickOnCheckBox={() => {

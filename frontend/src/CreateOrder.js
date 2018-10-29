@@ -108,16 +108,17 @@ export default class CreateOrder extends React.Component {
                     : null
                 }
 
-                {this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
-                    <Button
-                        onClick={() => {
-                            this.getPrice();
-                            this.setState({paymentStep: true});
-                            this.snoozeRooms();
-                        }
-                        }>Choose payment method
-                    </Button>
-                    : null
+                {
+                    this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
+                        <Button
+                            onClick={() => {
+                                this.getPrice();
+                                this.setState({paymentStep: true});
+                                this.snoozeRooms();
+                            }
+                            }>Choose payment method
+                        </Button>
+                        : null
                 }
 
                 {this.state.paymentStep ?
@@ -156,29 +157,40 @@ export default class CreateOrder extends React.Component {
                     : null}
                 <Modal isOpen={this.state.modal}>
                     <form onSubmit={this.handleSubmit}>
-                        <ModalHeader>Rooms for order</ModalHeader>
+                        <ModalHeader>
+                            {this.state.currentRoom !== null ?
+                                this.state.currentRoom.roomType.name : null} room</ModalHeader>
                         <ModalBody>
                             {this.state.currentRoom !== null ?
-                                <Table hover>
-                                    <thead>
-                                    <tr>
-                                        <th>Room Type</th>
-                                        <th>Description</th>
-                                        <th>Photos</th>
-                                        <th>Room number</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <td>{this.state.currentRoom.roomType.name}</td>
-                                    <td>{this.state.currentRoom.roomType.description}</td>
-                                    <td>Place for photos</td>
-                                    <td>{this.state.currentRoom.number}</td>
-                                    </tbody>
-                                </Table>
+                                <div>
+                                    <div className="row">
+                                            <label>Room Size 14 m²</label>
+                                    </div>
+                                    <div className="row">
+                                            <label>Description:</label>
+                                            <label>{this.state.currentRoom.roomType.description}</label>
+                                    </div>
+                                    <div className="row">
+                                            <label>Room Facilities:</label>
+                                            <label>• Shower</label>
+                                            <label>• TV</label>
+                                            <label>• Hairdryer</label>
+                                            <label>• Free toiletries</label>
+                                            <label>• Toilet</label>
+                                            <label>• Private Bathroom</label>
+                                            <label>• Heating</label>
+                                    </div>
+                                    <div className="row">
+                                            <label>Place for photos</label>
+                                    </div>
+
+                                </div>
+
                                 : null}
+
                         </ModalBody>
-                        <ModalFooter>
-                            <input type="submit" value="Submit" color="primary" className="btn btn-primary"/>
+                        < ModalFooter>
+                            < input type="submit" value="Submit" color="primary" className="btn btn-primary"/>
                             <Button color="danger" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>
                     </form>

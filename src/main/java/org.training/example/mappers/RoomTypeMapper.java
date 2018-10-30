@@ -13,11 +13,20 @@ public abstract class RoomTypeMapper {
     @Autowired
     RoomTypeRepository roomTypeRepository;
 
+    @Autowired
+    CapacityMapper capacityMapper;
+
+    @Mappings({
+            @Mapping(target = "capacity",
+                    expression = "java(capacityMapper.capacityToCapacityDto(type.getCapacity()))")
+    })
     public abstract RoomTypeDTO typeToTypeDTO(RoomType type);
 
     @Mappings({
             @Mapping(target = "id",
-                    expression = "java(roomTypeRepository.findIdByName(type.getName()))")
+                    expression = "java(roomTypeRepository.findIdByName(type.getName()))"),
+            @Mapping(target = "capacity",
+                    expression = "java(capacityMapper.capacityDtoToCapacity(type.getCapacity()))")
     })
     public abstract RoomType typeDTOToType(RoomTypeDTO type);
 }

@@ -7,4 +7,5 @@ public class RoomTypeDTO {
     private Long id;
     private String name;
     private String description;
+    private CapacityDto capacity;
 }

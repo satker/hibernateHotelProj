@@ -11,6 +11,5 @@ public class RoomDTO {
     private Boolean isSnoozed;
     private RoomTypeDTO roomType;
     private short roomSize;
-    private CapacityDto capacity;
     private List<String> parameters;
 }

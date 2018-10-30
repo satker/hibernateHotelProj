@@ -18,8 +18,8 @@ export default class ItemRoom extends React.Component {
 
             <tr onClick={this.props.onClick}>
                 <td>{room.roomType.name}</td>
-                <td>{room.capacity.adults}</td>
-                <td>{room.capacity.children}</td>
+                <td>{room.roomType.capacity.adults}</td>
+                <td>{room.roomType.capacity.children}</td>
                 <td>{room.costNight}</td>
                 {
                     this.props.me.role === "ROLE_ADMIN" && <td>

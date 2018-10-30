@@ -21,6 +21,7 @@ import org.training.example.model.Room;
 import org.training.example.model.RoomOrder;
 import org.training.example.repository.OrderRepository;
 import org.training.example.repository.RoomOrderRepository;
+import org.training.example.repository.RoomRepository;
 import org.training.example.repository.UserRepository;
 
 @Service
@@ -33,6 +34,7 @@ public class OrderService {
     private final RoomMapper roomMapper;
     private final RoomOrderRepository roomOrderRepository;
     private final UserRepository userRepository;
+    private final RoomRepository roomRepository;
 
     public List<OrderDTO> findByAccountUsername(long id) {
         log.debug("all room requests have been found by user id {}", id);
@@ -87,6 +89,8 @@ public class OrderService {
         Order savedOrder = orderRepository.save(request);
         Map<Room, Order> roomRequestMap = order.getRooms().stream()
                 .map(roomMapper::roomDTOToRoom)
+                .peek(room -> room.setIsSnoozed(false))
+                .peek(roomRepository::save)
                 .collect(Collectors.toMap(Function.identity(), i -> savedOrder));
         roomRequestMap.entrySet().stream()
                 .map(elem -> new RoomOrder(elem.getKey(), elem.getValue()))

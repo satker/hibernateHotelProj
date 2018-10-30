@@ -14,7 +14,6 @@ export default class CreateOrder extends React.Component {
         this.handleShow = this.handleShow.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
-            roomTypes: null,
             adults: null,
             children: null,
             numbersOfRooms: null,
@@ -37,11 +36,6 @@ export default class CreateOrder extends React.Component {
     }
 
     async componentDidMount() {
-        let resp = await fetch(URL.replace("_id_", this.props.me().id) + "/appartments");
-        let text = await resp.text();
-        let types = JSON.parse(text);
-        this.setState({roomTypes: types, roomType: types[0].name});
-
         let numbersForAdultsAndNumberOfRooms = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
             11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
             21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
@@ -65,7 +59,6 @@ export default class CreateOrder extends React.Component {
         for (let key of ["arrivalDate", "departureDate"]) {
             body[key] = this.state[key];
         }
-        body.roomType = this.state.roomTypes.find(room => room.name === this.state.roomType);
         body.adults = this.state.adult;
         body.children = this.state.child;
         body.numbersOfRooms = this.state.numberOfRooms;
@@ -87,21 +80,19 @@ export default class CreateOrder extends React.Component {
     }
 
     handleShow() {
-        this.setState({ modal: true });
+        this.setState({modal: true});
     }
 
     handleClose() {
-        this.setState({ modal: false });
+        this.setState({modal: false});
     }
 
     render() {
         return (
             <div>
-                {this.formToFindRooms()}
 
-                {!this.state.paymentStep && this.state.findRooms != null ?
-                    this.findedRoomsTable()
-                    : null
+                {!this.state.paymentStep ?
+                    this.formToFindRooms() : null
                 }
 
                 {this.state.selectedRooms != null ?
@@ -109,17 +100,9 @@ export default class CreateOrder extends React.Component {
                     : null
                 }
 
-                {
-                    this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
-                        <Button
-                            onClick={() => {
-                                this.getPrice();
-                                this.setState({paymentStep: true});
-                                this.snoozeRooms();
-                            }
-                            }>Choose payment method
-                        </Button>
-                        : null
+                {!this.state.paymentStep && this.state.findRooms != null ?
+                    this.findedRoomsTable()
+                    : null
                 }
 
                 {this.state.paymentStep ?
@@ -147,14 +130,10 @@ export default class CreateOrder extends React.Component {
                     : null}
 
                 {this.state.isCashPayment ?
-                    <Form className="wide-form" onSubmit={this.createOrder}>
-                        <input className="btn btn-success" type="submit" value="Back to main page"/>
-                    </Form>
+                    <Button onClick={this.createOrder}>Back to main page</Button>
                     : null}
                 {this.state.isBooked ?
-                    <Form className="wide-form" onSubmit={this.createOrder}>
-                        <input className="btn btn-success" type="submit" value="Book rooms and back to main page"/>
-                    </Form>
+                    <Button onClick={this.createOrder}>Book rooms and back to main page</Button>
                     : null}
                 {this.state.currentRoom !== null ?
                     <Modal isOpen={this.state.modal}>
@@ -189,14 +168,9 @@ export default class CreateOrder extends React.Component {
 
 
     formToFindRooms() {
-        let selectType = null;
         let selectChildren = null;
         let selectAdult = null;
         let selectNumbersOfRooms = null;
-
-        if (this.state.roomTypes) {
-            selectType = this.state.roomTypes.map(type => <option value={type.name}>{type.name}</option>);
-        }
 
         if (this.state.children) {
             selectChildren = this.state.children.map(child => <option value={child}>{child}</option>);
@@ -212,7 +186,7 @@ export default class CreateOrder extends React.Component {
         }
 
         return <Form className="wide-form" onSubmit={this.onSubmit}>
-            <h2>Create request:</h2>
+            <h2>Make an order:</h2>
             <Container>
                 <Row>
                     <Col>Number of rooms</Col>
@@ -240,98 +214,110 @@ export default class CreateOrder extends React.Component {
                     <Col>Departure date</Col>
                     <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
                 </Row>
-                <Row>
-                    <Col>Room type</Col>
-                    <Col>
-                        <select onChange={this.onChange} name="roomType">{selectType}</select>
-                    </Col>
-                </Row>
             </Container>
             <input className="btn btn-success" type="submit" value="Find available rooms"/>
         </Form>
     }
 
     selectedRoomsTable() {
-        return <Table hover>
-            <thead>
-            <tr>
-                <th>Room type</th>
-                <th>Adults</th>
-                <th>Children</th>
-                <th>Night cost</th>
-            </tr>
-            </thead>
-            <tbody>{this.state.selectedRooms.map(room =>
-                <ItemRoom
-                    me={this.props.me()}
-                    room={room}
-                    setScreen={this.props.setScreen}
-                    refresh={() => this.loadOrders()}
-                    rooms={this.state.selectedRooms}
-                    isCheckBox={true}
-                    isModal={true}
-                    checked={true}
+        return <Container>
+            <Table hover>
+                <thead>
+                <tr>
+                    <th>Room type</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Night cost</th>
+                </tr>
+                </thead>
+                <tbody>{this.state.selectedRooms.map(room =>
+                    <ItemRoom
+                        me={this.props.me()}
+                        room={room}
+                        setScreen={this.props.setScreen}
+                        refresh={() => this.loadOrders()}
+                        rooms={this.state.selectedRooms}
+                        isCheckBox={true}
+                        isModal={true}
+                        checked={true}
 
-                    onClickSeeDetails={() => {
-                        this.setState({currentRoom: room});
-                        this.handleShow();
-                    }}
+                        onClickSeeDetails={() => {
+                            this.setState({currentRoom: room});
+                            this.handleShow();
+                        }}
 
-                    onClickOnCheckBox={() => {
-                        this.setState({checked: false});
-                        this.setState({
-                            findRooms: [...this.state.findRooms, room]
-                        });
-                        this.removeRoomFromSelectedRoms(room);
-                    }}
+                        onClickOnCheckBox={() => {
+                            this.setState({checked: false});
+                            const isChosed =this.state.findRooms.includes(room);
+                            if(!isChosed) {
+                                this.setState({
+                                    findRooms: [...this.state.findRooms, room]
+                                });
+                                this.removeRoomFromSelectedRoms(room);
+                            }
+                        }}
 
-                />)}
-            </tbody>
-        </Table>
+                    />)}
+                </tbody>
+                {
+                    this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
+                        <Button
+                            onClick={() => {
+                                this.getPrice();
+                                this.setState({paymentStep: true});
+                                this.snoozeRooms();
+                            }
+                            }>Choose payment method
+                        </Button>
+                        : null
+                }
+            </Table>
+            </Container>
     }
 
     findedRoomsTable() {
-        return <Table hover>
-            <thead>
-            <tr>
-                <th>Room type</th>
-                <th>Adults</th>
-                <th>Children</th>
-                <th>Night cost</th>
-            </tr>
-            </thead>
-            <tbody>
-            {this.state.findRooms.map(room =>
-                <ItemRoom
-                    me={this.props.me()}
-                    room={room}
-                    setScreen={this.props.setScreen}
-                    refresh={() => this.loadOrders()}
-                    rooms={this.state.rooms}
-                    isCheckBox={true}
-                    isModal={true}
-                    checked={false}
-                    onClickSeeDetails={() => {
-                        this.setState({currentRoom: room});
-                        this.handleShow();
-                    }}
+        return <Container>
+            <Table hover>
+                <thead>
+                <tr>
+                    <th>Room type</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Night cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.state.findRooms.map(room =>
+                    <ItemRoom
+                        me={this.props.me()}
+                        room={room}
+                        setScreen={this.props.setScreen}
+                        refresh={() => this.loadOrders()}
+                        rooms={this.state.rooms}
+                        isCheckBox={true}
+                        isModal={true}
+                        checked={false}
+                        onClickSeeDetails={() => {
+                            this.setState({currentRoom: room});
+                            this.handleShow();
+                        }}
 
-                    onClickOnCheckBox={() => {
-                        this.setState({checked: true});
-                        console.log(this.props.checked);
-                        const isChosed = this.state.selectedRooms.includes(room);
-                        if (!isChosed) {
-                            this.setState({
-                                selectedRooms: [...this.state.selectedRooms, room]
-                            });
-                            this.removeRoomFromFindedRoms(room);
+                        onClickOnCheckBox={() => {
+                            this.setState({checked: true});
+                            console.log(this.props.checked);
+                            const isChosed = this.state.selectedRooms.includes(room);
+                            if (!isChosed) {
+                                this.setState({
+                                    selectedRooms: [...this.state.selectedRooms, room]
+                                });
+                                this.removeRoomFromFindedRoms(room);
+                            }
                         }
-                    }
-                    }
-                />)}
-            </tbody>
-        </Table>
-
+                        }
+                    />)}
+                </tbody>
+            </Table>
+        </Container>
     }
 
     creditCardForm() {
@@ -349,7 +335,7 @@ export default class CreateOrder extends React.Component {
                 value={month}>{month}</option>);
         }
 
-        return <Form className="wide-form" onSubmit={this.createOrder}>
+        return <Form>
             <Container>
                 <Row>
                     <Col>Card number: </Col>
@@ -372,7 +358,7 @@ export default class CreateOrder extends React.Component {
                     <Col><input onChange={this.onChange} type="text" name="capacity"/></Col>
                 </Row>
             </Container>
-            <input className="btn btn-success" type="submit" value="Pay and back to main page"/>
+            <Button onClick={this.createOrder}>Pay and back to main page</Button>
         </Form>
     }
 

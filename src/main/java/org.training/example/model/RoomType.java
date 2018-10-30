@@ -31,6 +31,11 @@ public class RoomType {
     @JsonIgnore
     private Hotel hotel;
 
+    @ManyToOne
+    @JoinColumn(name = "capacity_id")
+    @JsonIgnore
+    private Capacity capacity;
+
     @PostPersist
     public void onPrePersist() {
         audit("INSERT");

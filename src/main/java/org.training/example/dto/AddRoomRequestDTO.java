@@ -7,7 +7,6 @@ import lombok.Data;
 public class AddRoomRequestDTO {
     private Date arrivalDate;
     private Date departureDate;
-    private RoomTypeDTO roomType;
     private String numbersOfRooms;
     private String adults;
     private String children;

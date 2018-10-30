@@ -51,9 +51,15 @@ public class RoomService {
     }
 
     public List<RoomDTO> findAvailableRooms(AddRoomRequestDTO input) {
-        List<Room> findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
-                input.getRoomType().getId(), Byte.valueOf(input.getAdults()), Byte.valueOf(input.getChildren()),
-                Byte.valueOf(input.getNumbersOfRooms()));
+        List<Room> findedRooms = null;
+        if (input.getDepartureDate() != null && input.getDepartureDate() != null
+                && input.getChildren().equals("0") && input.getChildren().equals("0") && input.getNumbersOfRooms().equals("0")) {
+            findedRooms = roomRepository.findAllRoomsByDate(input.getDepartureDate(), input.getDepartureDate());
+        } else {
+            findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
+                    Byte.valueOf(input.getAdults()), Byte.valueOf(input.getChildren()),
+                    Byte.valueOf(input.getNumbersOfRooms()));
+        }
         return findedRooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toList());
     }
 

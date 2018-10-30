@@ -30,8 +30,6 @@ public abstract class RoomMapper {
                             ".map(org.training.example.model.RoomParameter::getParameter)" +
                             ".map(org.training.example.model.Parameter::getParameter)" +
                             ".collect(java.util.stream.Collectors.toList()) )"),
-            @Mapping(target = "capacity",
-                    expression = "java(capacityMapper.capacityToCapacityDto(room.getCapacity()))")
     })
     public abstract RoomDTO roomToRoomDTO(Room room);
 
@@ -39,9 +37,7 @@ public abstract class RoomMapper {
             @Mapping(target = "roomType",
                     expression = "java(roomTypeMapper.typeDTOToType(roomDTO.getRoomType()))"),
             @Mapping(target = "roomSize",
-                    expression = "java(roomDTO.getRoomSize())"),
-            @Mapping(target = "capacity",
-                    expression = "java(capacityMapper.capacityDtoToCapacity(roomDTO.getCapacity()))")
+                    expression = "java(roomDTO.getRoomSize())")
     })
     public abstract Room roomDTOToRoom(RoomDTO roomDTO);
 }

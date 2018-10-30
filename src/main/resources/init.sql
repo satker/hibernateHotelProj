@@ -1,27 +1,31 @@
-insert into room_types (description, name, hotel_id)
-values ('Lux room', 'LUX', null);
-insert into room_types (description, name, hotel_id)
-values ('Ordinary room', 'ORD', null);
-insert into room_types (description, name, hotel_id)
-values ('Average room', 'AVG', null);
 insert into capacities (adults, children)
-values (1, 1);
+values (2, 4);
 insert into capacities (adults, children)
-values (2, 2);
+values (2, 0);
 insert into capacities (adults, children)
-values (2, 1);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (12.2, 1, 19, 2, 1);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (14.2, 2, 14, 2, 1);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (10.2, 3, 10, 1, 2);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (1.2, 4, 13, 2, 3);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (2.2, 5, 14, 3, 3);
-insert into rooms (cost_night, number, room_size, capacity_id, room_type_id)
-VALUES (9.2, 6, 16, 2, 2);
+values (1, 0);
+insert into capacities (adults, children)
+values (0, 1);
+insert into room_types (description, name, capacity_id,  hotel_id)
+values ('Twin Room', '2 twin beds', 2, null);
+insert into room_types (description, name, capacity_id, hotel_id)
+values ('Six-Bed Room', '2 twin beds  and  4 bunk beds ', 1, null);
+insert into room_types (description, name, capacity_id, hotel_id)
+values ('Single Room', '1 twin bed', 3, null);
+insert into room_types (description, name, capacity_id, hotel_id)
+values ('Bed in 4-Bed Dormitory Room', '1 bunk bed', 4, null);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (12.2, 1, 19, 1);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (14.2, 2, 14, 1);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (10.2, 3, 10, 2);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (1.2, 4, 13, 3);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (2.2, 5, 14, 3);
+insert into rooms (cost_night, number, room_size, room_type_id)
+VALUES (9.2, 6, 16, 4);
 insert into parameters(parameter) values ('Shower');
 insert into parameters(parameter) values ('TV');
 insert into parameters(parameter) values ('Hairdryer');

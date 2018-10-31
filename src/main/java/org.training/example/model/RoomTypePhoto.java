@@ -16,23 +16,21 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "hotels")
+@Table(name = "room_type_photo")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hotel {
+public class RoomTypePhoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String hotelName;
-    private int stars;
-    private double price;
-    private String address;
-    private String url;
-    private double latitude;
-    private double longitude;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "photo_id")
     @JsonIgnore
-    private City city;
+    private Photo photo;
+
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
+    @JsonIgnore
+    private RoomType roomType;
 }

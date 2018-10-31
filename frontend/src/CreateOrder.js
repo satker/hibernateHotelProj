@@ -1,4 +1,5 @@
 import React from "react";
+import Switcher from 'react-switcher';
 import {Button, Col, Container, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row, Table} from "reactstrap";
 
 import ItemRoom from "./ItemRoom";
@@ -23,15 +24,15 @@ export default class CreateOrder extends React.Component {
             selectedRooms: [],
             paymentStep: false,
             isOnlinePayment: false,
-            isCashPayment: false,
             isBooked: false,
+            isLocal: null,
             months: null,
             years: null,
             totalPrice: null,
             checked: false,
             modal: false,
             currentRoom: null,
-            listOfParameters: []
+            listOfParameters: [],
         };
     }
 
@@ -76,7 +77,9 @@ export default class CreateOrder extends React.Component {
         });
         let text = await resp.text();
         console.log(text);
-        this.setState({findRooms: JSON.parse(text)});
+        let foundRooms = JSON.parse(text);
+        let parsedSelectedRooms = this.state.selectedRooms.map(room => room.id);
+        this.setState({findRooms: foundRooms.filter(room => !parsedSelectedRooms.includes(room.id))});
     }
 
     handleShow() {
@@ -90,51 +93,25 @@ export default class CreateOrder extends React.Component {
     render() {
         return (
             <div>
-
                 {!this.state.paymentStep ?
                     this.formToFindRooms() : null
                 }
 
-                {this.state.selectedRooms != null ?
+                {!this.state.paymentStep && this.state.selectedRooms != null && this.state.selectedRooms.length !== 0 ?
                     this.selectedRoomsTable()
                     : null
                 }
 
-                {!this.state.paymentStep && this.state.findRooms != null ?
-                    this.findedRoomsTable()
+                {this.state.paymentStep && this.state.selectedRooms != null && this.state.selectedRooms.length !== 0 ?
+                    this.roomsForPayedTable()
                     : null
                 }
 
-                {this.state.paymentStep ?
-                    <h2>Total price: {this.state.totalPrice}</h2>
+                {!this.state.paymentStep && this.state.findRooms != null && this.state.findRooms.length !== 0 ?
+                    this.foundRoomsTable()
                     : null
                 }
 
-                {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <Button onClick={() => this.setState({isOnlinePayment: true})}>Online payment</Button>
-                    : null
-                }
-
-                {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <Button onClick={() => this.setState({isCashPayment: true})}>Cash payment</Button>
-                    : null
-                }
-
-                {this.state.paymentStep && !(this.state.isOnlinePayment || this.state.isCashPayment) ?
-                    <Button onClick={() => this.setState({isBooked: true})}>Book rooms</Button>
-                    : null
-                }
-
-                {this.state.isOnlinePayment ?
-                    this.creditCardForm()
-                    : null}
-
-                {this.state.isCashPayment ?
-                    <Button onClick={this.createOrder}>Back to main page</Button>
-                    : null}
-                {this.state.isBooked ?
-                    <Button onClick={this.createOrder}>Book rooms and back to main page</Button>
-                    : null}
                 {this.state.currentRoom !== null ?
                     <Modal isOpen={this.state.modal}>
                         <ModalHeader>
@@ -165,7 +142,6 @@ export default class CreateOrder extends React.Component {
             </div>
         );
     }
-
 
     formToFindRooms() {
         let selectChildren = null;
@@ -219,6 +195,74 @@ export default class CreateOrder extends React.Component {
         </Form>
     }
 
+    roomsForPayedTable() {
+        return <Container>
+            <Table hover>
+                <thead>
+                <tr>
+                    <th>Room type</th>
+                    <th>Adults</th>
+                    <th>Children</th>
+                    <th>Night cost</th>
+                </tr>
+                </thead>
+                <tbody>{this.state.selectedRooms.map(room =>
+                    <ItemRoom
+                        me={this.props.me()}
+                        room={room}
+                        setScreen={this.props.setScreen}
+                        refresh={() => this.loadOrders()}
+                        rooms={this.state.selectedRooms}
+                        isModal={true}
+
+                        onClickSeeDetails={() => {
+                            this.setState({currentRoom: room});
+                            this.handleShow();
+                        }}
+                    />)}
+                </tbody>
+            </Table>
+            <h2>Total price: {this.state.totalPrice}</h2>
+
+            <p>
+                {this.state.isLocal === null ?
+                    <div>
+                        {this.setState({isBooked: true})}
+                        {this.setState({isOnlinePayment: false})}
+                        {this.setState({isLocal: false})}
+                    </div>
+                    : null}
+                Payed type:
+                {this.state.isLocal !== null ?
+                    <Switcher
+                        on={this.state.isLocal}
+                        onClick={() => {
+                            this.setState({isLocal: !this.state.isLocal});
+                            if (this.state.isLocal) {
+                                this.setState({isBooked: true});
+                                this.setState({isOnlinePayment: false});
+                            } else {
+                                this.setState({isBooked: false});
+                                this.setState({isOnlinePayment: true});
+                            }
+                        }}
+                    >
+                        Choose {this.state.isBooked ? 'book rooms' : 'online payment'}
+                    </Switcher>
+                    : null}
+            </p>
+            <p>
+                {this.state.isBooked ?
+                    <Button onClick={this.createOrder}>Book rooms and back to main page</Button>
+                    : null}
+
+                {this.state.isOnlinePayment ?
+                    this.creditCardForm()
+                    : null}
+            </p>
+        </Container>
+    }
+
     selectedRoomsTable() {
         return <Container>
             <Table hover>
@@ -248,8 +292,8 @@ export default class CreateOrder extends React.Component {
 
                         onClickOnCheckBox={() => {
                             this.setState({checked: false});
-                            const isChosed =this.state.findRooms.includes(room);
-                            if(!isChosed) {
+                            const isChosed = this.state.findRooms.includes(room);
+                            if (!isChosed) {
                                 this.setState({
                                     findRooms: [...this.state.findRooms, room]
                                 });
@@ -272,10 +316,10 @@ export default class CreateOrder extends React.Component {
                         : null
                 }
             </Table>
-            </Container>
+        </Container>
     }
 
-    findedRoomsTable() {
+    foundRoomsTable() {
         return <Container>
             <Table hover>
                 <thead>
@@ -378,19 +422,15 @@ export default class CreateOrder extends React.Component {
             body[key] = this.state[key];
         }
 
-        body.isPaid = false;
         if (this.state.isBooked) {
-            body.orderStatus = "BOOKED";
-            body.payedType = "NOT_PAYED";
-        }
-        if (this.state.isCashPayment) {
-            body.orderStatus = "IN_PROGRESS";
-            body.payedType = "CASH";
-        }
-        if (this.state.isOnlinePayment) {
             body.orderStatus = "IN_PROGRESS";
             body.payedType = "ONLINE";
             body.isPaid = true;
+        }
+        if (this.state.isOnlinePayment) {
+            body.orderStatus = "BOOKED";
+            body.payedType = "BOOKED";
+            body.isPaid = false;
         }
 
         body.totalPrice = this.state.totalPrice;

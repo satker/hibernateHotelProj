@@ -18,6 +18,7 @@ export default class ItemRoom extends React.Component {
 
             <tr onClick={this.props.onClick}>
                 <td>{room.roomType.name}</td>
+                {this.props.roomNumber ? <td>{room.number}</td> : null}
                 <td>{room.roomType.capacity.adults}</td>
                 <td>{room.roomType.capacity.children}</td>
                 <td>{room.costNight}</td>

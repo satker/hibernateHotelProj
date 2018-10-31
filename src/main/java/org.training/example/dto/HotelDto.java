@@ -1,7 +1,11 @@
 package org.training.example.dto;
 
+import java.util.List;
+import lombok.Data;
+
+@Data
 public class HotelDto {
-    private int id;
+    private Long id;
     private String hotelName;
     private int stars;
     private double price;
@@ -9,4 +13,5 @@ public class HotelDto {
     private String url;
     private double latitude;
     private double longitude;
+    private List<PhotoDto> photos;
 }

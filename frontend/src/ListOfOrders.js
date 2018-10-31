@@ -56,7 +56,6 @@ export default class ListOfRooms extends Component {
                         <th>Order №</th>
                         <th>Arrival date</th>
                         <th>Departure date</th>
-                        <th>Payment type</th>
                         <th>Payment status</th>
                         <th>Order status</th>
                         <th>Number of rooms</th>
@@ -88,6 +87,7 @@ export default class ListOfRooms extends Component {
                                 <thead>
                                 <tr>
                                     <th>Room type</th>
+                                    <th>Room №</th>
                                     <th>Adults</th>
                                     <th>Children</th>
                                     <th>Night cost</th>
@@ -99,6 +99,7 @@ export default class ListOfRooms extends Component {
                                         <ItemRoom
                                             me={this.props.me()}
                                             user={this.props.user()}
+                                            roomNumber={true}
                                             room={room}
                                             setScreen={this.props.setScreen}
                                             refresh={() => this.loadOrders()}

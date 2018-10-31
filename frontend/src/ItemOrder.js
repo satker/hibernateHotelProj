@@ -31,37 +31,6 @@ export default class ItemOrder extends Component {
         this.props.refresh();
     };
 
-    /*seeDetails(){
-        if (this.state.roomsByOrder !== null) {
-            this.state.roomsByOrder.forEach((elen) => console.log(elen.number));
-            //if (this.state.roomsByOrder !== null) {
-            return
-             <Table hover>
-                <thead>
-                <tr>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Night cost</th>
-                    <th>Room number</th>
-                    <th>Room type</th>
-                    <th>Room type description</th>
-                </tr>
-                </thead>
-                <tbody>{this.state.roomsByOrder.map(room =>
-                    <ItemRoom
-                        //me={this.props.me()}
-                        //user={this.props.user()}
-                        room={room}
-                        setScreen={this.props.setScreen}
-                        refresh={() => this.loadOrders()}
-                        rooms={this.state.roomsByOrder}
-                    />)}
-                </tbody>
-            </Table>
-        }
-        //}
-    }*/
-
     adminConfirm = async () => {
         let room = this.state.rooms.find(room => room.number === this.state.roomNumber);
 
@@ -102,7 +71,6 @@ export default class ItemOrder extends Component {
                 <td>{order.id}</td>
                 <td>{order.arrivalDate}</td>
                 <td>{order.departureDate}</td>
-                <td>{order.payedType}</td>
                 <td>{order.isPaid ? "Payed" : "Not payed"}</td>
                 <td>{order.orderStatus}</td>
                 <td>{order.rooms.length}</td>

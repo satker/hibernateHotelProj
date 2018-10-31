@@ -6,6 +6,7 @@ import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.training.example.dto.RoomTypeDTO;
 import org.training.example.model.RoomType;
+import org.training.example.repository.PhotoRepository;
 import org.training.example.repository.RoomTypeRepository;
 
 @Mapper(componentModel = "spring")
@@ -14,11 +15,20 @@ public abstract class RoomTypeMapper {
     RoomTypeRepository roomTypeRepository;
 
     @Autowired
+    PhotoRepository photoRepository;
+
+    @Autowired
+    PhotoMapper photoMapper;
+
+    @Autowired
     CapacityMapper capacityMapper;
 
     @Mappings({
             @Mapping(target = "capacity",
-                    expression = "java(capacityMapper.capacityToCapacityDto(type.getCapacity()))")
+                    expression = "java(capacityMapper.capacityToCapacityDto(type.getCapacity()))"),
+            @Mapping(target = "photos",
+                    expression = "java( photoRepository.findAllByRoomTypeId(type.getId()).stream()" +
+                            "                .map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toList()) )")
     })
     public abstract RoomTypeDTO typeToTypeDTO(RoomType type);
 

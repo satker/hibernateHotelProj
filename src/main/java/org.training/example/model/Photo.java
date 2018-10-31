@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,23 +17,19 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "hotels")
+@Table(name = "photos")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hotel {
+public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String hotelName;
-    private int stars;
-    private double price;
-    private String address;
-    private String url;
-    private double latitude;
-    private double longitude;
+
+    @NotNull
+    private String photoUrl;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "hotel_id")
     @JsonIgnore
-    private City city;
+    private Hotel hotel;
 }

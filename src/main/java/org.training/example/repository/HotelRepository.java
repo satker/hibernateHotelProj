@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.training.example.model.Hotel;
 
 @Repository
-public interface HotelRepository extends JpaRepository<Hotel, Integer> {
+public interface HotelRepository extends JpaRepository<Hotel, Long> {
     /*List<Hotel> findAllByPrice(double price);
 
     List<Hotel> findAllByStars(int stars);

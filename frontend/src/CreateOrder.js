@@ -33,10 +33,13 @@ export default class CreateOrder extends React.Component {
             modal: false,
             currentRoom: null,
             listOfParameters: [],
+            todayDate: null
         };
     }
 
     async componentDidMount() {
+        let today = CreateOrder.getDateByDateState(null, 0);
+        this.setState({todayDate: today});
         let numbersForAdultsAndNumberOfRooms = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
             11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
             21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
@@ -184,15 +187,50 @@ export default class CreateOrder extends React.Component {
                 </Row>
                 <Row>
                     <Col>Arrival date</Col>
-                    <Col><input onChange={this.onChange} type="date" name="arrivalDate"/></Col>
+                    <Col><input min={this.state.todayDate} max={this.getMaxArrivalDate()} onChange={this.onChange}
+                                type="date" name="arrivalDate"/></Col>
                 </Row>
                 <Row>
                     <Col>Departure date</Col>
-                    <Col><input onChange={this.onChange} type="date" name="departureDate"/></Col>
+                    <Col><input onChange={this.onChange} min={this.getMinDepartureDate()} type="date"
+                                name="departureDate"/></Col>
                 </Row>
             </Container>
             <input className="btn btn-success" type="submit" value="Find available rooms"/>
         </Form>
+    }
+
+    static getDateByDateState(date, dayDiff){
+        let dateInstance = null;
+        if (date === null) {
+            dateInstance = new Date();
+        } else {
+            dateInstance = new Date(date);
+        }
+        let dd = dateInstance.getDate() + dayDiff;
+        let mm = dateInstance.getMonth() + 1; //January is 0!
+        let yyyy = dateInstance.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        return yyyy + '-' + mm + '-' + dd;
+    }
+
+    getMaxArrivalDate() {
+        if (this.state.departureDate !== null) {
+            return CreateOrder.getDateByDateState(this.state.departureDate, -1);
+        }
+    }
+
+    getMinDepartureDate() {
+        if (this.state.arrivalDate === null) {
+            return CreateOrder.getDateByDateState(this.state.todayDate, 1);
+        } else {
+            return CreateOrder.getDateByDateState(this.state.arrivalDate, 1);
+        }
     }
 
     roomsForPayedTable() {

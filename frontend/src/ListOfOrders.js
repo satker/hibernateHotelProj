@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table} from 'reactstrap';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Table, Tooltip} from 'reactstrap';
 import ItemOrder from './ItemOrder';
 import ItemRoom from "./ItemRoom";
 
@@ -10,13 +10,17 @@ export default class ListOfRooms extends Component {
         super(props);
         this.loadOrders = this.loadOrders.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.tooltypeOpenAdults = this.tooltypeOpenAdults.bind(this);
+        this.tooltypeOpenChildren = this.tooltypeOpenChildren.bind(this);
         this.handleShow = this.handleShow.bind(this);
 
         this.state = {
             list: null,
             rooms: null,
             modal: false,
-            currentOrderRooms: null
+            currentOrderRooms: null,
+            tooltipOpenAdults: false,
+            tooltipOpenChildren: false
         };
     }
 
@@ -39,9 +43,100 @@ export default class ListOfRooms extends Component {
         this.setState({modal: false});
     }
 
-    render() {
-        let closeModal = () => this.setState({open: false});
+    tooltypeOpenAdults() {
+        this.setState({
+            tooltipOpenAdults: !this.state.tooltipOpenAdults
+        });
+    }
 
+    tooltypeOpenChildren() {
+        this.setState({
+            tooltipOpenChildren: !this.state.tooltipOpenChildren
+        });
+    }
+
+    tableWithOrders(){
+        return <Table hover>
+            <thead>
+            <tr>
+                <th>Order №</th>
+                <th>Arrival date</th>
+                <th>Departure date</th>
+                <th>Payment status</th>
+                <th>Order status</th>
+                <th>Number of rooms</th>
+                <th>Total price</th>
+                <th colSpan="2">Actions</th>
+            </tr>
+            </thead>
+
+            {this.state.list.map(order =>
+                <ItemOrder
+                    me={this.props.me()}
+                    user={this.props.user()}
+                    order={order}
+                    setScreen={this.props.setScreen}
+                    refresh={() => this.loadOrders()}
+                    rooms={this.state.rooms}
+                    onClickSeeDetails={() => {
+                        this.setState({currentOrderRooms: order.rooms});
+                        this.handleShow();
+                        console.log(this.state.currentOrderRooms);
+                    }}
+                />)}
+        </Table>
+    }
+
+    showModal(){
+        return <Modal isOpen={this.state.modal}>
+            <ModalHeader>Rooms for order</ModalHeader>
+            <ModalBody>
+                {this.state.currentOrderRooms !== null ?
+                    <Table hover>
+                        <thead>
+                        <tr>
+                            <th>
+                                Sleeps{' '}
+                                <span style={{textDecoration: "underline", color: "white"}} id="TooltipAdults">(*</span>
+                                <Tooltip placement="top" isOpen={this.state.tooltipOpenAdults} target="TooltipAdults"
+                                         toggle={this.tooltypeOpenAdults}>
+                                    Number of adults
+                                </Tooltip>
+                                {' '}+{' '}
+                                <span style={{textDecoration: "underline", color: "white"}} id="TooltipChildren">*)</span>
+                                <Tooltip placement="top" isOpen={this.state.tooltipOpenChildren} target="TooltipChildren"
+                                         toggle={this.tooltypeOpenChildren}>
+                                    Number of children
+                                </Tooltip>
+                            </th>
+                            <th>Room type</th>
+                            <th>Room №</th>
+                            <th>Night cost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.currentOrderRooms.map(room =>
+                                <ItemRoom
+                                    me={this.props.me()}
+                                    user={this.props.user()}
+                                    roomNumber={true}
+                                    room={room}
+                                    setScreen={this.props.setScreen}
+                                    refresh={() => this.loadOrders()}
+                                    rooms={this.state.currentOrderRooms}
+                                />)
+                        }
+                        </tbody>
+                    </Table>
+                    : null}
+            </ModalBody>
+            <ModalFooter>
+                <Button color="danger" onClick={this.handleClose}>Exit</Button>
+            </ModalFooter>
+        </Modal>
+    }
+    render() {
         if (!this.state.list) {
             return (
                 <p>Loading...</p>
@@ -50,70 +145,8 @@ export default class ListOfRooms extends Component {
 
         return (
             <div>
-                <Table hover>
-                    <thead>
-                    <tr>
-                        <th>Order №</th>
-                        <th>Arrival date</th>
-                        <th>Departure date</th>
-                        <th>Payment status</th>
-                        <th>Order status</th>
-                        <th>Number of rooms</th>
-                        <th>Total price</th>
-                        <th colSpan="2">Actions</th>
-                    </tr>
-                    </thead>
-
-                    {this.state.list.map(order =>
-                        <ItemOrder
-                            me={this.props.me()}
-                            user={this.props.user()}
-                            order={order}
-                            setScreen={this.props.setScreen}
-                            refresh={() => this.loadOrders()}
-                            rooms={this.state.rooms}
-                            onClickSeeDetails={() => {
-                                this.setState({currentOrderRooms: order.rooms});
-                                this.handleShow();
-                                console.log(this.state.currentOrderRooms);
-                            }}
-                        />)}
-                </Table>
-                <Modal isOpen={this.state.modal}>
-                    <ModalHeader>Rooms for order</ModalHeader>
-                    <ModalBody>
-                        {this.state.currentOrderRooms !== null ?
-                            <Table hover>
-                                <thead>
-                                <tr>
-                                    <th>Room type</th>
-                                    <th>Room №</th>
-                                    <th>Adults</th>
-                                    <th>Children</th>
-                                    <th>Night cost</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    this.state.currentOrderRooms.map(room =>
-                                        <ItemRoom
-                                            me={this.props.me()}
-                                            user={this.props.user()}
-                                            roomNumber={true}
-                                            room={room}
-                                            setScreen={this.props.setScreen}
-                                            refresh={() => this.loadOrders()}
-                                            rooms={this.state.currentOrderRooms}
-                                        />)
-                                }
-                                </tbody>
-                            </Table>
-                            : null}
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="danger" onClick={this.handleClose}>Exit</Button>
-                    </ModalFooter>
-                </Modal>
+                {this.state.list.length !== 0 ? this.tableWithOrders() : "You don't have any order"}
+                {this.showModal()}
             </div>
         );
     }

@@ -1,0 +1,21 @@
+.roomType {
+    color: #1d15ff; /* Цвет символа */
+    font-size: 110%; /* Размер шрифта */
+}
+p {
+    color: rgba(1, 2, 1, 1); /* Цвет текста */
+}
+TABLE {
+    width: 300px; /* Ширина таблицы */
+    text-align: center;
+}
+TD, TH {
+    text-align: center; /* Выравнивание по центру */
+    padding: 3px; /* Поля вокруг текста */
+}
+TH {
+    color: white; /* Цвет текста */
+    background: #325ada;  /* Цвет фона */
+}
+TD {
+}

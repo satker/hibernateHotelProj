@@ -1,6 +1,19 @@
 import React from "react";
 import Switcher from 'react-switcher';
-import {Button, Col, Container, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row, Table} from "reactstrap";
+import './CreateOrder.css'
+import {
+    Button,
+    Col,
+    Container,
+    Form,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    Row,
+    Table,
+    Tooltip
+} from "reactstrap";
 
 import ItemRoom from "./ItemRoom";
 
@@ -13,6 +26,8 @@ export default class CreateOrder extends React.Component {
         this.createOrder = this.createOrder.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
+        this.tooltypeOpenAdults = this.tooltypeOpenAdults.bind(this);
+        this.tooltypeOpenChildren = this.tooltypeOpenChildren.bind(this);
         this.onChange = this.onChange.bind(this);
         this.state = {
             adults: null,
@@ -33,7 +48,9 @@ export default class CreateOrder extends React.Component {
             modal: false,
             currentRoom: null,
             listOfParameters: [],
-            todayDate: null
+            todayDate: null,
+            tooltipOpenAdults: false,
+            tooltipOpenChildren: false
         };
     }
 
@@ -200,7 +217,7 @@ export default class CreateOrder extends React.Component {
         </Form>
     }
 
-    static getDateByDateState(date, dayDiff){
+    static getDateByDateState(date, dayDiff) {
         let dateInstance = null;
         if (date === null) {
             dateInstance = new Date();
@@ -236,14 +253,8 @@ export default class CreateOrder extends React.Component {
     roomsForPayedTable() {
         return <Container>
             <Table hover>
-                <thead>
-                <tr>
-                    <th>Room type</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Night cost</th>
-                </tr>
-                </thead>
+                {this.tableNameRowsForFoundAndSelectedRooms(false)}
+
                 <tbody>{this.state.selectedRooms.map(room =>
                     <ItemRoom
                         me={this.props.me()}
@@ -301,17 +312,47 @@ export default class CreateOrder extends React.Component {
         </Container>
     }
 
+    tooltypeOpenAdults() {
+        this.setState({
+            tooltipOpenAdults: !this.state.tooltipOpenAdults
+        });
+    }
+
+    tooltypeOpenChildren() {
+        this.setState({
+            tooltipOpenChildren: !this.state.tooltipOpenChildren
+        });
+    }
+
+    tableNameRowsForFoundAndSelectedRooms(isChooseBox) {
+        return <thead>
+        <tr>
+            {isChooseBox ? <th>Chosen</th> : null}
+            <th>
+                Sleeps{' '}
+                <span style={{textDecoration: "underline", color: "white"}} id="TooltipAdults">(*</span>
+                <Tooltip placement="top" isOpen={this.state.tooltipOpenAdults} target="TooltipAdults"
+                         toggle={this.tooltypeOpenAdults}>
+                    Number of adults
+                </Tooltip>
+                {' '}+{' '}
+                <span style={{textDecoration: "underline", color: "white"}} id="TooltipChildren">*)</span>
+                <Tooltip placement="top" isOpen={this.state.tooltipOpenChildren} target="TooltipChildren"
+                         toggle={this.tooltypeOpenChildren}>
+                    Number of children
+                </Tooltip>
+            </th>
+            <th>Room type</th>
+            <th>Night cost</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+    }
+
     selectedRoomsTable() {
         return <Container>
             <Table hover>
-                <thead>
-                <tr>
-                    <th>Room type</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Night cost</th>
-                </tr>
-                </thead>
+                {this.tableNameRowsForFoundAndSelectedRooms(true)}
                 <tbody>{this.state.selectedRooms.map(room =>
                     <ItemRoom
                         me={this.props.me()}
@@ -329,7 +370,6 @@ export default class CreateOrder extends React.Component {
                         }}
 
                         onClickOnCheckBox={() => {
-                            this.setState({checked: false});
                             const isChosed = this.state.findRooms.includes(room);
                             if (!isChosed) {
                                 this.setState({
@@ -341,6 +381,8 @@ export default class CreateOrder extends React.Component {
 
                     />)}
                 </tbody>
+            </Table>
+            <p>
                 {
                     this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
                         <Button
@@ -353,21 +395,14 @@ export default class CreateOrder extends React.Component {
                         </Button>
                         : null
                 }
-            </Table>
+            </p>
         </Container>
     }
 
     foundRoomsTable() {
         return <Container>
             <Table hover>
-                <thead>
-                <tr>
-                    <th>Room type</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Night cost</th>
-                </tr>
-                </thead>
+                {this.tableNameRowsForFoundAndSelectedRooms(true)}
                 <tbody>
                 {this.state.findRooms.map(room =>
                     <ItemRoom
@@ -385,8 +420,7 @@ export default class CreateOrder extends React.Component {
                         }}
 
                         onClickOnCheckBox={() => {
-                            this.setState({checked: true});
-                            console.log(this.props.checked);
+                            console.log(this.state.checked);
                             const isChosed = this.state.selectedRooms.includes(room);
                             if (!isChosed) {
                                 this.setState({
@@ -461,14 +495,14 @@ export default class CreateOrder extends React.Component {
         }
 
         if (this.state.isBooked) {
-            body.orderStatus = "IN_PROGRESS";
-            body.payedType = "ONLINE";
-            body.isPaid = true;
-        }
-        if (this.state.isOnlinePayment) {
             body.orderStatus = "BOOKED";
             body.payedType = "BOOKED";
             body.isPaid = false;
+        }
+        if (this.state.isOnlinePayment) {
+            body.orderStatus = "IN_PROGRESS";
+            body.payedType = "ONLINE";
+            body.isPaid = true;
         }
 
         body.totalPrice = this.state.totalPrice;

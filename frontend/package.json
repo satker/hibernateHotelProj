@@ -7,14 +7,15 @@
     "bootstrap-modal": "^2.2.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
+    "rc-switch": "^1.8.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.4",
     "react-bootstrap-modal": "^4.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0",
+    "react-switcher": "^1.0.2",
     "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-alpha.4",
-    "rc-switch": "^1.8.0",
-    "react-switcher": "^1.0.2"
+    "reactstrap": "^5.0.0-alpha.4"
   },
   "scripts": {
     "start": "react-scripts start",

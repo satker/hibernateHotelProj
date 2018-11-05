@@ -1,5 +1,7 @@
 package org.training.example.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -107,6 +109,7 @@ public class OrderService {
         Double sumPriceOfRooms = propertiesForOrderPrice.getRooms().stream()
                 .map(RoomDTO::getCostNight)
                 .reduce((firstPrice, secondPrice) -> firstPrice + secondPrice).get();
-        return sumPriceOfRooms * days;
+        double result = sumPriceOfRooms * days;
+        return new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
     }
 }

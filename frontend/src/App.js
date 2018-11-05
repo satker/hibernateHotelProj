@@ -34,13 +34,13 @@ class App extends Component {
             forms: {
                 login: <Login setTitleScreen={this.setTitleScreen} setScreen={this.setScreen}/>,
                 register: <Register setTitleScreen={this.setTitleScreen} setScreen={this.setScreen}/>,
+                list_of_hotels: <ListOfHotels setTitleScreen={this.setTitleScreen} titleName={this.getTitleName}
+                                              setScreen={this.setScreen} user={this.getTargetUser}
+                                              me={this.getCurrentUser}/>,
                 list_of_orders: <ListOfOrders me={this.getCurrentUser}
                                               user={this.getTargetUser}
                                               goBack={this.goBack}/>,
                 personal_area: <PersonalArea me={this.getCurrentUser} user={this.getTargetUser} goBack={this.goBack}/>,
-                list_of_hotels: <ListOfHotels setTitleScreen={this.setTitleScreen} titleName={this.getTitleName}
-                                              setScreen={this.setScreen} user={this.getTargetUser}
-                                              me={this.getCurrentUser}/>,
                 choose_hotel_item: <ChoosedHotelItem setTitleScreen={this.setTitleScreen} hotel={this.getCurrentHotel}
                                                      setScreen={this.setScreen}
                                                      me={this.getCurrentUser}/>,

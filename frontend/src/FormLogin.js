@@ -12,6 +12,10 @@ export default class FormLogin extends Component {
         this.onClickRegister = this.onClickRegister.bind(this);
     }
 
+    componentDidMount() {
+        this.props.setTitleScreen({titleName: 'Login'});
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -47,7 +51,7 @@ export default class FormLogin extends Component {
                 if (user.role === "ROLE_ADMIN") {
                     this.props.setScreen("admin_home", {me: user});
                 } else {
-                    this.props.setScreen("user_home", {me: user});
+                    this.props.setScreen("list_of_hotels", {me: user});
                 }
             } catch(e) {
                 this.error("Failed to login");

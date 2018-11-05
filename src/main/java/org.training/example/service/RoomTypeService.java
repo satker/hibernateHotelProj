@@ -1,6 +1,6 @@
 package org.training.example.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +18,12 @@ public class RoomTypeService {
     private final RoomTypeRepository roomTypeRepository;
     private final RoomTypeMapper roomTypeMapper;
 
-    public List<RoomTypeDTO> findAllTypes() {
+    public Set<RoomTypeDTO> findAllTypes() {
         log.debug("all room types have been found {}");
         return roomTypeRepository.
                 findAll().
                 stream().
-                map(roomTypeMapper::typeToTypeDTO).collect(Collectors.toList());
+                map(roomTypeMapper::typeToTypeDTO).collect(Collectors.toSet());
     }
 
     public void deleteRoomTypeById(long id) {

@@ -23,17 +23,21 @@ public abstract class OrderMapper {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    HotelMapper hotelMapper;
+
     @Mappings({
             @Mapping(target = "payedType",
                     expression = "java( order.getPayedType() )"),
             @Mapping(target = "user",
                     expression = "java( userMapper.userToUserDto(order.getUser()) )"),
             @Mapping(target = "rooms",
-                    expression = "java(roomOrderRepository." +
-                            "findAllByOrderId(order.getId()).stream()" +
+                    expression = "java(roomOrderRepository.findAllByOrderId(order.getId()).stream()" +
                             ".map(org.training.example.model.RoomOrder::getRoom)" +
                             ".map(roomMapper::roomToRoomDTO)" +
-                            ".collect(java.util.stream.Collectors.toSet()) )")
+                            ".collect(java.util.stream.Collectors.toSet()) )"),
+            @Mapping(target = "hotel",
+                    expression = "java( hotelMapper.hotelToHotelDto(order.getHotel()) )")
     })
     public abstract OrderDTO requestToRequestDTO(Order order);
 
@@ -41,7 +45,7 @@ public abstract class OrderMapper {
             @Mapping(target = "payedType",
                     expression = "java( orderDTO.getPayedType() )"),
             @Mapping(target = "user",
-                    expression = "java( userMapper.userDtoToUser(orderDTO.getUser()) )"),
+                    expression = "java( userMapper.userDtoToUser(orderDTO.getUser()) )")
     })
     public abstract Order requestDtoToRequest(OrderDTO orderDTO);
 }

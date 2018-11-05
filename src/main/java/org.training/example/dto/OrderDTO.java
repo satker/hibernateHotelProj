@@ -17,5 +17,6 @@ public class OrderDTO {
     private Boolean isPaid;
     private Double totalPrice;
     private UserDTO user;
+    private HotelDto hotel;
     private Set<RoomDTO> rooms;
 }

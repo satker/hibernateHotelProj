@@ -1,6 +1,6 @@
 package org.training.example.service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,21 +8,24 @@ import org.training.example.dto.HotelDto;
 import org.training.example.mappers.HotelMapper;
 import org.training.example.model.Hotel;
 import org.training.example.repository.HotelRepository;
+import org.training.example.repository.RoomRepository;
 
 @Service
 @AllArgsConstructor
 public class HotelService {
     private final HotelRepository hotelRepository;
     private final HotelMapper hotelMapper;
+    private final RoomRepository roomRepository;
 
-    public List<HotelDto> getHotels() {
+    public Set<HotelDto> getHotels() {
+        roomRepository.findByHotelId(1);
         return hotelRepository.findAll().stream()
                 .map(hotelMapper::hotelToHotelDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
-    public List<HotelDto> getHotelsByParams(String country, String city,
-                                            int stars, double price) {
+    public Set<HotelDto> getHotelsByParams(String country, String city,
+                                           int stars, double price) {
         /*Set<Hotel> result = new HashSet<>();
         if (!country.equals("")) result.retainAll(hotelRepository.findAllByCountryName(country));
         if (!city.equals("")) result.retainAll(hotelRepository.findAllByCityName(city));

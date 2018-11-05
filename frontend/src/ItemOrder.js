@@ -7,12 +7,12 @@ const URL_CONFIRM = "http://localhost:8080/admin/users/_id_/confirms";
 
 export default class ItemOrder extends Component {
     state = {
-      rooms: null,
-      isDetailsOpened: false
+        rooms: null,
+        isDetailsOpened: false
     };
 
     async componentDidMount() {
-        if(this.props.me.role === "ROLE_ADMIN") {
+        if (this.props.me.role === "ROLE_ADMIN") {
             let resp = await fetch(URL_ROOMS.replace("_id_", this.props.order.roomType.id), {
                 credentials: "include",
             });
@@ -57,7 +57,7 @@ export default class ItemOrder extends Component {
                 select = this.state.rooms.map(room => <option value={room.number}>{room.number}</option>);
             }
             return <td>
-                <select onChange={(evt)=>this.setState({roomNumber: evt.target.value})}>{select}</select>
+                <select onChange={(evt) => this.setState({roomNumber: evt.target.value})}>{select}</select>
                 <Button className="btn-success" onClick={this.adminConfirm}>Confirm</Button>
             </td>
         }
@@ -67,18 +67,22 @@ export default class ItemOrder extends Component {
         let order = this.props.order;
         return (
             <tbody>
-                <tr>
+            <tr>
                 <td>{order.id}</td>
+                <td>{order.hotel.hotelName}</td>
                 <td>{order.arrivalDate}</td>
                 <td>{order.departureDate}</td>
                 <td>{order.isPaid ? "Payed" : "Not payed"}</td>
                 <td>{order.orderStatus}</td>
                 <td>{order.rooms.length}</td>
                 <td>{order.totalPrice}</td>
-                <td><Button onClick={ this.props.onClickSeeDetails }>See Details</Button></td>
-                <td><Button className="btn-danger" onClick= {this.rejectOrder}>Delete</Button></td>
+                <td><Button onClick={this.props.onClickSeeDetails}>See Details</Button></td>
+                {order.orderStatus !== 'REJECTED' ?
+                    <td><Button className="btn-danger" onClick={this.rejectOrder}>Delete</Button></td>
+                    : null
+                }
                 {this.confirmButton()}
-                </tr>
+            </tr>
             </tbody>
         );
     }

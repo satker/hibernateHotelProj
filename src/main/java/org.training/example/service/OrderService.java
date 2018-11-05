@@ -1,7 +1,7 @@
 package org.training.example.service;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,6 +19,7 @@ import org.training.example.model.Order;
 import org.training.example.model.OrderStatus;
 import org.training.example.model.Room;
 import org.training.example.model.RoomOrder;
+import org.training.example.repository.HotelRepository;
 import org.training.example.repository.OrderRepository;
 import org.training.example.repository.RoomOrderRepository;
 import org.training.example.repository.RoomRepository;
@@ -35,24 +36,25 @@ public class OrderService {
     private final RoomOrderRepository roomOrderRepository;
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
+    private final HotelRepository hotelRepository;
 
-    public List<OrderDTO> findByAccountUsername(long id) {
+    public Set<OrderDTO> findByAccountUsername(long id) {
         log.debug("all room requests have been found by user id {}", id);
         return orderRepository.
                 findByUserId(id).
                 stream().
                 //filter(item -> confirmedRequestRepository.findConfirmedRequestByRequest(item) == null).
                         map(orderMapper::requestToRequestDTO).
-                        collect(Collectors.toList());
+                        collect(Collectors.toSet());
     }
 
-    public List<OrderDTO> findAllOrdersByUser(long id) {
+    public Set<OrderDTO> findAllOrdersByUser(long id) {
         log.debug("all room requests have been found by user id {}", id);
         return orderRepository.
                 findByUserId(id).
                 stream().
                 map(orderMapper::requestToRequestDTO).
-                collect(Collectors.toList());
+                collect(Collectors.toSet());
     }
 
     public OrderDTO findValidateRoom(long id, String login) {
@@ -82,11 +84,12 @@ public class OrderService {
         orderRepository.save(orderForReject);
     }
 
-    public OrderDTO createOrder(long userId, OrderDTO order) {
-        Order request = orderMapper.requestDtoToRequest(order);
-        request.setUser(userRepository.findOne(userId));
-        request.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));
-        Order savedOrder = orderRepository.save(request);
+    public OrderDTO createOrder(long userId, long hotelId, OrderDTO order) {
+        Order newOrder = orderMapper.requestDtoToRequest(order);
+        newOrder.setUser(userRepository.findOne(userId));
+        newOrder.setHotel(hotelRepository.getOne(hotelId));
+        newOrder.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));
+        Order savedOrder = orderRepository.save(newOrder);
         Map<Room, Order> roomRequestMap = order.getRooms().stream()
                 .map(roomMapper::roomDTOToRoom)
                 .peek(room -> room.setIsSnoozed(false))

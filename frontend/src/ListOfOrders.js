@@ -56,35 +56,38 @@ export default class ListOfRooms extends Component {
     }
 
     tableWithOrders(){
-        return <Table hover>
-            <thead>
-            <tr>
-                <th>Order №</th>
-                <th>Arrival date</th>
-                <th>Departure date</th>
-                <th>Payment status</th>
-                <th>Order status</th>
-                <th>Number of rooms</th>
-                <th>Total price</th>
-                <th colSpan="2">Actions</th>
-            </tr>
-            </thead>
+        if (this.state.list.length !== 0) {
+            return <Table hover>
+                <thead>
+                <tr>
+                    <th>Order №</th>
+                    <th>Hotel name</th>
+                    <th>Arrival date</th>
+                    <th>Departure date</th>
+                    <th>Payment status</th>
+                    <th>Order status</th>
+                    <th>Number of rooms</th>
+                    <th>Total price</th>
+                    <th colSpan="2">Actions</th>
+                </tr>
+                </thead>
 
-            {this.state.list.map(order =>
-                <ItemOrder
-                    me={this.props.me()}
-                    user={this.props.user()}
-                    order={order}
-                    setScreen={this.props.setScreen}
-                    refresh={() => this.loadOrders()}
-                    rooms={this.state.rooms}
-                    onClickSeeDetails={() => {
-                        this.setState({currentOrderRooms: order.rooms});
-                        this.handleShow();
-                        console.log(this.state.currentOrderRooms);
-                    }}
-                />)}
-        </Table>
+                {this.state.list.map(order =>
+                    <ItemOrder
+                        me={this.props.me()}
+                        user={this.props.user()}
+                        order={order}
+                        setScreen={this.props.setScreen}
+                        refresh={() => this.loadOrders()}
+                        rooms={this.state.rooms}
+                        onClickSeeDetails={() => {
+                            this.setState({currentOrderRooms: order.rooms});
+                            this.handleShow();
+                            console.log(this.state.currentOrderRooms);
+                        }}
+                    />)}
+            </Table>
+        }
     }
 
     showModal(){

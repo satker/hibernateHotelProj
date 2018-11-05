@@ -65,7 +65,9 @@ public class UserService {
     public List<UserDTO> findAllUsers() {
         log.debug("all users found {}");
         return userMapper.usersToUsersDto(userRepository.findAll().
-                stream().filter(item -> item.getRole().equals("ROLE_USER")).collect(Collectors.toList()));
+                stream()
+                .filter(item -> item.getRole().equals("ROLE_USER"))
+                .collect(Collectors.toList()));
     }
 
     public UserDTO saveUser(AddUserDTO user) {

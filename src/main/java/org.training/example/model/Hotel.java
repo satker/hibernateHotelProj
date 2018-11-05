@@ -25,7 +25,6 @@ public class Hotel {
     private Long id;
     private String hotelName;
     private int stars;
-    private double price;
     private String address;
     private String url;
     private double latitude;

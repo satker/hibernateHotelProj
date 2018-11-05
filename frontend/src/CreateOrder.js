@@ -17,7 +17,7 @@ import {
 
 import ItemRoom from "./ItemRoom";
 
-const URL = "http://localhost:8080/user/_id_/orders";
+const URL = "http://localhost:8080/user/_id_/hotels/_hotelid_/orders";
 
 export default class CreateOrder extends React.Component {
     constructor(props) {
@@ -87,7 +87,7 @@ export default class CreateOrder extends React.Component {
         this.setState({arrivalDate: this.state["arrivalDate"]});
         this.setState({departureDate: this.state["departureDate"]});
 
-        let resp = await fetch(URL.replace("_id_", this.props.me().id) + "/rooms", {
+        let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/rooms", {
             method: "post",
             credentials: "include",
             headers: {
@@ -133,34 +133,38 @@ export default class CreateOrder extends React.Component {
                 }
 
                 {this.state.currentRoom !== null ?
-                    <Modal isOpen={this.state.modal}>
-                        <ModalHeader>
-                            {this.state.currentRoom.roomType.name} room</ModalHeader>
-                        <ModalBody>
-
-                            <p>
-                                <label>Room Size: {this.state.currentRoom.roomSize} m²</label>
-                            </p>
-                            <p>
-                                <label>Description: {this.state.currentRoom.roomType.description}</label>
-                            </p>
-                            <hr/>
-                            <p>
-                                <label>Room Facilities:</label><br/>
-                                {this.state.currentRoom.parameters.map(p => {
-                                    return (<p>• {p}</p>
-                                    )
-                                })
-                                }
-                            </p>
-                        </ModalBody>
-                        < ModalFooter>
-                            <Button color="danger" onClick={this.handleClose}>Close</Button>
-                        </ModalFooter>
-                    </Modal>
+                    this.modalWindowToSeeDetails()
                     : null}
             </div>
         );
+    }
+
+    modalWindowToSeeDetails() {
+        return <Modal isOpen={this.state.modal}>
+            <ModalHeader>
+                {this.state.currentRoom.roomType.name} room</ModalHeader>
+            <ModalBody>
+
+                <p>
+                    <label>Room Size: {this.state.currentRoom.roomSize} m²</label>
+                </p>
+                <p>
+                    <label>Description: {this.state.currentRoom.roomType.description}</label>
+                </p>
+                <hr/>
+                <p>
+                    <label>Room Facilities:</label><br/>
+                    {this.state.currentRoom.parameters.map(p => {
+                        return (<p>• {p}</p>
+                        )
+                    })
+                    }
+                </p>
+            </ModalBody>
+            < ModalFooter>
+                <Button color="danger" onClick={this.handleClose}>Close</Button>
+            </ModalFooter>
+        </Modal>
     }
 
     formToFindRooms() {
@@ -508,7 +512,7 @@ export default class CreateOrder extends React.Component {
         body.totalPrice = this.state.totalPrice;
         body.rooms = this.state.selectedRooms;
 
-        let resp = await fetch(URL.replace("_id_", this.props.me().id), {
+        let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id), {
             method: "post",
             credentials: "include",
             headers: {
@@ -529,7 +533,7 @@ export default class CreateOrder extends React.Component {
         }
         body.rooms = this.state.selectedRooms;
 
-        let resp = await fetch(URL.replace("_id_", this.props.me().id) + "/price", {
+        let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/price", {
             method: "post",
             credentials: "include",
             headers: {
@@ -543,7 +547,7 @@ export default class CreateOrder extends React.Component {
     }
 
     async snoozeRooms() {
-        await fetch(URL.replace("_id_", this.props.me().id) + "/rooms/snooze", {
+        await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/rooms/snooze", {
             method: "post",
             credentials: "include",
             headers: {

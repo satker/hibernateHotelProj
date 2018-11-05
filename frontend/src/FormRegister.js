@@ -12,6 +12,10 @@ class FormRegister extends Component {
         this.onClickLogin = this.onClickLogin.bind(this);
     }
 
+    componentDidMount() {
+        this.props.setTitleScreen({titleName: 'Registration'});
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>

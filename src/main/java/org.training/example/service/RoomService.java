@@ -1,6 +1,7 @@
 package org.training.example.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,12 +24,11 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final RoomMapper roomMapper;
 
-    public List<RoomDTO> findRoomsByType(long id) {
-        log.debug("all rooms have been found by room type id{}", id);
+    public Set<RoomDTO> findRoomsByHotelId(long hotelId) {
         return roomRepository.
-                findByRoomTypeId(id).
+                findByHotelId(hotelId).
                 stream().
-                map(roomMapper::roomToRoomDTO).collect(Collectors.toList());
+                map(roomMapper::roomToRoomDTO).collect(Collectors.toSet());
     }
 
     public void deleteRoomById(long id) {
@@ -50,17 +50,17 @@ public class RoomService {
         roomRepository.save(roomMapper.roomDTOToRoom(request));
     }
 
-    public List<RoomDTO> findAvailableRooms(AddRoomRequestDTO input) {
-        List<Room> findedRooms = null;
+    public Set<RoomDTO> findAvailableRooms(AddRoomRequestDTO input, long hotelId) {
+        Set<Room> foundRooms;
         if (input.getDepartureDate() != null && input.getDepartureDate() != null
                 && input.getChildren().equals("0") && input.getChildren().equals("0") && input.getNumbersOfRooms().equals("0")) {
-            findedRooms = roomRepository.findAllRoomsByDate(input.getDepartureDate(), input.getDepartureDate());
+            foundRooms = roomRepository.findAllRoomsByDate(input.getDepartureDate(), input.getDepartureDate(), hotelId);
         } else {
-            findedRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
+            foundRooms = roomRepository.findRoomsByParams(input.getArrivalDate(), input.getDepartureDate(),
                     Byte.valueOf(input.getAdults()), Byte.valueOf(input.getChildren()),
-                    Byte.valueOf(input.getNumbersOfRooms()));
+                    Byte.valueOf(input.getNumbersOfRooms()), hotelId);
         }
-        return findedRooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toList());
+        return foundRooms.stream().map(roomMapper::roomToRoomDTO).collect(Collectors.toSet());
     }
 
     public void snoozeRooms(List<RoomDTO> rooms) {

@@ -1,22 +1,25 @@
 package org.training.example.controller;
 
+import java.util.Set;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.training.example.dto.HotelDto;
 import org.training.example.service.HotelService;
 
 // OK
 @RestController
 @AllArgsConstructor
-@RequestMapping("/hotels")
+@RequestMapping("/user/{userId}/hotels")
 public class HotelController {
     private final HotelService hotelService;
 
-    /*@GetMapping
-    public List<HotelDto> getHotels() {
+    @GetMapping
+    public Set<HotelDto> getHotels() {
         return hotelService.getHotels();
     }
-
+    /*
     @GetMapping(path = "/", params = {"country", "city", "stars", "price"})
     public List<HotelDto> getHotelsByParams(@RequestParam String country,
                                             @RequestParam String city,

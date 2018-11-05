@@ -43,6 +43,11 @@ public class Order {
     @JsonIgnore
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnore
+    private Hotel hotel;
+
     @PostPersist
     public void onPrePersist() {
         audit("INSERT");

@@ -28,7 +28,7 @@ public abstract class RoomTypeMapper {
                     expression = "java(capacityMapper.capacityToCapacityDto(type.getCapacity()))"),
             @Mapping(target = "photos",
                     expression = "java( photoRepository.findAllByRoomTypeId(type.getId()).stream()" +
-                            "                .map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toList()) )")
+                            "                .map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toSet()) )")
     })
     public abstract RoomTypeDTO typeToTypeDTO(RoomType type);
 

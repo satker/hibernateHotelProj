@@ -29,7 +29,7 @@ public abstract class RoomMapper {
                             "findAllByRoomId(room.getId()).stream()" +
                             ".map(org.training.example.model.RoomParameter::getParameter)" +
                             ".map(org.training.example.model.Parameter::getParameter)" +
-                            ".collect(java.util.stream.Collectors.toList()) )"),
+                            ".collect(java.util.stream.Collectors.toSet()) )"),
     })
     public abstract RoomDTO roomToRoomDTO(Room room);
 

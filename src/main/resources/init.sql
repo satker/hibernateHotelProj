@@ -1,3 +1,12 @@
+insert into countries (country_code, name)
+values ('USA', 'United States of America');
+
+insert into cities (name, country_id)
+values ('Fafa Island', 1);
+
+insert into hotels (address, hotel_name, latitude, longitude, stars, url, city_id)
+values ('Fafa Island Resort', 'NukuAlofa', 222.3, 3322.3, 4, 'http://www.datelinehotel.com/', 1);
+
 insert into capacities (adults, children)
 values (2, 4);
 insert into capacities (adults, children)
@@ -6,14 +15,14 @@ insert into capacities (adults, children)
 values (1, 0);
 insert into capacities (adults, children)
 values (0, 1);
-insert into room_types (description, name, capacity_id,  hotel_id)
-values ('Twin Room', '2 twin beds', 2, null);
 insert into room_types (description, name, capacity_id, hotel_id)
-values ('Six-Bed Room', '2 twin beds  and  4 bunk beds ', 1, null);
+values ('Twin Room', '2 twin beds', 2, 1);
 insert into room_types (description, name, capacity_id, hotel_id)
-values ('Single Room', '1 twin bed', 3, null);
+values ('Six-Bed Room', '2 twin beds  and  4 bunk beds ', 1, 1);
 insert into room_types (description, name, capacity_id, hotel_id)
-values ('Bed in 4-Bed Dormitory Room', '1 bunk bed', 4, null);
+values ('Single Room', '1 twin bed', 3, 1);
+insert into room_types (description, name, capacity_id, hotel_id)
+values ('Bed in 4-Bed Dormitory Room', '1 bunk bed', 4, 1);
 insert into rooms (cost_night, number, room_size, room_type_id)
 VALUES (12.2, 1, 19, 1);
 insert into rooms (cost_night, number, room_size, room_type_id)

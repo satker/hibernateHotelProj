@@ -32,24 +32,37 @@ class App extends Component {
             titleName: 'Main page',
             stack: [],
             forms: {
-                login: <Login setTitleScreen={this.setTitleScreen} setScreen={this.setScreen}/>,
-                register: <Register setTitleScreen={this.setTitleScreen} setScreen={this.setScreen}/>,
-                list_of_hotels: <ListOfHotels setTitleScreen={this.setTitleScreen} titleName={this.getTitleName}
-                                              setScreen={this.setScreen} user={this.getTargetUser}
+                login: <Login setTitleScreen={this.setTitleScreen}
+                              setScreen={this.setScreen}/>,
+                register: <Register setTitleScreen={this.setTitleScreen}
+                                    setScreen={this.setScreen}/>,
+                list_of_hotels: <ListOfHotels setTitleScreen={this.setTitleScreen}
+                                              setScreen={this.setScreen}
+                                              user={this.getTargetUser}
                                               me={this.getCurrentUser}/>,
+                personal_area: <PersonalArea me={this.getCurrentUser}
+                                             user={this.getTargetUser}
+                                             goBack={this.goBack}/>,
+                choose_hotel_item: <ChoosedHotelItem setTitleScreen={this.setTitleScreen}
+                                                     hotel={this.getCurrentHotel}
+                                                     setScreen={this.setScreen}
+                                                     me={this.getCurrentUser}/>,
                 list_of_orders: <ListOfOrders me={this.getCurrentUser}
                                               user={this.getTargetUser}
                                               goBack={this.goBack}/>,
-                personal_area: <PersonalArea me={this.getCurrentUser} user={this.getTargetUser} goBack={this.goBack}/>,
-                choose_hotel_item: <ChoosedHotelItem setTitleScreen={this.setTitleScreen} hotel={this.getCurrentHotel}
-                                                     setScreen={this.setScreen}
-                                                     me={this.getCurrentUser}/>,
-                admin_home: <MainAdminPage setScreen={this.setScreen} me={this.getCurrentUser}/>,
-                user_info: <UserInfoPage setScreen={this.setScreen} me={this.getCurrentUser}
-                                         user={this.getTargetUser} goBack={this.goBack}/>,
-                edit_profile: <EditProfile me={this.getCurrentUser} goBack={this.goBack}/>,
-                confirm: <AdminConfirmPage user={this.getTargetUser} goBack={this.goBack}/>,
-                create_order: <CreateOrder me={this.getCurrentUser} hotel={this.getCurrentHotel} goBack={this.goBack}/>
+                admin_home: <MainAdminPage setScreen={this.setScreen}
+                                           me={this.getCurrentUser}/>,
+                user_info: <UserInfoPage setScreen={this.setScreen}
+                                         me={this.getCurrentUser}
+                                         user={this.getTargetUser}
+                                         goBack={this.goBack}/>,
+                edit_profile: <EditProfile me={this.getCurrentUser}
+                                           goBack={this.goBack}/>,
+                confirm: <AdminConfirmPage user={this.getTargetUser}
+                                           goBack={this.goBack}/>,
+                create_order: <CreateOrder me={this.getCurrentUser}
+                                           hotel={this.getCurrentHotel}
+                                           goBack={this.goBack}/>
             },
         };
     }

@@ -74,7 +74,7 @@ export default class HotelItem extends Component {
                     <tbody>
                     <tr>
                         <td>
-                            <Button onClick={() => this.props.setScreen("list_of_orders", {user: me}, {})}>View
+                            <Button onClick={() => this.props.setScreen("list_of_orders", {user: me})}>View
                                 Requests</Button>
                         </td>
                         <td>

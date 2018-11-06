@@ -43,10 +43,16 @@ public abstract class HotelMapper {
             @Mapping(target = "countryCode",
                     expression = "java( countryRepository.findByHotelId(hotel.getId()).getCountryCode() )"),
             @Mapping(target = "cityName",
-                    expression = "java( cityRepository.findByHotelId(hotel.getId()).getName() )")
+                    expression = "java( cityRepository.findByHotelId(hotel.getId()).getName() )"),
+            @Mapping(target = "description",
+                    expression = "java( hotel.getDescription() )")
     })
     public abstract HotelDto hotelToHotelDto(Hotel hotel);
 
+    @Mappings({
+            @Mapping(target = "description",
+                    expression = "java( hotelDto.getDescription() )")
+    })
     public abstract Hotel hotelDtoToHotel(HotelDto hotelDto);
 
     public abstract List<Hotel> hotelDtosToHotels(List<HotelDto> hotelDtos);

@@ -12,10 +12,13 @@
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-modal": "^4.2.0",
     "react-dom": "^16.2.0",
+    "react-images": "^0.5.19",
     "react-scripts": "1.1.0",
     "react-switcher": "^1.0.2",
     "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-alpha.4"
+    "reactstrap": "^5.0.0-alpha.4",
+    "prop-types": "^15.6.2",
+    "aphrodite": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

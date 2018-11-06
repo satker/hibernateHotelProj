@@ -7,6 +7,7 @@ import lombok.Data;
 public class HotelDto {
     private Long id;
     private String hotelName;
+    private String description;
     private int stars;
     private double price;
     private String address;

@@ -1,6 +1,7 @@
 package org.training.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,9 @@ public class Photo {
 
     @NotNull
     private String photoUrl;
+
+    @Column(columnDefinition = "bit default 0")
+    private Boolean isMain;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")

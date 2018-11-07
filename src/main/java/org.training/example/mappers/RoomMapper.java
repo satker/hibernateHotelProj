@@ -6,10 +6,17 @@ import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.training.example.dto.RoomDTO;
 import org.training.example.model.Room;
+import org.training.example.repository.PhotoRepository;
 import org.training.example.repository.RoomParameterRepository;
 
 @Mapper(componentModel = "spring")
 public abstract class RoomMapper {
+    @Autowired
+    PhotoRepository photoRepository;
+
+    @Autowired
+    PhotoMapper photoMapper;
+
     @Autowired
     RoomTypeMapper roomTypeMapper;
 
@@ -30,6 +37,9 @@ public abstract class RoomMapper {
                             ".map(org.training.example.model.RoomParameter::getParameter)" +
                             ".map(org.training.example.model.Parameter::getParameter)" +
                             ".collect(java.util.stream.Collectors.toSet()) )"),
+            @Mapping(target = "photos",
+                    expression = "java(photoRepository.findAllByRoomTypeId(room.getRoomType().getId()).stream()" +
+                            ".map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toSet()))"),
     })
     public abstract RoomDTO roomToRoomDTO(Room room);
 

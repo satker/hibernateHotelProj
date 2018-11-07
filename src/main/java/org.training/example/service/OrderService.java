@@ -82,6 +82,7 @@ public class OrderService {
     public void rejectRoomOrderById(long id) {
         log.debug("room order has been deleted by id {}", id);
         Order orderForReject = orderRepository.getOne(id);
+        roomOrderRepository.delete(roomOrderRepository.findAllByOrderId(id));
         orderForReject.setOrderStatus(OrderStatus.REJECTED);
         orderRepository.save(orderForReject);
     }

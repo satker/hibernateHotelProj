@@ -33,6 +33,8 @@ public abstract class HotelMapper {
             @Mapping(target = "photos",
                     expression = "java(photoRepository.findAllByHotel_Id(hotel.getId()).stream()" +
                             ".map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toSet()))"),
+            @Mapping(target = "mainPhoto",
+                    expression = "java(photoMapper.photoToPhotoDTO(photoRepository.findMainPhotoByHotelId(hotel.getId())))"),
             @Mapping(target = "price",
                     expression = "java( roomRepository.findByHotelId(hotel.getId()).stream()" +
                             "                        .mapToDouble(org.training.example.model.Room::getCostNight)" +

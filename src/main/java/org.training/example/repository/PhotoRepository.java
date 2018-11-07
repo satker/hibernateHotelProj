@@ -8,8 +8,11 @@ import org.training.example.model.Photo;
 
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo, Integer> {
-    @Query(value = "select * from photos where hotel_id = ?1", nativeQuery = true)
+    @Query(value = "select * from photos where hotel_id = ?1 and is_main = false", nativeQuery = true)
     Set<Photo> findAllByHotel_Id(Long hotelId);
+
+    @Query(value = "select * from photos where hotel_id = ?1 and is_main = true", nativeQuery = true)
+    Photo findMainPhotoByHotelId(Long hotelId);
 
     @Query(value = "select photos.* from photos\n" +
             "left join room_type_photo rtp on photos.id = rtp.photo_id\n" +

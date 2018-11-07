@@ -44,40 +44,98 @@ insert into rooms (cost_night, number, room_size, room_type_id)
 VALUES (2.2, 5, 14, 3);
 insert into rooms (cost_night, number, room_size, room_type_id)
 VALUES (9.2, 6, 16, 4);
-insert into parameters(parameter) values ('Shower');
-insert into parameters(parameter) values ('TV');
-insert into parameters(parameter) values ('Hairdryer');
-insert into parameters(parameter) values ('Free toiletries');
-insert into parameters(parameter) values ('Toilet');
-insert into parameters(parameter) values ('Private Bathroom');
-insert into parameters(parameter) values ('Heating');
-insert into room_parameter(parameter_id, room_id) VALUES (1, 1);
-insert into room_parameter(parameter_id, room_id) VALUES (2, 1);
-insert into room_parameter(parameter_id, room_id) VALUES (3, 1);
-insert into room_parameter(parameter_id, room_id) VALUES (5, 1);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 1);
-insert into room_parameter(parameter_id, room_id) VALUES (2, 2);
-insert into room_parameter(parameter_id, room_id) VALUES (4, 2);
-insert into room_parameter(parameter_id, room_id) VALUES (5, 2);
-insert into room_parameter(parameter_id, room_id) VALUES (6, 2);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 2);
-insert into room_parameter(parameter_id, room_id) VALUES (1, 3);
-insert into room_parameter(parameter_id, room_id) VALUES (3, 3);
-insert into room_parameter(parameter_id, room_id) VALUES (4, 3);
-insert into room_parameter(parameter_id, room_id) VALUES (5, 3);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 3);
-insert into room_parameter(parameter_id, room_id) VALUES (2, 4);
-insert into room_parameter(parameter_id, room_id) VALUES (3, 4);
-insert into room_parameter(parameter_id, room_id) VALUES (4, 4);
-insert into room_parameter(parameter_id, room_id) VALUES (6, 4);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 4);
-insert into room_parameter(parameter_id, room_id) VALUES (1, 5);
-insert into room_parameter(parameter_id, room_id) VALUES (2, 5);
-insert into room_parameter(parameter_id, room_id) VALUES (4, 5);
-insert into room_parameter(parameter_id, room_id) VALUES (6, 5);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 5);
-insert into room_parameter(parameter_id, room_id) VALUES (1, 6);
-insert into room_parameter(parameter_id, room_id) VALUES (3, 6);
-insert into room_parameter(parameter_id, room_id) VALUES (4, 6);
-insert into room_parameter(parameter_id, room_id) VALUES (6, 6);
-insert into room_parameter(parameter_id, room_id) VALUES (7, 6);
+insert into parameters (parameter)
+values ('Shower');
+insert into parameters (parameter)
+values ('TV');
+insert into parameters (parameter)
+values ('Hairdryer');
+insert into parameters (parameter)
+values ('Free toiletries');
+insert into parameters (parameter)
+values ('Toilet');
+insert into parameters (parameter)
+values ('Private Bathroom');
+insert into parameters (parameter)
+values ('Heating');
+insert into room_parameter (parameter_id, room_id)
+VALUES (1, 1);
+insert into room_parameter (parameter_id, room_id)
+VALUES (2, 1);
+insert into room_parameter (parameter_id, room_id)
+VALUES (3, 1);
+insert into room_parameter (parameter_id, room_id)
+VALUES (5, 1);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 1);
+insert into room_parameter (parameter_id, room_id)
+VALUES (2, 2);
+insert into room_parameter (parameter_id, room_id)
+VALUES (4, 2);
+insert into room_parameter (parameter_id, room_id)
+VALUES (5, 2);
+insert into room_parameter (parameter_id, room_id)
+VALUES (6, 2);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 2);
+insert into room_parameter (parameter_id, room_id)
+VALUES (1, 3);
+insert into room_parameter (parameter_id, room_id)
+VALUES (3, 3);
+insert into room_parameter (parameter_id, room_id)
+VALUES (4, 3);
+insert into room_parameter (parameter_id, room_id)
+VALUES (5, 3);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 3);
+insert into room_parameter (parameter_id, room_id)
+VALUES (2, 4);
+insert into room_parameter (parameter_id, room_id)
+VALUES (3, 4);
+insert into room_parameter (parameter_id, room_id)
+VALUES (4, 4);
+insert into room_parameter (parameter_id, room_id)
+VALUES (6, 4);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 4);
+insert into room_parameter (parameter_id, room_id)
+VALUES (1, 5);
+insert into room_parameter (parameter_id, room_id)
+VALUES (2, 5);
+insert into room_parameter (parameter_id, room_id)
+VALUES (4, 5);
+insert into room_parameter (parameter_id, room_id)
+VALUES (6, 5);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 5);
+insert into room_parameter (parameter_id, room_id)
+VALUES (1, 6);
+insert into room_parameter (parameter_id, room_id)
+VALUES (3, 6);
+insert into room_parameter (parameter_id, room_id)
+VALUES (4, 6);
+insert into room_parameter (parameter_id, room_id)
+VALUES (6, 6);
+insert into room_parameter (parameter_id, room_id)
+VALUES (7, 6);
+
+insert into photos (photo_url, hotel_id)
+values ('https://s-ec.bstatic.com/images/hotel/max1024x768/440/44051317.jpg', 1);
+insert into photos (photo_url, hotel_id)
+values ('https://t-ec.bstatic.com/images/hotel/max1024x768/440/44051160.jpg', 1);
+insert into photos (photo_url, hotel_id)
+values ('https://t-ec.bstatic.com/images/hotel/max1024x768/440/44051554.jpg', 1);
+insert into photos (is_main, photo_url, hotel_id)
+VALUES (true,
+        'https://s-ec.bstatic.com/xdata/images/hotel/square200/46511537.jpg?k=051881b36a7a6c29a8b4b2cf731e97af35a5956af63d2994454c333d336d99f6&o=',
+        1);
+
+
+insert into room_type_photo (photo_id, room_type_id)
+values (1, 1);
+
+insert into room_type_photo (photo_id, room_type_id)
+values (2, 2);
+
+insert into room_type_photo (photo_id, room_type_id)
+values (3, 3);

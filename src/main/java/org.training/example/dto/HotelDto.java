@@ -18,4 +18,5 @@ public class HotelDto {
     private double latitude;
     private double longitude;
     private Set<PhotoDto> photos;
+    private PhotoDto mainPhoto;
 }

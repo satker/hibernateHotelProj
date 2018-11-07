@@ -12,4 +12,5 @@ public class RoomDTO {
     private RoomTypeDTO roomType;
     private short roomSize;
     private Set<String> parameters;
+    private Set<PhotoDto> photos;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import {Button} from "reactstrap";
 import './CreateOrder.css';
+import Gallery from "./Galery";
 
 export default class ItemRoom extends React.Component {
     constructor(props) {
@@ -14,6 +15,10 @@ export default class ItemRoom extends React.Component {
 
     render() {
         let room = this.props.room;
+        let roomPhotos = room.photos;
+        let imagesToShow = [];
+        roomPhotos.map(photo => photo.photoUrl)
+            .forEach(photo => imagesToShow.push({src: photo}));
 
         return (
             <tr onClick={this.props.onClick}>
@@ -40,7 +45,13 @@ export default class ItemRoom extends React.Component {
                 {
                     this.props.isModal ?
                         <td><Button className="btn-danger" color='bl' onClick={this.props.onClickSeeDetails}>See
-                            details</Button></td>
+                            details</Button>
+                            {roomPhotos.length !== 0 ? <Gallery
+                                    images={imagesToShow}
+                                    showThumbnails={true}
+                                />
+                                : null}
+                        </td>
                         : null
                 }
             </tr>

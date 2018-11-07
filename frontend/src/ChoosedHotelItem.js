@@ -1,33 +1,36 @@
 import React, {Component} from "react";
 import {Button, Container} from "reactstrap";
-import Gallery from "./Galery";
+import HotelGeo from "./HotelGeo";
 
 export default class ChoosedHotelItem extends Component {
+    constructor(props) {
+        super(props);
+        this.getGeoModal = this.getGeoModal.bind(this);
+    }
+
     componentDidMount() {
         this.props.setTitleScreen({titleName: this.props.hotel().hotelName});
     }
 
+    getGeoModal() {
+        let hotel = this.props.hotel();
+        return (<HotelGeo
+            latitude={hotel.latitude}
+            longitude={hotel.longitude}
+        />);
+    }
+
     render() {
         let me = this.props.me();
-        let photos = this.props.hotel().photos.map(photo => photo.photoUrl);
-        const LIGHTBOX_IMAGE_SET = {srcSet: photos};
-        console.log(LIGHTBOX_IMAGE_SET);
         let hotel = this.props.hotel();
-        const hotelPhotos = [{src: 'https://s-ec.bstatic.com/images/hotel/max1024x768/440/44051317.jpg'},
-            {src: 'https://t-ec.bstatic.com/images/hotel/max1024x768/440/44051160.jpg'},
-            {src: 'https://t-ec.bstatic.com/images/hotel/max1024x768/440/44051554.jpg'}];
         return (
             <div>
-                <Gallery
-                    images={hotelPhotos}
-                    //heading={'werewewr'}
-                    showThumbnails={true}
-                    //subheading={'eeeeee'}
-                />
                 <Container>
+
                     <br/>
-                    <b>Address:</b> {hotel.countryName}, {hotel.cityName}, {hotel.address}{' '} - {' '}<a href='#'>Show
-                    map</a>
+                    <b>Address:</b> {hotel.countryName}, {hotel.cityName}, {hotel.address}{' '} - {' '}
+                    <Button onClick={() => this.getGeoModal()}>Show
+                        map</Button>
                     <br/>
                     <br/>
                     <div className="content" dangerouslySetInnerHTML={{__html: hotel.description}}/>

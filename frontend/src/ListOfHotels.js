@@ -39,6 +39,7 @@ export default class HotelItem extends Component {
             return <Table hover>
                 <thead>
                 <tr>
+                    <th>Hotel photo</th>
                     <th>Hotel name</th>
                     <th>Hotel location</th>
                     <th>Average night cost</th>

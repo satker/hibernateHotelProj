@@ -4,12 +4,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.training.example.dto.RoomDTO;
 import org.training.example.model.Room;
 import org.training.example.repository.PhotoRepository;
 import org.training.example.repository.RoomParameterRepository;
 
 @Mapper(componentModel = "spring")
+@Component
 public abstract class RoomMapper {
     @Autowired
     PhotoRepository photoRepository;
@@ -29,14 +31,6 @@ public abstract class RoomMapper {
     @Mappings({
             @Mapping(target = "roomType",
                     expression = "java(roomTypeMapper.typeToTypeDTO(room.getRoomType()))"),
-            @Mapping(target = "roomSize",
-                    expression = "java(room.getRoomSize())"),
-            @Mapping(target = "parameters",
-                    expression = "java(roomParameterRepository." +
-                            "findAllByRoomId(room.getId()).stream()" +
-                            ".map(org.training.example.model.RoomParameter::getParameter)" +
-                            ".map(org.training.example.model.Parameter::getParameter)" +
-                            ".collect(java.util.stream.Collectors.toSet()) )"),
             @Mapping(target = "photos",
                     expression = "java(photoRepository.findAllByRoomTypeId(room.getRoomType().getId()).stream()" +
                             ".map(photoMapper::photoToPhotoDTO).collect(java.util.stream.Collectors.toSet()))"),
@@ -45,9 +39,7 @@ public abstract class RoomMapper {
 
     @Mappings({
             @Mapping(target = "roomType",
-                    expression = "java(roomTypeMapper.typeDTOToType(roomDTO.getRoomType()))"),
-            @Mapping(target = "roomSize",
-                    expression = "java(roomDTO.getRoomSize())")
+                    expression = "java(roomTypeMapper.typeDTOToType(roomDTO.getRoomType()))")
     })
     public abstract Room roomDTOToRoom(RoomDTO roomDTO);
 }

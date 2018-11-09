@@ -8,5 +8,5 @@ import lombok.Data;
 public class PropertiesForOrderPrice {
     private Date arrivalDate;
     private Date departureDate;
-    private Set<RoomDTO> rooms;
+    private Set<RoomTypeDTO> roomTypes;
 }

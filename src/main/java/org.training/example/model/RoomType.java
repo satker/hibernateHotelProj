@@ -36,6 +36,12 @@ public class RoomType {
     @JsonIgnore
     private Capacity capacity;
 
+    @NotNull
+    private Double costNight;
+
+    @NotNull
+    private short roomSize;
+
     @PostPersist
     public void onPrePersist() {
         audit("INSERT");

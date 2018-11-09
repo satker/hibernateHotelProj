@@ -14,8 +14,7 @@ import {
     Table,
     Tooltip
 } from "reactstrap";
-
-import ItemRoom from "./ItemRoom";
+import ItemRoomType from "./ItemRoomType";
 
 const URL = "http://localhost:8080/user/_id_/hotels/_hotelid_/orders";
 
@@ -35,8 +34,8 @@ export default class CreateOrder extends React.Component {
             numbersOfRooms: null,
             arrivalDate: null,
             departureDate: null,
-            findRooms: null,
-            selectedRooms: [],
+            findRoomTypes: null,
+            selectedRoomTypes: [],
             paymentStep: false,
             isOnlinePayment: false,
             isBooked: false,
@@ -46,11 +45,12 @@ export default class CreateOrder extends React.Component {
             totalPrice: null,
             checked: false,
             modal: false,
-            currentRoom: null,
+            currentRoomType: null,
             listOfParameters: [],
             todayDate: null,
             tooltipOpenAdults: false,
-            tooltipOpenChildren: false
+            tooltipOpenChildren: false,
+            roomTypeAndNumberOfRooms: []
         };
     }
 
@@ -87,7 +87,7 @@ export default class CreateOrder extends React.Component {
         this.setState({arrivalDate: this.state["arrivalDate"]});
         this.setState({departureDate: this.state["departureDate"]});
 
-        let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/rooms", {
+        let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/roomTypes", {
             method: "post",
             credentials: "include",
             headers: {
@@ -97,9 +97,9 @@ export default class CreateOrder extends React.Component {
         });
         let text = await resp.text();
         console.log(text);
-        let foundRooms = JSON.parse(text);
-        let parsedSelectedRooms = this.state.selectedRooms.map(room => room.id);
-        this.setState({findRooms: foundRooms.filter(room => !parsedSelectedRooms.includes(room.id))});
+        let foundRoomTypes = JSON.parse(text);
+        let parsedSelectedRoomTypes = this.state.selectedRoomTypes.map(room => room.id);
+        this.setState({findRoomTypes: foundRoomTypes.filter(room => !parsedSelectedRoomTypes.includes(room.id))});
     }
 
     handleShow() {
@@ -117,22 +117,22 @@ export default class CreateOrder extends React.Component {
                     this.formToFindRooms() : null
                 }
 
-                {!this.state.paymentStep && this.state.selectedRooms != null && this.state.selectedRooms.length !== 0 ?
+                {!this.state.paymentStep && this.state.selectedRoomTypes != null && this.state.selectedRoomTypes.length !== 0 ?
                     this.selectedRoomsTable()
                     : null
                 }
 
-                {this.state.paymentStep && this.state.selectedRooms != null && this.state.selectedRooms.length !== 0 ?
+                {this.state.paymentStep && this.state.selectedRoomTypes != null && this.state.selectedRoomTypes.length !== 0 ?
                     this.roomsForPayedTable()
                     : null
                 }
 
-                {!this.state.paymentStep && this.state.findRooms != null && this.state.findRooms.length !== 0 ?
+                {!this.state.paymentStep && this.state.findRoomTypes != null && this.state.findRoomTypes.length !== 0 ?
                     this.foundRoomsTable()
                     : null
                 }
 
-                {this.state.currentRoom !== null ?
+                {this.state.currentRoomType !== null ?
                     this.modalWindowToSeeDetails()
                     : null}
             </div>
@@ -142,19 +142,19 @@ export default class CreateOrder extends React.Component {
     modalWindowToSeeDetails() {
         return <Modal isOpen={this.state.modal}>
             <ModalHeader>
-                {this.state.currentRoom.roomType.name} room</ModalHeader>
+                {this.state.currentRoomType.name} room</ModalHeader>
             <ModalBody>
 
                 <p>
-                    <label>Room Size: {this.state.currentRoom.roomSize} m²</label>
+                    <label>Room Size: {this.state.currentRoomType.roomSize} m²</label>
                 </p>
                 <p>
-                    <label>Description: {this.state.currentRoom.roomType.description}</label>
+                    <label>Description: {this.state.currentRoomType.description}</label>
                 </p>
                 <hr/>
                 <p>
                     <label>Room Facilities:</label><br/>
-                    {this.state.currentRoom.parameters.map(p => {
+                    {this.state.currentRoomType.parameters.map(p => {
                         return (<p>• {p}</p>
                         )
                     })
@@ -259,17 +259,17 @@ export default class CreateOrder extends React.Component {
             <Table hover>
                 {this.tableNameRowsForFoundAndSelectedRooms(false)}
 
-                <tbody>{this.state.selectedRooms.map(room =>
-                    <ItemRoom
+                <tbody>{this.state.selectedRoomTypes.map(roomType =>
+                    <ItemRoomType
                         me={this.props.me()}
-                        room={room}
+                        roomType={roomType}
                         setScreen={this.props.setScreen}
                         refresh={() => this.loadOrders()}
-                        rooms={this.state.selectedRooms}
                         isModal={true}
+                        isSelected={false}
 
                         onClickSeeDetails={() => {
-                            this.setState({currentRoom: room});
+                            this.setState({currentRoomType: roomType});
                             this.handleShow();
                         }}
                     />)}
@@ -347,6 +347,7 @@ export default class CreateOrder extends React.Component {
                 </Tooltip>
             </th>
             <th>Room type</th>
+            <th>Number of available rooms</th>
             <th>Night cost</th>
             <th>Details</th>
         </tr>
@@ -354,32 +355,42 @@ export default class CreateOrder extends React.Component {
     }
 
     selectedRoomsTable() {
+        const selectedTypes = this.state.selectedRoomTypes;
+        selectedTypes.filter(type => {
+            return this.state.roomTypeAndNumberOfRooms[type.name] === undefined;
+        })
+            .forEach(type => this.state.roomTypeAndNumberOfRooms[type.name.replace('""', '')] = "1");
         return <Container>
             <Table hover>
                 {this.tableNameRowsForFoundAndSelectedRooms(true)}
-                <tbody>{this.state.selectedRooms.map(room =>
-                    <ItemRoom
+                <tbody>{selectedTypes.map(roomType =>
+                    <ItemRoomType
                         me={this.props.me()}
-                        room={room}
+                        roomType={roomType}
                         setScreen={this.props.setScreen}
                         refresh={() => this.loadOrders()}
-                        rooms={this.state.selectedRooms}
                         isCheckBox={true}
+                        isSelected={true}
                         isModal={true}
                         checked={true}
 
                         onClickSeeDetails={() => {
-                            this.setState({currentRoom: room});
+                            this.setState({currentRoomType: roomType});
                             this.handleShow();
                         }}
 
+                        addFixedNumberOfOrders={(number) => {
+                            this.state.roomTypeAndNumberOfRooms[roomType.name] = number.target.value;
+                        }}
+
                         onClickOnCheckBox={() => {
-                            const isChosed = this.state.findRooms.includes(room);
+                            this.state.roomTypeAndNumberOfRooms[roomType.name] = undefined;
+                            const isChosed = this.state.findRoomTypes.includes(roomType);
                             if (!isChosed) {
                                 this.setState({
-                                    findRooms: [...this.state.findRooms, room]
+                                    findRoomTypes: [...this.state.findRoomTypes, roomType]
                                 });
-                                this.removeRoomFromSelectedRoms(room);
+                                this.removeRoomFromSelectedRoms(roomType);
                             }
                         }}
 
@@ -388,9 +399,11 @@ export default class CreateOrder extends React.Component {
             </Table>
             <p>
                 {
-                    this.state.selectedRooms.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
+                    this.state.selectedRoomTypes.length !== 0 && !this.state.paymentStep && this.state.arrivalDate !== null && this.state.departureDate !== null ?
                         <Button
                             onClick={() => {
+                                this.state.selectedRoomTypes
+                                    .forEach(type => type.numberAvailableRooms = parseInt(this.state.roomTypeAndNumberOfRooms[type.name]));
                                 this.getPrice();
                                 this.setState({paymentStep: true});
                                 this.snoozeRooms();
@@ -408,29 +421,29 @@ export default class CreateOrder extends React.Component {
             <Table hover>
                 {this.tableNameRowsForFoundAndSelectedRooms(true)}
                 <tbody>
-                {this.state.findRooms.map(room =>
-                    <ItemRoom
+                {this.state.findRoomTypes.map(roomType =>
+                    <ItemRoomType
                         me={this.props.me()}
-                        room={room}
+                        roomType={roomType}
                         setScreen={this.props.setScreen}
                         refresh={() => this.loadOrders()}
-                        rooms={this.state.rooms}
                         isCheckBox={true}
+                        isSelected={false}
                         isModal={true}
                         checked={false}
                         onClickSeeDetails={() => {
-                            this.setState({currentRoom: room});
+                            this.setState({currentRoomType: roomType});
                             this.handleShow();
                         }}
 
                         onClickOnCheckBox={() => {
                             console.log(this.state.checked);
-                            const isChosed = this.state.selectedRooms.includes(room);
+                            const isChosed = this.state.selectedRoomTypes.includes(roomType);
                             if (!isChosed) {
                                 this.setState({
-                                    selectedRooms: [...this.state.selectedRooms, room]
+                                    selectedRoomTypes: [...this.state.selectedRoomTypes, roomType]
                                 });
-                                this.removeRoomFromFindedRoms(room);
+                                this.removeRoomFromFindedRoms(roomType);
                             }
                         }
                         }
@@ -483,13 +496,13 @@ export default class CreateOrder extends React.Component {
     }
 
     removeRoomFromFindedRoms(room) {
-        const newArray = this.state.findRooms.filter(r => r !== room);
-        this.setState({findRooms: newArray});
+        const newArray = this.state.findRoomTypes.filter(r => r !== room);
+        this.setState({findRoomTypes: newArray});
     }
 
     removeRoomFromSelectedRoms(room) {
-        const newArray = this.state.selectedRooms.filter(r => r !== room);
-        this.setState({selectedRooms: newArray});
+        const newArray = this.state.selectedRoomTypes.filter(r => r !== room);
+        this.setState({selectedRoomTypes: newArray});
     }
 
     async createOrder() {
@@ -510,7 +523,7 @@ export default class CreateOrder extends React.Component {
         }
 
         body.totalPrice = this.state.totalPrice;
-        body.rooms = this.state.selectedRooms;
+        //body.roomTypes = this.state.selectedRoomTypes;
 
         let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id), {
             method: "post",
@@ -519,10 +532,11 @@ export default class CreateOrder extends React.Component {
                 "content-type": "application/json",
             },
             body: JSON.stringify(body),
+
         });
         let text = await resp.text();
         console.log(text);
-        this.setState({findRooms: JSON.parse(text)});
+        this.setState({findRoomTypes: JSON.parse(text)});
         this.props.goBack();
     }
 
@@ -531,7 +545,7 @@ export default class CreateOrder extends React.Component {
         for (let key of ["arrivalDate", "departureDate"]) {
             body[key] = this.state[key];
         }
-        body.rooms = this.state.selectedRooms;
+        body.roomTypes = this.state.selectedRoomTypes;
 
         let resp = await fetch(URL.replace("_id_", this.props.me().id).replace("_hotelid_", this.props.hotel().id) + "/price", {
             method: "post",
@@ -553,7 +567,7 @@ export default class CreateOrder extends React.Component {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(this.state.selectedRooms),
+            body: JSON.stringify(this.state.selectedRoomTypes),
         });
     }
 };

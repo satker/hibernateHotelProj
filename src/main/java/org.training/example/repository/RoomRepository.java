@@ -1,14 +1,22 @@
 package org.training.example.repository;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.training.example.model.Room;
+import org.training.example.model.RoomType;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
+
+    @Query(value = "select * from rooms\n" +
+            "where room_type_id = ?1", nativeQuery = true)
+    List<Room> findByRoomTypeId(long roomTypeId);
+
+    List<Room> findByRoomType(RoomType roomType);
 
     @Query(value = "select rooms.* from rooms\n" +
             "LEFT JOIN room_types t on rooms.room_type_id = t.id\n" +
@@ -17,6 +25,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @Query(value = "select rooms.*\n" +
             "from rooms\n" +
+            "       left join room_types on rooms.id = room_types.id\n" +
             "       left join room_order on rooms.id = room_order.room_id\n" +
             "       left join orders o on room_order.order_id = o.id\n" +
             "       JOIN (select r.number\n" +
@@ -33,7 +42,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             "                     (o.arrival_date not between ?1 and ?2) and\n" +
             "                     (o.departure_date not between ?1 and ?2)\n" +
             "        else true END\n" +
-            "ORDER BY rooms.cost_night",
+            "ORDER BY room_types.cost_night",
             nativeQuery = true)
     Set<Room> findRoomsByParams(Date arrivalDate, Date departureDate,
                                 byte adults, byte children,
@@ -41,6 +50,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @Query(value = "select rooms.*\n" +
             "from rooms\n" +
+            "       left join room_types on rooms.id = room_types.id\n" +
             "       left join room_order on rooms.id = room_order.room_id\n" +
             "       left join orders o on room_order.order_id = o.id\n" +
             "       JOIN (select number from rooms\n" +
@@ -53,6 +63,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             "                     (o.arrival_date not between ?1 and ?2) and\n" +
             "                     (o.departure_date not between ?1 and ?2)\n" +
             "           else true END\n" +
-            "ORDER BY rooms.cost_night", nativeQuery = true)
+            "ORDER BY room_types.cost_night", nativeQuery = true)
     Set<Room> findAllRoomsByDate(Date departureDate, Date departureDate1, long hotelId);
 }

@@ -4,11 +4,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.training.example.dto.PhotoDto;
 import org.training.example.model.Photo;
 import org.training.example.repository.PhotoRepository;
 
 @Mapper(componentModel = "spring")
+@Component
 public abstract class PhotoMapper {
     @Autowired
     PhotoRepository photoRepository;

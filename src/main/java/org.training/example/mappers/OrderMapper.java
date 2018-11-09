@@ -4,12 +4,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.training.example.dto.OrderDTO;
 import org.training.example.model.Order;
 import org.training.example.repository.OrderRepository;
 import org.training.example.repository.RoomOrderRepository;
 
 @Mapper(componentModel = "spring")
+@Component
 public abstract class OrderMapper {
     @Autowired
     OrderRepository orderRepository;

@@ -3,22 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aphrodite": "latest",
     "bootstrap": "^4.0.0",
     "bootstrap-modal": "^2.2.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
+    "prop-types": "^15.6.2",
     "rc-switch": "^1.8.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-modal": "^4.2.0",
     "react-dom": "^16.2.0",
+    "react-geolocation": "^1.0.4",
     "react-images": "^0.5.19",
     "react-scripts": "1.1.0",
     "react-switcher": "^1.0.2",
     "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-alpha.4",
-    "prop-types": "^15.6.2",
-    "aphrodite": "latest"
+    "reactstrap": "^5.0.0-alpha.4"
   },
   "scripts": {
     "start": "react-scripts start",

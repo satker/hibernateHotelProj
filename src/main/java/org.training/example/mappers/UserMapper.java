@@ -2,11 +2,13 @@ package org.training.example.mappers;
 
 import java.util.List;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 import org.training.example.dto.AddUserDTO;
 import org.training.example.dto.UserDTO;
 import org.training.example.model.User;
 
 @Mapper(componentModel = "spring")
+@Component
 public abstract class UserMapper {
     public abstract UserDTO userToUserDto(User user);
 

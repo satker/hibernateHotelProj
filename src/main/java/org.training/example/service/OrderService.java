@@ -10,13 +10,14 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.training.example.dto.CreateOrder;
 import org.training.example.dto.OrderDTO;
 import org.training.example.dto.PropertiesForOrderPrice;
-import org.training.example.dto.RoomDTO;
+import org.training.example.dto.RoomTypeDTO;
 import org.training.example.exceptions.AccessDeniedException;
 import org.training.example.exceptions.RoomRequestNotFoundException;
+import org.training.example.mappers.CreateOrderMapper;
 import org.training.example.mappers.OrderMapper;
-import org.training.example.mappers.RoomMapper;
 import org.training.example.model.Order;
 import org.training.example.model.OrderStatus;
 import org.training.example.model.Room;
@@ -34,11 +35,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
     private final UserService userService;
-    private final RoomMapper roomMapper;
     private final RoomOrderRepository roomOrderRepository;
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     private final HotelRepository hotelRepository;
+    private final CreateOrderMapper createOrderMapper;
+    private final RoomService roomService;
 
     public Set<OrderDTO> findByAccountUsername(long id) {
         log.debug("all room requests have been found by user id {}", id);
@@ -87,17 +89,18 @@ public class OrderService {
         orderRepository.save(orderForReject);
     }
 
-    public OrderDTO createOrder(long userId, long hotelId, OrderDTO order) {
-        Order newOrder = orderMapper.requestDtoToRequest(order);
+    public OrderDTO createOrder(long userId, long hotelId, CreateOrder order) {
+        OrderDTO mappedOrder = createOrderMapper.createOrderToOrder(order);
+        Order newOrder = orderMapper.requestDtoToRequest(mappedOrder);
         newOrder.setUser(userRepository.findOne(userId));
         newOrder.setHotel(hotelRepository.getOne(hotelId));
         newOrder.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));
         Order savedOrder = orderRepository.save(newOrder);
-        Map<Room, Order> roomRequestMap = order.getRooms().stream()
-                .map(roomMapper::roomDTOToRoom)
+        Map<Room, Order> roomRequestMap = roomService.getRoomsForCurrentOrder().stream()
                 .peek(room -> room.setIsSnoozed(false))
                 .peek(roomRepository::save)
                 .collect(Collectors.toMap(Function.identity(), i -> savedOrder));
+        roomService.setRoomsForCurrentOrder(null);
         roomRequestMap.entrySet().stream()
                 .map(elem -> new RoomOrder(elem.getKey(), elem.getValue()))
                 .forEach(roomOrderRepository::save);
@@ -107,8 +110,8 @@ public class OrderService {
     public double getPriceOfOrder(PropertiesForOrderPrice propertiesForOrderPrice) {
         long diffTime = propertiesForOrderPrice.getDepartureDate().getTime() - propertiesForOrderPrice.getArrivalDate().getTime();
         long days = TimeUnit.DAYS.convert(diffTime, TimeUnit.MILLISECONDS) + 1;
-        Double sumPriceOfRooms = propertiesForOrderPrice.getRooms().stream()
-                .map(RoomDTO::getCostNight)
+        Double sumPriceOfRooms = propertiesForOrderPrice.getRoomTypes().stream()
+                .map(RoomTypeDTO::getCostNight)
                 .reduce((firstPrice, secondPrice) -> firstPrice + secondPrice).get();
         double result = sumPriceOfRooms * days;
         return new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();

@@ -16,26 +16,26 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "room_parameter")
+@Table(name = "room_type_parameter")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomParameter {
+public class RoomTypeParameter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_type_id")
     @JsonIgnore
-    private Room room;
+    private RoomType roomType;
 
     @ManyToOne
     @JoinColumn(name = "parameter_id")
     @JsonIgnore
     private Parameter parameter;
 
-    public RoomParameter(Room room, Parameter parameter){
+    public RoomTypeParameter(RoomType roomType, Parameter parameter) {
         this.parameter = parameter;
-        this.room = room;
+        this.roomType = roomType;
     }
 }

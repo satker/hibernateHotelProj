@@ -5,7 +5,7 @@ import ItemRoom from "./ItemRoom";
 
 const URL = "http://localhost:8080/user/_id_/orders";
 
-export default class ListOfRooms extends Component {
+export default class ListOfOrders extends Component {
     constructor(props) {
         super(props);
         this.loadOrders = this.loadOrders.bind(this);
@@ -114,7 +114,6 @@ export default class ListOfRooms extends Component {
                             </th>
                             <th>Room type</th>
                             <th>Room №</th>
-                            <th>Night cost</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.training.example.dto.AddRoomRequestDTO;
+import org.training.example.dto.CreateOrder;
 import org.training.example.dto.OrderDTO;
 import org.training.example.dto.PropertiesForOrderPrice;
-import org.training.example.dto.RoomDTO;
 import org.training.example.dto.RoomTypeDTO;
 import org.training.example.service.OrderService;
 import org.training.example.service.RoomService;
@@ -30,8 +30,8 @@ class OrderByHotelRestController {
     private final RoomTypeService roomTypeService;
     private final RoomService roomService;
 
-    @PostMapping("/rooms")
-    Set<RoomDTO> findAvailableRooms(@PathVariable long userId,
+    @PostMapping("/roomTypes")
+    Set<RoomTypeDTO> findAvailableRooms(@PathVariable long userId,
                                     @PathVariable long hotelId,
                                     @RequestBody AddRoomRequestDTO input) {
         return roomService.findAvailableRooms(input, hotelId);
@@ -40,7 +40,7 @@ class OrderByHotelRestController {
     @PostMapping
     OrderDTO createOrder(@PathVariable long userId,
                          @PathVariable long hotelId,
-                         @RequestBody OrderDTO order) {
+                         @RequestBody CreateOrder order) {
         return orderService.createOrder(userId, hotelId, order);
     }
 
@@ -65,7 +65,7 @@ class OrderByHotelRestController {
     }*/
 
     @PostMapping(value = "/rooms/snooze")
-    void snoozeRooms(@RequestBody List<RoomDTO> rooms) {
+    void snoozeRooms(@RequestBody List<RoomTypeDTO> rooms) {
         roomService.snoozeRooms(rooms);
     }
 }

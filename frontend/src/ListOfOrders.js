@@ -31,7 +31,6 @@ export default class ListOfOrders extends Component {
     async loadOrders() {
         let resp = await fetch(URL.replace("_id_", this.props.user().id));
         let data = await resp.text();
-        console.log(data);
         this.setState({list: JSON.parse(data)});
     }
 
@@ -83,7 +82,6 @@ export default class ListOfOrders extends Component {
                         onClickSeeDetails={() => {
                             this.setState({currentOrderRooms: order.rooms});
                             this.handleShow();
-                            console.log(this.state.currentOrderRooms);
                         }}
                     />)}
             </Table>

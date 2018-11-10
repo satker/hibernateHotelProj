@@ -17,7 +17,6 @@ export default class ItemOrder extends Component {
                 credentials: "include",
             });
             let text = await resp.text();
-            console.log(text);
             let rooms = JSON.parse(text);
             this.setState({rooms: rooms, roomNumber: rooms[0].number});
         }

@@ -68,4 +68,9 @@ class OrderByHotelRestController {
     void snoozeRooms(@RequestBody List<RoomTypeDTO> rooms) {
         roomService.snoozeRooms(rooms);
     }
+
+    @PostMapping(value = "/rooms/unsnooze")
+    void snoozeRooms() {
+        roomService.unsnoozeRoomsWhenGoBack();
+    }
 }

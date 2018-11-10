@@ -44,7 +44,6 @@ class ListOfUsers extends Component {
     async loadList() {
         let resp = await fetch(URL);
         let data = await resp.text();
-        console.log(data);
         this.setState({list: JSON.parse(data)});
     }
 }

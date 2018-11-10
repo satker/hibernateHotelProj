@@ -42,7 +42,6 @@ export default class FormLogin extends Component {
         });
 
         let text = await resp.text();
-        console.log(text);
 
         if( resp.status === 200 ) {
             try {

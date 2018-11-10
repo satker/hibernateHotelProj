@@ -96,7 +96,6 @@ export default class CreateOrder extends React.Component {
             body: JSON.stringify(body),
         });
         let text = await resp.text();
-        console.log(text);
         let foundRoomTypes = JSON.parse(text);
         let parsedSelectedRoomTypes = this.state.selectedRoomTypes.map(room => room.id);
         this.setState({findRoomTypes: foundRoomTypes.filter(room => !parsedSelectedRoomTypes.includes(room.id))});
@@ -437,7 +436,6 @@ export default class CreateOrder extends React.Component {
                         }}
 
                         onClickOnCheckBox={() => {
-                            console.log(this.state.checked);
                             const isChosed = this.state.selectedRoomTypes.includes(roomType);
                             if (!isChosed) {
                                 this.setState({
@@ -535,7 +533,6 @@ export default class CreateOrder extends React.Component {
 
         });
         let text = await resp.text();
-        console.log(text);
         this.setState({findRoomTypes: JSON.parse(text)});
         this.props.goBack();
     }

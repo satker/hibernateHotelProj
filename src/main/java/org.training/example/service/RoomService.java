@@ -121,4 +121,11 @@ public class RoomService {
                 .peek(room -> room.setIsSnoozed(action))
                 .forEach(roomRepository::save);
     }
+
+    public void unsnoozeRoomsWhenGoBack() {
+        if (roomsForCurrentOrder != null) {
+            snoozedAction(roomsForCurrentOrder, false);
+            roomsForCurrentOrder = null;
+        }
+    }
 }

@@ -21,16 +21,13 @@ export default class HotelItem extends Component {
 
     async loadHotels() {
         let user = this.props.me();
-        console.log(user.id);
         let resp = await fetch(URL_HOTELS.replace("_id_", user.id));
         let data = await resp.text();
-        console.log(data);
         this.setState({hotels: JSON.parse(data)});
     }
 
     onClickChooseHotel(hotel) {
         let me = this.props.me();
-        console.log(hotel.hotelName);
         this.props.setScreen("choose_hotel_item", {me: me, hotel: hotel});
     }
 

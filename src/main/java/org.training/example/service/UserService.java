@@ -1,5 +1,6 @@
 package org.training.example.service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,6 +40,7 @@ public class UserService {
         user.setFirstName(modifiedUser.getFirstName());
         user.setLastName(modifiedUser.getLastName());
         user.setLogin(modifiedUser.getLogin());
+        user.setMail(modifiedUser.getMail());
         user.setPassword(modifiedUser.getPassword());
         return userMapper.userToUserDto(userRepository.save(user));
     }
@@ -86,12 +88,31 @@ public class UserService {
         }
     }
 
-    public void updateUserValidateUser(long id, String login, UserDTO upUser) {
+    public void updateUserValidateUser(long id, Principal principal, UserDTO upUser) {
         log.debug("validated user updated {}", id);
-        if (findUserByLogin(login).getId() == id) {
-            updateUser(upUser, id);
-        } else {
-            throw new AccessDeniedException(id);
-        }
+        updateUser(upUser, id);
+       /* Optional.ofNullable(principal)
+                .map(Principal::getName)
+                .filter(login -> findUserByLogin(login).getId() == id)
+                .map(login -> updateUser(upUser, id))
+                .orElse(null);*/
+    }
+
+    public boolean checkIsPresentedMail(String mail) {
+        log.debug("user found by mail {}", mail);
+        return userRepository.findByMail(mail.replaceAll("\"", "")) != null;
+    }
+
+    public boolean checkIsPresentedUsername(String username) {
+        log.debug("user found by login {}", username);
+        return userRepository.findUserByLogin(username.replaceAll("\"", "")) != null;
+    }
+
+    public boolean checkIsGoodMailForUpdate(long id, String mail) {
+        log.debug("validated user got {}", id);
+        UserDTO currentUser = findOne(id);
+        if (currentUser.getMail().equals(mail)) {
+            return true;
+        } else return userRepository.findByMail(mail) != null;
     }
 }

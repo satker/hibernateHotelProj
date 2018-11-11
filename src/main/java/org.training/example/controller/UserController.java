@@ -16,7 +16,6 @@ import org.training.example.dto.AddUserDTO;
 import org.training.example.dto.UserDTO;
 import org.training.example.service.UserService;
 
-/// OK
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
@@ -35,14 +34,29 @@ class UserController {
         return userService.findUserByLogin(principal.getName());
     }
 
+    @PostMapping("/username/check")
+    public boolean checkIsGoodUsername(@RequestBody String username) {
+        return userService.checkIsPresentedUsername(username);
+    }
+
+    @PostMapping("/mail/check")
+    public boolean checkIsGoodMail(@RequestBody String mail) {
+        return userService.checkIsPresentedMail(mail);
+    }
 
     @GetMapping(value = "/{id}")
     public UserDTO getValidateUser(@PathVariable("id") long id, Principal principal) {
         return userService.getValidateUser(id, principal.getName());
     }
 
+    @GetMapping(value = "/{id}/mail/check/{mail}")
+    public boolean checkIsGoodMailForUpdate(@PathVariable("id") long id,
+                                            @PathVariable("mail") String mail) {
+        return userService.checkIsGoodMailForUpdate(id, mail);
+    }
+
     @PutMapping(value = "/{id}")
     public void updateValidateUser(@PathVariable("id") long id, @RequestBody UserDTO user, Principal principal) {
-        userService.updateUserValidateUser(id, principal.getName(), user);
+        userService.updateUserValidateUser(id, principal, user);
     }
 }

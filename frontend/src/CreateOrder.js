@@ -31,7 +31,7 @@ export default class CreateOrder extends React.Component {
         this.state = {
             adults: null,
             children: null,
-            numbersOfRooms: null,
+            //numbersOfRooms: null,
             arrivalDate: null,
             departureDate: null,
             findRoomTypes: null,
@@ -65,7 +65,7 @@ export default class CreateOrder extends React.Component {
         let year = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
         this.setState({adults: numbersForAdultsAndNumberOfRooms, adult: numbersForAdultsAndNumberOfRooms[0]});
         this.setState({children: numbersForAdultsAndNumberOfRooms, child: numbersForAdultsAndNumberOfRooms[0]});
-        this.setState({numbersOfRooms: numbersForChildren, numberOfRooms: numbersForChildren[0]});
+        //this.setState({numbersOfRooms: numbersForChildren, numberOfRooms: numbersForChildren[0]});
         this.setState({months: month, month: month[0]});
         this.setState({years: year, year: month[0]});
     }
@@ -82,7 +82,12 @@ export default class CreateOrder extends React.Component {
         }
         body.adults = this.state.adult;
         body.children = this.state.child;
-        body.numbersOfRooms = this.state.numberOfRooms;
+        // TODO: think about number of rooms logic
+        if (this.state.adult === 0 && this.state.child === 0) {
+            body.numbersOfRooms = 0;
+        } else {
+            body.numbersOfRooms = 1;
+        }
 
         this.setState({arrivalDate: this.state["arrivalDate"]});
         this.setState({departureDate: this.state["departureDate"]});
@@ -169,7 +174,7 @@ export default class CreateOrder extends React.Component {
     formToFindRooms() {
         let selectChildren = null;
         let selectAdult = null;
-        let selectNumbersOfRooms = null;
+        //let selectNumbersOfRooms = null;
 
         if (this.state.children) {
             selectChildren = this.state.children.map(child => <option value={child}>{child}</option>);
@@ -179,20 +184,20 @@ export default class CreateOrder extends React.Component {
             selectAdult = this.state.adults.map(adult => <option value={adult}>{adult}</option>);
         }
 
-        if (this.state.numbersOfRooms) {
+        /*if (this.state.numbersOfRooms) {
             selectNumbersOfRooms = this.state.numbersOfRooms.map(numberOfRooms => <option
                 value={numberOfRooms}>{numberOfRooms}</option>);
-        }
+        }*/
 
         return <Form className="wide-form" onSubmit={this.onSubmit}>
             <h2>Make an order:</h2>
             <Container>
-                <Row>
+                {/*<Row>
                     <Col>Number of rooms</Col>
                     <Col>
                         <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
                     </Col>
-                </Row>
+                </Row>*/}
                 <Row>
                     <Col>Children</Col>
                     <Col>

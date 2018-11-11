@@ -1,5 +1,6 @@
 package org.training.example.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,12 @@ public class User {
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String login;
+
+    @NotNull
+    @Column(unique = true)
+    private String mail;
 
     @NotNull
     private String firstName;

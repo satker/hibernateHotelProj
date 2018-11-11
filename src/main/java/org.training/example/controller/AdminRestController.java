@@ -23,7 +23,7 @@ public class AdminRestController {
     @GetMapping(value = "/{idAdmin}")
     public UserDTO getValidateAdmin(@PathVariable("idAdmin") long id, Principal principal) {
         return userService.
-                getValidateUser(id,
+                checkIsGoodUsername(id,
                         principal.getName());
     }
 

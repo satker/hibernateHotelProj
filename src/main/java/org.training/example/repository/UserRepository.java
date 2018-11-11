@@ -7,4 +7,6 @@ import org.training.example.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByLogin(String login);
+
+    User findByMail(String mail);
 }

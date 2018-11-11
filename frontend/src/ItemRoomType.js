@@ -49,8 +49,10 @@ export default class ItemRoomType extends React.Component {
                     : null
                 }
                 {this.props.isSelected ?
-                    <td><select onChange={this.props.addFixedNumberOfOrders}
-                                name="numberOfRooms">{numberOfRooms}</select></td>
+                    <td>
+                        {numberOfRooms.length !== 1 ? <select onChange={this.props.addFixedNumberOfOrders}
+                                                              name="numberOfRooms">{numberOfRooms}</select>
+                            : 1}</td>
                     : null
                 }
                 <td>{roomType.costNight}</td>

@@ -1,20 +1,15 @@
 version: '3.4'
 services:
   db:
-    image: mysql
+    image: postgres:latest
     container_name: db
-    command: mysqld --user=root --verbose
     volumes:
       - ./dbcreation.sql:/tmp/dbcreation.sql
-      - ./import.sh:/tmp/import.sh
     environment:
-      MYSQL_DATABASE: "hotels"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "user13690"
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      POSTGRES_PASSWORD: user
+      POSTGRES_USER: user
     ports:
-      - 3306:3306
+    - 5432:5432
 
   backend:
     image: com.kunats.inc/hotels:latest

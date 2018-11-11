@@ -1,1 +1,1 @@
-CREATE DATABASE hotels;
+CREATE DATABASE process_modeling;

@@ -4,8 +4,9 @@ services:
     image: postgres:latest
     container_name: db
     volumes:
-      - ./dbcreation.sql:/tmp/dbcreation.sql
+    - database_data:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: process_modeling
       POSTGRES_PASSWORD: user
       POSTGRES_USER: user
     ports:

@@ -1,16 +1,19 @@
 version: '3.4'
 services:
   db:
+    container_name: postgres_container
     image: postgres:latest
-    container_name: db
-    volumes:
-    - database_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: process_modeling
-      POSTGRES_PASSWORD: user
-      POSTGRES_USER: user
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+    - postgres:/data/postgres
     ports:
     - 5432:5432
+    networks:
+    - postgres
+    restart: unless-stopped
 
   backend:
     image: com.kunats.inc/hotels:latest

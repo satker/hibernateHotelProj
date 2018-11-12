@@ -8,7 +8,6 @@ import ChoosedHotelItem from './ChoosedHotelItem';
 import MainAdminPage from './MainAdminPage';
 import UserInfoPage from './UserInfoPage';
 import PersonalArea from './PersonalArea';
-import EditProfile from './EditProfile';
 import NavBar from './NavBar';
 import AdminConfirmPage from './AdminConfirmPage';
 import CreateOrder from './CreateOrder'
@@ -56,8 +55,6 @@ class App extends Component {
                                          me={this.getCurrentUser}
                                          user={this.getTargetUser}
                                          goBack={this.goBack}/>,
-                edit_profile: <EditProfile me={this.getCurrentUser}
-                                           goBack={this.goBack}/>,
                 confirm: <AdminConfirmPage user={this.getTargetUser}
                                            goBack={this.goBack}/>,
                 create_order: <CreateOrder me={this.getCurrentUser}

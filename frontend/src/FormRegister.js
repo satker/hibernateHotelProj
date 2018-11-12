@@ -4,23 +4,23 @@ import {Col, Container, Form, Row} from "reactstrap";
 
 const URL = "http://localhost:8080/user";
 
-const EMPTY_MAIL = 'Enter mail';
-const EMPTY_LOGIN = 'Enter login';
-const EMPTY_FIRST_NAME = 'Enter first name';
-const EMPTY_LAST_NAME = 'Enter last name';
-const EMPTY_PASSWORD = 'Enter password';
-const GOOD_MAIL = 'Mail correct';
-const GOOD_LOGIN = 'Login correct';
-const GOOD_FIRST_NAME = 'First name correct';
-const GOOD_LAST_NAME = 'Last name correct';
-const GOOD_PASSWORD = 'Password correct';
-const GOOD_CONFIRM_PASSWORD = '* Password correct';
-const NOT_GOOD_MAIL = 'Mail is busy';
-const NOT_GOOD_LOGIN = 'Login is busy';
-const NOT_GOOD_FIRST_NAME = 'First name cannot contain numbers';
-const NOT_GOOD_LAST_NAME = 'Last name cannot contain numbers';
+const EMPTY_MAIL = '';
+const EMPTY_LOGIN = '';
+const EMPTY_FIRST_NAME = '';
+const EMPTY_LAST_NAME = '';
+const EMPTY_PASSWORD = '';
+const GOOD_MAIL = '';
+const GOOD_LOGIN = '';
+const GOOD_FIRST_NAME = '';
+const GOOD_LAST_NAME = '';
+const GOOD_PASSWORD = '';
+const GOOD_CONFIRM_PASSWORD = '';
+const NOT_GOOD_MAIL = '* Mail is busy';
+const NOT_GOOD_LOGIN = '* Login is busy';
+const NOT_GOOD_FIRST_NAME = '* First name cannot contain numbers';
+const NOT_GOOD_LAST_NAME = '* Last name cannot contain numbers';
 const NOT_GOOD_CONFIRM_PASSWORD = '* Passwords do not match';
-const NOT_GOOD_PASSWORD = 'Password not correct';
+const NOT_GOOD_PASSWORD = '*  Password should be 8 or more symbols';
 const PATTERN_TO_CHECK_MAIL = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])';
 const PATTERN_TO_CHECK_NAME = '^[A-Za-z]*$';
 
@@ -67,40 +67,50 @@ class FormRegister extends Component {
             <Form className="wide-form" onSubmit={this.handleSubmit}>
                 <Container>
                     <Row><Col><label for="login">Login:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input className={!this.state.isUserNameReadyForRegister ? "error" : "good"}
+                                    onChange={(evt) => {
                             this.handleChange(evt);
                             this.handleUserName(evt);
                         }
-                        } type="text" id="login" name="login"/>* {this.state.checkedUserName}</Col>
+                                    } type="text" id="login" name="login"/>{this.state.checkedUserName}</Col>
                     </Row>
                     <Row><Col><label for="mail">Mail:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input className={!this.state.isMailReadyForRegister ? "error" : "good"}
+                                    onChange={(evt) => {
                             this.handleChange(evt);
                             this.handleMail(evt);
-                        }} type="text" id="mail" name="mail"/>* {this.state.checkedMail}</Col></Row>
+                                    }} type="text" id="mail" name="mail"/>{this.state.checkedMail}</Col></Row>
 
                     <Row><Col><label for="firstName">First name:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input
+                            className={!this.state.isFirstNameReadyForRegister ? "error" : "good"}
+                            onChange={(evt) => {
                             this.handleChange(evt);
                             this.handleName(evt);
-                        }} type="text" id="firstName" name="firstName"/>* {this.state.checkedFirstName}</Col></Row>
+                            }} type="text" id="firstName" name="firstName"/>{this.state.checkedFirstName}</Col></Row>
 
                     <Row><Col><label for="lastName">Last name:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input
+                            className={!this.state.isLastNameReadyForRegister ? "error" : "good"}
+                            onChange={(evt) => {
                             this.handleChange(evt);
                             this.handleName(evt);
-                        }} type="text" id="lastName" name="lastName"/>* {this.state.checkedLastName}</Col>
+                            }} type="text" id="lastName" name="lastName"/>{this.state.checkedLastName}</Col>
                     </Row>
 
                     <Row><Col><label for="password">Password:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input
+                            className={!this.state.isPasswordReadyForRegister ? "error" : "good"}
+                            onChange={(evt) => {
                             this.handleChange(evt);
                             this.handlePassword(evt);
                         }} type="password" id="password"
-                                    name="password"/>* {this.state.checkedPassword}</Col></Row>
+                            name="password"/>{this.state.checkedPassword}</Col></Row>
 
                     <Row><Col><label for="confirmPassword">Confirm password:</label></Col>
-                        <Col><input onChange={(evt) => {
+                        <Col><input
+                            className={!this.state.isConfirmPasswordReadyForRegister ? "error" : "good"}
+                            onChange={(evt) => {
                             this.handleChange(evt);
                             this.handleConfirmPassword(evt);
                         }} type="password" id="confirmPassword"
@@ -216,21 +226,31 @@ class FormRegister extends Component {
         let regexToCheckNonNumericValue = new RegExp(PATTERN_TO_CHECK_NAME);
         let isGood = regexToCheckNonNumericValue.test(value);
         if (evt.target.name === 'firstName') {
-            isGood ? (evt.target.value === '' ?
-                this.setState({checkedFirstName: EMPTY_FIRST_NAME}) :
-                this.setState({checkedFirstName: GOOD_FIRST_NAME})) :
+            if (isGood) {
+                if (evt.target.value === '') {
+                    this.setState({checkedFirstName: EMPTY_FIRST_NAME});
+                    this.setState({isFirstNameReadyForRegister: false});
+                } else {
+                    this.setState({checkedFirstName: GOOD_FIRST_NAME});
+                    this.setState({isFirstNameReadyForRegister: true});
+                }
+            } else {
                 this.setState({checkedFirstName: NOT_GOOD_FIRST_NAME});
-            this.state.checkedFirstName === GOOD_FIRST_NAME ?
-                this.setState({isFirstNameReadyForRegister: true}) :
                 this.setState({isFirstNameReadyForRegister: false});
+            }
         } else {
-            isGood ? (evt.target.value === '' ?
-                this.setState({checkedLastName: EMPTY_LAST_NAME}) :
-                this.setState({checkedLastName: GOOD_LAST_NAME})) :
+            if (isGood) {
+                if (evt.target.value === '') {
+                    this.setState({checkedLastName: EMPTY_LAST_NAME});
+                    this.setState({isLastNameReadyForRegister: false});
+                } else {
+                    this.setState({checkedLastName: GOOD_LAST_NAME});
+                    this.setState({isLastNameReadyForRegister: true});
+                }
+            } else {
                 this.setState({checkedLastName: NOT_GOOD_LAST_NAME});
-            this.state.checkedLastName === GOOD_LAST_NAME ?
-                this.setState({isLastNameReadyForRegister: true}) :
                 this.setState({isLastNameReadyForRegister: false});
+            }
         }
     }
 
@@ -251,7 +271,6 @@ class FormRegister extends Component {
 
     handleConfirmPassword(evt) {
         let value = evt.target.value;
-        console.log(value === this.state.password);
         if (value === '') {
             this.setState({checkedConfirmPassword: EMPTY_PASSWORD});
             this.setState({isConfirmPasswordReadyForRegister: false});

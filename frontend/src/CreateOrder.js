@@ -198,25 +198,29 @@ export default class CreateOrder extends React.Component {
                         <select onChange={this.onChange} name="numberOfRooms">{selectNumbersOfRooms}</select>
                     </Col>
                 </Row>*/}
+                <p>
+                    <Row>
+                        <Col>Children:</Col>
+                        <Col>
+                            <select onChange={this.onChange} name="child">{selectChildren}</select>
+                        </Col>
+                    </Row>
+                </p>
+                <p>
+                    <Row>
+                        <Col>Adults:</Col>
+                        <Col>
+                            <select onChange={this.onChange} name="adult">{selectAdult}</select>
+                        </Col>
+                    </Row>
+                </p>
                 <Row>
-                    <Col>Children</Col>
-                    <Col>
-                        <select onChange={this.onChange} name="child">{selectChildren}</select>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>Adults</Col>
-                    <Col>
-                        <select onChange={this.onChange} name="adult">{selectAdult}</select>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>Arrival date</Col>
+                    <Col>Arrival date:</Col>
                     <Col><input min={this.state.todayDate} max={this.getMaxArrivalDate()} onChange={this.onChange}
                                 type="date" name="arrivalDate"/></Col>
                 </Row>
                 <Row>
-                    <Col>Departure date</Col>
+                    <Col>Departure date:</Col>
                     <Col><input onChange={this.onChange} min={this.getMinDepartureDate()} type="date"
                                 name="departureDate"/></Col>
                 </Row>

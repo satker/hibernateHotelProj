@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Container, Form, Input, Table} from "reactstrap";
+import './Form.css'
 
 const URL = "http://localhost:8080/user/_id_";
 const PATTERN_TO_CHECK_MAIL = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])';
@@ -108,7 +109,9 @@ export default class PersonalArea extends React.Component {
                             <tbody>
                             <tr>
                                 <td>First name</td>
-                                <td><input type="text" name="firstName" placeholder={me.firstName}
+                                <td><input
+                                    className={!this.state.isFirstNameReadyForRegister ? "error" : "good"}
+                                    type="text" name="firstName" placeholder={me.firstName}
                                            onChange={(evt) => {
                                                this.onChange(evt);
                                                this.handleName(evt);
@@ -116,7 +119,9 @@ export default class PersonalArea extends React.Component {
                             </tr>
                             <tr>
                                 <td>Last name</td>
-                                <td><input type="text" name="lastName" placeholder={me.lastName}
+                                <td><input
+                                    className={!this.state.isLastNameReadyForRegister ? "error" : "good"}
+                                    type="text" name="lastName" placeholder={me.lastName}
                                            onChange={(evt) => {
                                                this.onChange(evt);
                                                this.handleName(evt);
@@ -125,7 +130,9 @@ export default class PersonalArea extends React.Component {
                             </tr>
                             <tr>
                                 <td>Mail address</td>
-                                <td><input type="text" name="mail" placeholder={me.mail}
+                                <td><input
+                                    className={!this.state.isMailReadyForRegister ? "error" : "good"}
+                                    type="text" name="mail" placeholder={me.mail}
                                            onChange={(evt) => {
                                                this.onChange(evt);
                                                this.handleMail(evt);

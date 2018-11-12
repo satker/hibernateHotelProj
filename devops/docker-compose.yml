@@ -4,16 +4,13 @@ services:
     container_name: postgres_container
     image: postgres:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: /data/postgres
+      POSTGRES_DB: model_process
+      POSTGRES_PASSWORD: postgress
+      POSTGRES_USER: postgress
     volumes:
-    - postgres:/data/postgres
+    - database_data:/var/lib/postgresql/data
     ports:
-    - 5432:5432
-    networks:
-    - postgres
-    restart: unless-stopped
+    - "5432:5432"
 
   backend:
     image: com.kunats.inc/hotels:latest

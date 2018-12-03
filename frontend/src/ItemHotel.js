@@ -17,7 +17,7 @@ export default class ItemHotel extends Component {
         return (
             <tbody>
             <tr>
-                <td><img src={hotel.mainPhoto.photoUrl}/></td>
+                <td>{hotel.mainPhoto !== null ? <img src={hotel.mainPhoto.photoUrl}/> : null}</td>
                 <td>{hotel.hotelName}</td>
                 <td>{hotel.countryName}, {hotel.cityName}</td>
                 <td>{hotel.price}</td>

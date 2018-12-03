@@ -17,8 +17,6 @@ export class HotelGeo extends Component {
             lng: longitude
         };
 
-        console.log(hotelName, latitude, longitude);
-
         return (
             // Important! Always set the container height explicitly
             <div style={{height: '50vh', width: '100%'}}>
